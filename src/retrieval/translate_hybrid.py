@@ -171,3 +171,4 @@ class TranslationHybridRetriever(BaseRetriever):
         # 4. Reciprocal Rank Fusion
         fused = reciprocal_rank_fusion([bm25_scores, dense_scores])
         return fused[:top_k]
+

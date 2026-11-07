@@ -37,3 +37,4 @@
 **Visual**: Screen displays mobile performance metrics (<30 KB total page weight, 2G network speed test) and the open-source GitHub repo under MIT License.  
 **Voiceover (Eng)**:  
 *"Ultra-lightweight under 30 kilobytes, zero personal data stored, verified across Hausa, Yoruba, and Igbo. Grounded in law, built for every citizen. Fully open source. Thank you."*
+

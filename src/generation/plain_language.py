@@ -22,3 +22,4 @@ class PlainLanguageConverter:
         for pattern, replacement in cls.LEGAL_JARGON_MAP.items():
             plain = re.sub(pattern, replacement, plain, flags=re.IGNORECASE)
         return plain
+

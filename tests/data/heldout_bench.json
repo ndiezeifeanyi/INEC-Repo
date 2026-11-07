@@ -1,0 +1,66 @@
+[
+  {
+    "id": "heldout_001",
+    "language": "en",
+    "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+    "target_doc": "Electoral Act 2026",
+    "target_section": "51",
+    "target_chunk_id": "EA2026-S51-SS2"
+  },
+  {
+    "id": "heldout_002",
+    "language": "ha",
+    "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+    "target_doc": "Electoral Act 2026",
+    "target_section": "51",
+    "target_chunk_id": "EA2026-S51-SS2"
+  },
+  {
+    "id": "heldout_003",
+    "language": "yo",
+    "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+    "target_doc": "Electoral Act 2026",
+    "target_section": "51",
+    "target_chunk_id": "EA2026-S51-SS2"
+  },
+  {
+    "id": "heldout_004",
+    "language": "ig",
+    "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+    "target_doc": "Electoral Act 2026",
+    "target_section": "51",
+    "target_chunk_id": "EA2026-S51-SS2"
+  },
+  {
+    "id": "heldout_005",
+    "language": "en",
+    "query": "At what time does accreditation and voting commence and close at polling stations?",
+    "target_doc": "INEC Regulations and Guidelines 2026",
+    "target_section": "18",
+    "target_chunk_id": "INEC2026-REG-S18-SS1"
+  },
+  {
+    "id": "heldout_006",
+    "language": "ha",
+    "query": "Wane lokaci ake fara tantancewa da kada kuri'a sannan a wane lokaci ake rufewa?",
+    "target_doc": "INEC Regulations and Guidelines 2026",
+    "target_section": "18",
+    "target_chunk_id": "INEC2026-REG-S18-SS1"
+  },
+  {
+    "id": "heldout_007",
+    "language": "yo",
+    "query": "Agogo melo ni a n bere ijeri ati idibo ti a si n pari re ni ibudo ibo?",
+    "target_doc": "INEC Regulations and Guidelines 2026",
+    "target_section": "18",
+    "target_chunk_id": "INEC2026-REG-S18-SS1"
+  },
+  {
+    "id": "heldout_008",
+    "language": "ig",
+    "query": "Oge ole ka a na-ebido nzere na itu vootu nakwa oge ole ka a na-emechi ya?",
+    "target_doc": "INEC Regulations and Guidelines 2026",
+    "target_section": "18",
+    "target_chunk_id": "INEC2026-REG-S18-SS1"
+  }
+]

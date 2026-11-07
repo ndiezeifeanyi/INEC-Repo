@@ -16,3 +16,4 @@
 ## 3. Transparency & Disclosures
 Every user check interface displays:
 > *"Privacy Notice: Your queries and links are never stored or shared. URL safety checks use zero-knowledge local cryptographic hashing."*
+

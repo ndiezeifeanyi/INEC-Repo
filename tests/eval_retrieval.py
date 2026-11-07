@@ -77,3 +77,4 @@ def test_retrieval_benchmarks():
 if __name__ == "__main__":
     res = run_retrieval_evaluation()
     print(json.dumps(res, indent=2))
+

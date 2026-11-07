@@ -9,3 +9,4 @@ class BaseRetriever(ABC):
     def retrieve(self, query: str, top_k: int = 5, lang: str = "en") -> List[Tuple[LegalChunk, float]]:
         """Retrieve top_k legal chunks with relevance score."""
         pass
+

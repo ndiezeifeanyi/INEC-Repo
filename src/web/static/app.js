@@ -131,3 +131,4 @@ async function handleCheck(e) {
     submitBtn.innerText = "Verify Authenticity";
   }
 }
+

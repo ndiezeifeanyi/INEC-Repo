@@ -19,3 +19,4 @@ The system enforces automated programmatic refusals for the following prompt cat
 - **Zero Live Access**: This system **never** accesses live INEC operational networks, voter registration databases, or the live IReV result portal.
 - All verification is conducted strictly against public gazetted statutes and published press bulletins.
 - Safeguard for `cvr.inecnigeria.org`: The Continuous Voter Registration portal utilizes a cloud CNAME. The security engine specifically accounts for this to prevent false positives that would mislead voters about the legitimacy of official INEC registration infrastructure.
+

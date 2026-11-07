@@ -27,8 +27,9 @@
     "id": "curr_004",
     "query": "What is the status of Section 29A regarding pre-election jurisdiction?",
     "repealed_2022_answer": "Section 29(5) Federal High Court exclusive jurisdiction under 2022 Act.",
-    "current_2026_requirement": "PASSED_BILL_AWAITING_GAZETTE. Explicitly disclose that Section 29A has passed the National Assembly but awaits formal presidential assent and official gazetting.",
-    "expected_document": "Electoral Act 2026",
+    "current_2026_requirement": "UNCONFIRMED. Passed by both chambers (Apr/May 2026); I could not confirm presidential assent; check the Gazette.",
+    "expected_document": "Electoral Act",
     "forbidden_phrase": "Section 29A is fully enacted with gazetted presidential assent"
   }
 ]
+

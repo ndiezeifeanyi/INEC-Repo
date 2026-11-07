@@ -53,7 +53,9 @@ class OfficialSourceChecker:
                     type="url",
                     status="Matches an official source",
                     matched_source=DomainAllowlistVerifier.clean_hostname(input_clean),
-                    confidence_notes=f"Confirmed authentic INEC domain: {note}"
+                    confidence_notes=f"Confirmed authentic INEC domain: {note}",
+                    corpus_size=len(self.bulletins),
+                    corpus_last_updated="2026-11-07"
                 )
 
             # 2. Typosquat / known counterfeit detection
@@ -64,10 +66,12 @@ class OfficialSourceChecker:
                     type="url",
                     status="Does not match any official source I can check",
                     matched_source=None,
-                    confidence_notes=f"Deceptive site warning: {typo_note}"
+                    confidence_notes=f"Deceptive site warning: {typo_note}",
+                    corpus_size=len(self.bulletins),
+                    corpus_last_updated="2026-11-07"
                 )
 
-            # 3. Privacy-preserving Safe Browsing prefix check
+            # 3. Local known-fake hash prefix check
             is_malicious, sb_note = self.safe_browsing.check_url_privacy_safe(input_clean)
             if is_malicious:
                 return VerificationResult(
@@ -75,16 +79,20 @@ class OfficialSourceChecker:
                     type="url",
                     status="Does not match any official source I can check",
                     matched_source=None,
-                    confidence_notes=f"Threat intelligence alert: {sb_note}"
+                    confidence_notes=f"Threat intelligence alert: {sb_note}",
+                    corpus_size=len(self.bulletins),
+                    corpus_last_updated="2026-11-07"
                 )
 
-            # 4. Unknown domain
+            # 4. Unknown domain -> Default to "Does not match any official source I can check" with explicit corpus limits
             return VerificationResult(
                 input_item=input_clean,
                 type="url",
                 status="Does not match any official source I can check",
                 matched_source=None,
-                confidence_notes="Domain is not registered in official INEC domain records."
+                confidence_notes="Domain is not registered in official INEC domain records.",
+                corpus_size=len(self.bulletins),
+                corpus_last_updated="2026-11-07"
             )
 
         # Case B: Message / Claim check against published official bulletins
@@ -118,27 +126,19 @@ class OfficialSourceChecker:
                 type="message",
                 status="Matches an official source",
                 matched_source=f"{best_match['title']} ({best_match['source_url']})",
-                confidence_notes=f"Matches verified INEC release published on {best_match['date']}."
+                confidence_notes=f"Matches verified INEC release published on {best_match['date']}.",
+                corpus_size=len(self.bulletins),
+                corpus_last_updated="2026-11-07"
             )
 
-        # Detect sensationalist rumors not in published bulletins
-        fabricated_indicators = ["breaking", "cancelle", "postpone", "rigg", "disqualif", "logistics failure", "banned"]
-        has_fabricated_flavor = any(ind in norm_input for ind in fabricated_indicators)
-
-        if has_fabricated_flavor:
-            return VerificationResult(
-                input_item=input_clean,
-                type="message",
-                status="Does not match any official source I can check",
-                matched_source=None,
-                confidence_notes="No matching INEC press bulletin or gazetted notice found for this statement."
-            )
-
-        # Fallback for generic or unclear text
+        # In all other cases, strictly DEFAULT to "Can't tell"
         return VerificationResult(
             input_item=input_clean,
             type="message",
             status="Can't tell",
             matched_source=None,
-            confidence_notes="The statement does not contain sufficient specific electoral details to confirm against official records."
+            confidence_notes="Does not match any published bulletin in the local indexed corpus. Defaulting to 'Can't tell' as check is not exhaustive.",
+            corpus_size=len(self.bulletins),
+            corpus_last_updated="2026-11-07"
         )
+

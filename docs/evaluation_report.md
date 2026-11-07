@@ -102,3 +102,4 @@ Evaluated across 20 canonical voter questions in English (`en`), Hausa (`ha`), Y
    - Pidgin support remains **strictly disabled** until formal multi-speaker evaluation and $\kappa \ge 0.85$ inter-annotator agreement is achieved.
 3. **Payload Budget**:
    - Web application payload (HTML + CSS + JS) is **under 20 KB** (well within the 30 KB budget), validated for 2G/EDGE networks.
+

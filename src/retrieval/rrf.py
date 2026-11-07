@@ -21,3 +21,4 @@ def reciprocal_rank_fusion(
     # Sort descending by fused score
     sorted_items = sorted(scores.items(), key=lambda x: x[1], reverse=True)
     return [(chunk_map[cid], score) for cid, score in sorted_items]
+

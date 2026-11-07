@@ -24,3 +24,4 @@ We implement both pipelines behind a unified `BaseRetriever` interface. The winn
 - Recall@5 >= 0.85
 - MRR >= 0.75
 Metrics are logged in the Evaluation Report before freezing the default deployment pipeline.
+

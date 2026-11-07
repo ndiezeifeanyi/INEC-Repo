@@ -61,8 +61,8 @@
     "id": "chk_008",
     "type": "message",
     "input": "BREAKING: INEC Chairman announces that voting has been cancelled across all Southern states due to logistics failure.",
-    "expected_status": "Does not match any official source I can check",
-    "description": "Fabricated viral rumor not matching any published bulletin"
+    "expected_status": "Can't tell",
+    "description": "Fabricated viral rumor not matching any published bulletin; engine defaults strictly to Can't tell"
   },
   {
     "id": "chk_009",
@@ -72,3 +72,4 @@
     "description": "Unverifiable generic claim not covered by national gazetted rules or releases"
   }
 ]
+

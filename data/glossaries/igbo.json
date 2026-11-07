@@ -1,91 +1,67 @@
 {
   "language_code": "ig",
   "language_name": "Igbo",
-  "corpus_source": "Masakhane Civic & BBC Igbo Electoral Lexicon",
+  "status_note": "ALL ENTRIES UNREVIEWED. Seeded for research prototype; awaiting native-speaker linguist review.",
   "terms": [
     {
       "english": "voter registration",
       "target": "ndebanye aha ndi n'eme ntuli aka",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "polling unit",
       "target": "ebe a na-atukwasara vootu",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "ballot box",
       "target": "igbe vootu",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "presiding officer",
       "target": "onye isi na-ahazi ntuli aka n'ebe ntu vootu",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "electoral act",
       "target": "iwu ntuli aka",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "accreditation",
       "target": "nzere ndi ntuli aka",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "bimodal voter accreditation system",
       "target": "igwe eji enyocha ndi ntuli aka (BVAS)",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "permanent voter card",
       "target": "kaadi ntuli aka na-adigide (PVC)",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "collation centre",
       "target": "ebe a na-achikota nsonaazụ ntuli aka",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "electronic transmission",
       "target": "iziga nsonaazụ site na igwe elektrọnik",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "rejected ballot",
       "target": "vootu a juru aju",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     },
     {
       "english": "over-voting",
       "target": "vootu karia ndi e nwere nzere ha",
-      "status": "VALIDATED",
-      "reviewed_by": "Chukwudi N. (Linguist, University of Nigeria Nsukka)",
-      "date_verified": "2026-10-20"
+      "status": "UNREVIEWED"
     }
   ]
 }

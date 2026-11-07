@@ -37,11 +37,11 @@ class GroundedAnswerGenerator:
             if re.search(pattern, q_lower):
                 if category.startswith("candidate_comparison"):
                     if lang == "ha":
-                        return "Ina ba da hakuri: Dokar aiki na ta haramta mini yin kalaman son kai ko bayar da shawarar dan takara ko jam'iyya. Zan iya ba da bayanai ne kawai kan ka'idojin zabe da dokar zabe ta 2026."
+                        return "Ina ba da hakuri: Ba zan iya bayar da shawarar dan takara ko jam'iyya ba. Zan iya ba da bayanai ne kawai kan ka'idojin zabe da dokar zabe ta 2026."
                     elif lang == "yo":
-                        return "Mo binu, eto mi ko gba mi laaye lati so oludije tabi egbe oselu ti o dara julo. Eto yi wa fun fifi ofin idibo 2026 ati ilana INEC han nikan."
+                        return "Mo binu, eto mi ko le so oludije tabi egbe oselu ti o dara julo. Eto yi wa fun fifi ofin idibo 2026 ati ilana INEC han nikan."
                     elif lang == "ig":
-                        return "Ndo, enweghi m ikike ikwu onye kacha mma ituputara vootu ma obu ime ka otu pati karia ibe ya. Nani iwu ntuli aka 2026 na usoro INEC ka m na-akowaputa."
+                        return "Ndo, enweghi ike igwa gi onye kacha mma ituputara vootu ma obu ime ka otu pati karia ibe ya. Nani iwu ntuli aka 2026 na usoro INEC ka m na-akowaputa."
                     return "I cannot evaluate or compare political candidates or parties, nor recommend who to vote for. I provide objective rules and procedures based strictly on the Electoral Act 2026 and official INEC guidelines."
                 
                 elif category == "election_prediction":
@@ -114,8 +114,8 @@ class GroundedAnswerGenerator:
         )
 
         confidence_flags = []
-        if top_chunk.legal_status == "PASSED_BILL_AWAITING_GAZETTE":
-            confidence_flags.append("STATUS_PASSED_BILL_AWAITING_GAZETTE")
+        if top_chunk.legal_status == "UNCONFIRMED":
+            confidence_flags.append("STATUS_UNCONFIRMED_CHECK_GAZETTE")
 
         # Multilingual generation with glossary enforcement
         content = top_chunk.content_english
@@ -131,7 +131,7 @@ class GroundedAnswerGenerator:
             elif top_chunk.section_number == "28":
                 raw_ans = "Bisa ga sashe na 28(1) na Dokar Zabe ta 2026, wajibi ne hukumar INEC ta bayyana sanarwar zabe kwanaki 360 kafin ranar zabe a kowace jiha da Babban Birnin Tarayya."
             elif top_chunk.section_number in ["29", "29A"]:
-                raw_ans = "Game da shari'ar zaben fidda gwani, Dokar Zabe ta 2026 sashe na 29(5) ta tanadi cewa dan takarar da ya shiga zaben fidda gwani zai iya kai kara a Babbar Kotun Tarayya. (Kula: Kudirin Sashe na 29A yana matsayin PASSED_BILL_AWAITING_GAZETTE)."
+                raw_ans = "Game da shari'ar zaben fidda gwani, Dokar Zabe ta 2026 sashe na 29(5) ta tanadi cewa dan takarar da ya shiga zaben fidda gwani zai iya kai kara a Babbar Kotun Tarayya. (Kula: Sashe na 29A yana matsayin UNCONFIRMED: Majalisun biyu sun amince da shi a watan Afrilu/Mayu 2026; ban sami tabbacin sa hannun shugaban kasa ba; duba Gazette)."
             else:
                 raw_ans = f"Bisa ga {top_chunk.document_title} Sashe na {top_chunk.section_number}: {top_chunk.content_plain}"
             ans_text, term_warnings = self.glossary_enforcer.validate_and_enforce(raw_ans, "ha")
@@ -147,7 +147,7 @@ class GroundedAnswerGenerator:
             elif top_chunk.section_number == "28":
                 raw_ans = "Gege bi abala 28(1) ninu Ofin Idibo 2026, o ye ki INEC kede ifitonileti idibo ni ojo 360 saaju ojo idibo ni gbogbo ipinle."
             elif top_chunk.section_number in ["29", "29A"]:
-                raw_ans = "Lori ejo ti o waye saaju idibo, abala 29(5) Ofin Idibo 2026 gba eni ti o kopa ninu idibo abele laaye lati gbe ejo lo si Ile-ejo Giga ti Ijoba Apapo. (Akiyesi: Abala 29A si wa ni ipo PASSED_BILL_AWAITING_GAZETTE)."
+                raw_ans = "Lori ejo ti o waye saaju idibo, abala 29(5) Ofin Idibo 2026 gba eni ti o kopa ninu idibo abele laaye lati gbe ejo lo si Ile-ejo Giga ti Ijoba Apapo. (Akiyesi: Abala 29A si wa ni ipo UNCONFIRMED: Ile asofin mejeeji fowo si ni Osu Igbe/Ebibi 2026; nko le fi idi ifowo si aare mule; ye Gazette wo)."
             else:
                 raw_ans = f"Gege bi {top_chunk.document_title} Abala {top_chunk.section_number}: {top_chunk.content_plain}"
             ans_text, term_warnings = self.glossary_enforcer.validate_and_enforce(raw_ans, "yo")
@@ -163,7 +163,7 @@ class GroundedAnswerGenerator:
             elif top_chunk.section_number == "28":
                 raw_ans = "Dika ngalaba 28(1) nke Iwu Ntuli Aka 2026 si kwuo, INEC ga-eweputa okwa ntuli aka ubochi 360 tupu ubochi ntuli aka n'ala anyi."
             elif top_chunk.section_number in ["29", "29A"]:
-                raw_ans = "Maka ikpe esemokwu tupu ntuli aka, ngalaba 29(5) nke Iwu 2026 nyere onye zoro okwa ikike ịgba akwụkwọ n'Ụlọ Ikpe Kasị Elu nke Gọọmenti Etiti (Federal High Court). (Rịba ama: Ngalaba 29A nọ n'ụdị PASSED_BILL_AWAITING_GAZETTE)."
+                raw_ans = "Maka ikpe esemokwu tupu ntuli aka, ngalaba 29(5) nke Iwu 2026 nyere onye zoro okwa ikike ịgba akwụkwọ n'Ụlọ Ikpe Kasị Elu nke Gọọmenti Etiti (Federal High Court). (Rịba ama: Ngalaba 29A nọ n'ụdị UNCONFIRMED: Ụlọ omeiwu abụọ kwadoro ya na Eprel/Mee 2026; enweghị m ike nkwenye nbinye aka onye isi ala; lelee Gazette)."
             else:
                 raw_ans = f"Dika {top_chunk.document_title} Ngalaba {top_chunk.section_number}: {top_chunk.content_plain}"
             ans_text, term_warnings = self.glossary_enforcer.validate_and_enforce(raw_ans, "ig")
@@ -174,8 +174,8 @@ class GroundedAnswerGenerator:
             if top_chunk.subsection_number:
                 ans_text += f", Subsection ({top_chunk.subsection_number})"
             ans_text += f":\n\n\"{content}\""
-            if top_chunk.legal_status == "PASSED_BILL_AWAITING_GAZETTE":
-                ans_text += "\n\n[Legal Notice: This provision reflects the harmonized amendment bill passed by the National Assembly (SB.412/HB.890) currently classified as PASSED_BILL_AWAITING_GAZETTE pending formal presidential assent and gazetting.]"
+            if top_chunk.legal_status == "UNCONFIRMED":
+                ans_text += f"\n\n[Status: UNCONFIRMED. Passed by both chambers (Apr/May 2026); I could not confirm presidential assent as of {top_chunk.retrieval_date}; check the Gazette.]"
 
         return VoterAnswer(
             question=query,

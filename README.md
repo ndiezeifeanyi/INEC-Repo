@@ -141,3 +141,4 @@ Response:
 ## License
 This project is licensed under the terms of the [MIT License](LICENSE).  
 Audio synthesis models by Meta are governed by their respective [CC-BY-NC-4.0](docs/adr/0002-tts-licensing.md) license.
+

@@ -34,16 +34,22 @@ def test_currency_and_transition():
             f"Expected a 2026 statutory document, but got {top_cite.document_title}."
         )
 
-        # 3. For Section 29A, verify PASSED_BILL_AWAITING_GAZETTE status flag
+        # 3. For Section 29A, verify UNCONFIRMED status flag
         if "29A" in item["id"] or "29A" in top_cite.section:
-            assert top_cite.legal_status == "PASSED_BILL_AWAITING_GAZETTE", (
-                f"Section 29A must be flagged PASSED_BILL_AWAITING_GAZETTE, got: {top_cite.legal_status}"
+            assert top_cite.legal_status == "UNCONFIRMED", (
+                f"Section 29A must be flagged UNCONFIRMED, got: {top_cite.legal_status}"
             )
-            assert "PASSED_BILL_AWAITING_GAZETTE" in answer.answer_text, (
-                "Answer text must explicitly disclose that Section 29A is PASSED_BILL_AWAITING_GAZETTE."
+            assert "UNCONFIRMED" in answer.answer_text, (
+                "Answer text must explicitly state UNCONFIRMED status."
+            )
+            assert "Passed by both chambers (Apr/May 2026)" in answer.answer_text, (
+                "Answer text must state 'Passed by both chambers (Apr/May 2026)'."
+            )
+            assert "check the Gazette" in answer.answer_text, (
+                "Answer text must advise user to 'check the Gazette'."
             )
 
-    print("All currency tests passed: 2026 statutes enforced, Section 29A classified as PASSED_BILL_AWAITING_GAZETTE.")
+    print("All currency tests passed: 2026 statutes enforced, Section 29A classified as UNCONFIRMED.")
 
 if __name__ == "__main__":
     test_currency_and_transition()

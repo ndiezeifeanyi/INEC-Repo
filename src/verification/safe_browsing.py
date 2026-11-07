@@ -4,10 +4,11 @@ from typing import Set, Tuple, Optional
 
 class PrivacySafeBrowsingEngine:
     """
-    Privacy-preserving client adhering to Google Safe Browsing Update API v4 principles:
-    - Zero full URL transmission to external servers.
-    - Canonicalization and SHA-256 hashing.
-    - Local 4-byte (32-bit) hash prefix database lookup.
+    Local privacy-preserving URL inspection client based on:
+    - Internal domain allowlist
+    - Locally compiled known-fake list (SHA-256 4-byte prefix matching)
+    NOTE: This is NOT the live Google Safe Browsing API. It operates purely on local threat lists
+    to avoid transmitting user URLs across the network.
     """
 
     def __init__(self):
@@ -55,3 +56,4 @@ class PrivacySafeBrowsingEngine:
         if prefix in self.local_prefix_db:
             return True, "Flagged: Local SHA-256 hash prefix matches verified phishing list."
         return False, None
+

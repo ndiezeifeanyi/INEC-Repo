@@ -19,3 +19,4 @@ We adopt a decoupled, evidence-first, privacy-preserving architecture consisting
 - Zero user PII is ever collected or persisted.
 - No live INEC infrastructure (including IReV) is scraped or contacted.
 - Model hallucinations are prevented by rejecting ungrounded queries and returning standard abstention responses pointing to inecnigeria.org.
+

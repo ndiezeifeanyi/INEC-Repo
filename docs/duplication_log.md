@@ -48,3 +48,4 @@ This log documents existing civic tech platforms in Nigeria, evaluates potential
 | **Payload Budget** | ~40 MB app | Web app | Standard web app | **< 30 KB low-bandwidth PWA (works on 2G/EDGE)** |
 | **Political Refusal** | Evaluates claims | Out of scope | Partial filters | **Deterministic hard refusal on candidates/parties/predictions** |
 | **License** | Proprietary | Proprietary | Proprietary | **Open Source (MIT)** |
+

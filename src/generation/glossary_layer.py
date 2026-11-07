@@ -37,10 +37,9 @@ class CivicGlossaryEnforcer:
         for eng_term, meta in glossary.items():
             expected_target = meta["target"].lower()
             status = meta.get("status", "UNREVIEWED")
-            reviewer = meta.get("reviewed_by", "NONE")
 
-            if status != "VALIDATED" or reviewer == "NONE":
-                warnings.append(f"Term '{eng_term}' ({expected_target}) has unreviewed translation status.")
+            if status != "VALIDATED":
+                warnings.append(f"UNREVIEWED: Term '{eng_term}' ({expected_target}) has not undergone native-speaker review.")
 
         return text, warnings
 
@@ -51,3 +50,4 @@ class CivicGlossaryEnforcer:
         if entry and entry.get("status") == "VALIDATED":
             return entry["target"]
         return f'"{english_term}"'
+

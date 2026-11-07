@@ -76,3 +76,4 @@ class TyposquatDetector:
                 return True, f"High Risk: Typosquatted mimic of '{base_target}' detected ('{part}')"
 
         return False, None
+

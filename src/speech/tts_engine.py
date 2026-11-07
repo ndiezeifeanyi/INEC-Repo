@@ -48,3 +48,4 @@ class MMSTTSEngine:
                 wav_file.writeframes(struct.pack("<h", val))
 
         return buffer.getvalue()
+

@@ -49,3 +49,4 @@ class DomainAllowlistVerifier:
             return True, f"Verified official INEC sub-domain: {hostname}"
 
         return False, f"Domain '{hostname}' is not in the official INEC domain registry."
+

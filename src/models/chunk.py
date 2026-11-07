@@ -44,7 +44,10 @@ class VerificationResult(BaseModel):
     status: str  # "Matches an official source" | "Does not match any official source I can check" | "Can't tell"
     matched_source: Optional[str] = None
     confidence_notes: str
+    corpus_size: int = 0
+    corpus_last_updated: str = "2026-11-07"
     disclaimer: str = (
         "This check compares inputs against gazetted statutes and official public INEC records. "
         "It is not exhaustive or infallible and does not evaluate political opinions or non-electoral claims."
     )
+
