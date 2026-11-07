@@ -8,12 +8,13 @@ from typing import Optional, Dict
 class MMSTTSEngine:
     """
     Text-to-Speech synthesis handler for Hausa, Yoruba, and Igbo.
+    Offline implementation produces test tones only; production requires downloading Meta MMS-TTS weights.
     Licensing Guardrail: Meta MMS-TTS is under CC-BY-NC-4.0 (Non-commercial use only).
     """
 
     LICENSE_NOTICE = (
-        "Audio synthesis powered by Meta MMS-TTS models under CC-BY-NC-4.0 "
-        "for non-commercial civic education research."
+        "Audio: test tone only (offline synthetic tone generator; Meta MMS-TTS requires "
+        "downloading model weights under CC-BY-NC-4.0)."
     )
 
     LANG_MODEL_MAP = {

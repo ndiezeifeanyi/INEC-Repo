@@ -12,3 +12,4 @@ print('xref offset:', xref_offset)
 # Read the object table or cross reference stream
 xref_data = raw[xref_offset:xref_offset+500]
 print('xref data preview:\n', xref_data[:200])
+

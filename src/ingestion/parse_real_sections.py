@@ -59,3 +59,4 @@ for s in target_sections:
 
 with open('data/raw/parsed_sections_check.json', 'w', encoding='utf-8') as f:
     json.dump(manifest_data, f, indent=2)
+

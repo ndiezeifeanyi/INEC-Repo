@@ -3,6 +3,7 @@ from typing import List, Tuple, Optional
 from src.models.chunk import LegalChunk, Citation, VoterAnswer
 from src.generation.glossary_layer import CivicGlossaryEnforcer
 from src.generation.plain_language import PlainLanguageConverter
+from src.config import UNCONFIRMED_AMENDMENTS
 
 class GroundedAnswerGenerator:
     """
@@ -101,6 +102,37 @@ class GroundedAnswerGenerator:
             )
 
         top_chunk, score = retrieved_chunks[0]
+
+        # Check if query asks about Section 29A or unconfirmed legislative amendments
+        if "29a" in query.lower() or "29 a" in query.lower():
+            amend = UNCONFIRMED_AMENDMENTS["29A"]
+            citation = Citation(
+                document_title="Electoral Act 2026",
+                section="29A",
+                subsection=None,
+                version="Proposed Amendment (Awaiting Gazette)",
+                retrieval_date="2026-11-07",
+                source_url="https://nass.gov.ng",
+                legal_status="UNCONFIRMED"
+            )
+            confidence_flags = ["STATUS_UNCONFIRMED_CHECK_GAZETTE"]
+            if lang == "ha":
+                ans_text = f"Game da Sashe na 29A: {amend['notice_ha']}"
+            elif lang == "yo":
+                ans_text = f"Lori Abala 29A: {amend['notice_yo']}"
+            elif lang == "ig":
+                ans_text = f"Maka Ngalaba 29A: {amend['notice_ig']}"
+            else:
+                ans_text = f"Status: UNCONFIRMED. {amend['notice']}"
+            return VoterAnswer(
+                question=query,
+                language=lang,
+                answer_text=ans_text,
+                answer_plain=amend["notice"],
+                citations=[citation],
+                retrieved_chunk_ids=[top_chunk.chunk_id],
+                confidence_flags=confidence_flags
+            )
 
         # Extract citations
         citation = Citation(

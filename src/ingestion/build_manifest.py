@@ -61,3 +61,4 @@ print(f"Total extracted section chunks from PDF: {len(chunks)}")
 with open('data/raw/extracted_chunks_manifest.json', 'w', encoding='utf-8') as f:
     json.dump(chunks, f, indent=2)
 print("Saved data/raw/extracted_chunks_manifest.json")
+

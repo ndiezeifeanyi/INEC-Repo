@@ -15,3 +15,4 @@ try:
     print('Saved data/raw/inec_guidelines_page.html')
 except Exception as e:
     print('Failed:', e)
+

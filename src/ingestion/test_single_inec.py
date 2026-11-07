@@ -24,3 +24,4 @@ for l in links:
             print(f"SUCCESS: {dest} ({len(data)} bytes, sha256={sha})")
     except Exception as e:
         print(f"FAILED {full_url}: {e}")
+

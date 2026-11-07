@@ -20,3 +20,4 @@ for url, dest in files_to_download:
         print(f"Downloaded {dest}: size={len(data)}, sha256={sha}")
     except Exception as e:
         print(f"Failed {url}: {e}")
+

@@ -67,13 +67,13 @@ async def check_link_or_message(req: CheckRequest):
 
 @app.get("/api/v1/tts")
 async def generate_speech(text: str, lang: str = "en"):
-    """Synthesizes speech using Meta MMS-TTS under CC-BY-NC-4.0 license."""
+    """Generates audio for playback (test tone only; offline synthetic tone generator)."""
     audio_bytes = MMSTTSEngine.generate_synthetic_audio(text, lang)
     return Response(
         content=audio_bytes,
         media_type="audio/wav",
         headers={
-            "X-License": "CC-BY-NC-4.0 (Non-commercial research)",
+            "X-License": "Audio test tone only (synthetic PCM tone generator)",
             "Cache-Control": "public, max-age=86400"
         }
     )
@@ -83,7 +83,7 @@ async def health_check():
     return {
         "status": "HEALTHY",
         "statutes": ["Electoral Act 2026", "INEC Guidelines 2026"],
-        "section_29a_status": "PASSED_BILL_AWAITING_GAZETTE",
+        "section_29a_status": "UNCONFIRMED",
         "supported_languages": ["en", "ha", "yo", "ig"],
         "pidgin_status": "DISABLED_PENDING_VALIDATION",
         "live_inec_access": False,

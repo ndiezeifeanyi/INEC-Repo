@@ -7,3 +7,4 @@ for href, text in matches:
     clean_text = ' '.join(text.split())
     if any(k in clean_text.lower() or k in href.lower() for k in ['guideline', 'regulation', 'transmission', '2026', 'electoral']):
         print(f"HREF: {href} | TEXT: {clean_text}")
+

@@ -20,3 +20,4 @@ for i, s in enumerate(streams):
 print('Decompressed streams with text:', len(decompressed_text))
 for item in decompressed_text[:10]:
     print(item)
+

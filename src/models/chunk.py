@@ -11,11 +11,12 @@ class LegalChunk(BaseModel):
     part_title: str
     section_number: str
     subsection_number: Optional[str] = None
+    page: Optional[int] = None
     content_english: str
     content_plain: str
     legal_status: str = Field(
         ...,
-        description="'ENACTED' or 'PASSED_BILL_AWAITING_GAZETTE'"
+        description="'ENACTED' or 'UNCONFIRMED'"
     )
 
 class Citation(BaseModel):

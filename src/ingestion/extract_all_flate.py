@@ -41,3 +41,4 @@ print(f"Extracted text streams: {len(pages_text)}")
 for i, pt in enumerate(pages_text[:15]):
     print(f"\n--- EXTRACTED STREAM {i} ({len(pt)} chars) ---")
     print(pt[:400])
+

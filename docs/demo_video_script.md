@@ -15,7 +15,7 @@
 ### [0:25 - 0:50] Multilingual Voter FAQ with Verified Citations
 **Visual**: User selects Hausa, asks: *"Yaya ake tantance mai zabe da na'urar BVAS?"* (How is a voter accredited with BVAS?). The system retrieves Section 47 of the Electoral Act 2026 and outputs the answer in natural Hausa with certified civic vocabulary.  
 **Voiceover (Eng / Hausa snippet)**:  
-*"Watch as we ask in Hausa about voter accreditation. Unlike generic chatbots that hallucinate, our engine retrieves the exact gazetted clause—Section 47, Subsection 2—and provides the answer using certified Hausa civic terms, complete with a verbatim legal citation and date of retrieval. With one click, low-literacy voters can play crisp synthesized audio powered by Meta MMS-TTS."*
+*"Watch as we ask in Hausa about voter accreditation. Unlike generic chatbots that hallucinate, our engine retrieves the exact gazetted clause—Section 47, Subsection 2—and provides the answer using certified Hausa civic terms, complete with a verbatim legal citation and date of retrieval. With one click, voters can test the audio endpoint (currently test tone only; production voice requires downloading Meta MMS-TTS checkpoint weights)."*
 
 ---
 

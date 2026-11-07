@@ -24,7 +24,7 @@ class TranslationHybridRetriever(BaseRetriever):
             base_dir = Path(__file__).resolve().parent.parent.parent
             files = [
                 base_dir / "data" / "processed" / "electoral_act_2026.jsonl",
-                base_dir / "data" / "processed" / "inec_guidelines_2026.jsonl"
+                base_dir / "data" / "processed" / "inec_transmission_procedure.jsonl"
             ]
         else:
             files = [data_path]

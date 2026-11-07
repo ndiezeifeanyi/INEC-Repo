@@ -75,37 +75,37 @@
     "id": "ret_009",
     "language": "en",
     "query": "What is the legal procedure for electronic transmission of polling unit election results?",
-    "target_doc": "INEC Regulations and Guidelines 2026",
-    "target_section": "38",
-    "target_subsection": "1",
-    "target_chunk_id": "INEC2026-REG-S38-SS1"
+    "target_doc": "INEC Electronic Transmission & Collation Procedure (2026)",
+    "target_section": "PAGE-4",
+    "target_subsection": null,
+    "target_chunk_id": "INEC2026-ET-PAGE4"
   },
   {
     "id": "ret_010",
     "language": "ha",
     "query": "Menene tsarin doka na aikawa da sakamakon zabe ta hanyar na'ura mai kwakwalwa?",
-    "target_doc": "INEC Regulations and Guidelines 2026",
-    "target_section": "38",
-    "target_subsection": "1",
-    "target_chunk_id": "INEC2026-REG-S38-SS1"
+    "target_doc": "INEC Electronic Transmission & Collation Procedure (2026)",
+    "target_section": "PAGE-4",
+    "target_subsection": null,
+    "target_chunk_id": "INEC2026-ET-PAGE4"
   },
   {
     "id": "ret_011",
     "language": "yo",
     "query": "Kini ilana ofin fun gbigbe awon abajade ibudo idibo ranse nipase ero ayelujara?",
-    "target_doc": "INEC Regulations and Guidelines 2026",
-    "target_section": "38",
-    "target_subsection": "1",
-    "target_chunk_id": "INEC2026-REG-S38-SS1"
+    "target_doc": "INEC Electronic Transmission & Collation Procedure (2026)",
+    "target_section": "PAGE-4",
+    "target_subsection": null,
+    "target_chunk_id": "INEC2026-ET-PAGE4"
   },
   {
     "id": "ret_012",
     "language": "ig",
     "query": "Kedu usoro iwu maka iziga nsonaazụ ntuli aka site na igwe elektrọnik?",
-    "target_doc": "INEC Regulations and Guidelines 2026",
-    "target_section": "38",
-    "target_subsection": "1",
-    "target_chunk_id": "INEC2026-REG-S38-SS1"
+    "target_doc": "INEC Electronic Transmission & Collation Procedure (2026)",
+    "target_section": "PAGE-4",
+    "target_subsection": null,
+    "target_chunk_id": "INEC2026-ET-PAGE4"
   },
   {
     "id": "ret_013",

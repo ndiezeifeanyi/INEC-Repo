@@ -22,8 +22,8 @@ It answers voter questions regarding Nigeria's election rules strictly grounded 
 4. **Privacy-Preserving Phishing Defense**: Implements Google Safe Browsing Update API v4 principles with local 4-byte SHA-256 hash prefixes. **Zero full URLs are transmitted to third parties.**
 5. **Accurate CNAME Handling**: Accounts for third-party cloud routing on `cvr.inecnigeria.org` without false-positive phishing flags.
 6. **Accessible & Low-Bandwidth**: Total web page weight is **under 20 KB** (well below the 30 KB budget) for seamless operation on 2G/EDGE networks.
-7. **Audio Accessibility**: Built-in voice synthesis in Hausa, Yoruba, and Igbo powered by Meta MMS-TTS (licensed under CC-BY-NC-4.0 for non-commercial voter education evaluation).
-8. **Section 29A Amendment Transparency**: Explicitly classified and disclosed as `PASSED_BILL_AWAITING_GAZETTE`.
+7. **Audio Feature**: Test tone only (offline synthetic tone generator; Meta MMS-TTS requires downloading model weights).
+8. **Section 29A Amendment Transparency**: Explicitly classified and disclosed as `UNCONFIRMED` (Passed by both chambers Apr/May 2026; unconfirmed presidential assent; check the Gazette).
 
 ---
 
@@ -140,5 +140,5 @@ Response:
 
 ## License
 This project is licensed under the terms of the [MIT License](LICENSE).  
-Audio synthesis models by Meta are governed by their respective [CC-BY-NC-4.0](docs/adr/0002-tts-licensing.md) license.
+Audio feature: test tone only (offline synthetic PCM tone generator; production Meta MMS-TTS models are governed by CC-BY-NC-4.0).
 

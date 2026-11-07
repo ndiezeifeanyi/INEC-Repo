@@ -1,0 +1,58 @@
+{
+  "audit_metadata": {
+    "manifest_version": "1.0",
+    "last_updated": "2026-11-07",
+    "global_status": "UNREVIEWED",
+    "disclaimer": "None of the non-English refusal strings have been reviewed or certified by native linguistic reviewers. All strings are draft developer templates and must be audited by qualified native speakers of Hausa, Yoruba, and Igbo prior to public deployment."
+  },
+  "refusal_strings": [
+    {
+      "trigger_category": "candidate_or_party_endorsement",
+      "status": "UNREVIEWED",
+      "translations": {
+        "en": "I cannot advise you on who to vote for or compare political candidates or parties. My role is strictly limited to explaining official election rules and verifying INEC information.",
+        "ha": "Ba zan iya ba ku shawarar wanda za ku zaba ba ko kuma kwatanta 'yan takara ko jam'iyyun siyasa. Aiki na ya takaita ne kawai wajen bayyana ka'idojin zabe da tabbatar da bayanan INEC.",
+        "yo": "Nko le gba o nimoran eni ti o ye ki o dibo fun tabi fi awon oludije tabi egbe oselu we ara won. Ise mi da lori agbeyewo awon ilana idibo ati ijeri oro to ba INEC mu nikan.",
+        "ig": "Enweghị m ike inye gị ndụmọdụ gbasara onye ị ga-atụrụ vootu ma ọ bụ iji ndị ndọrọ ndọrọ ọchịchị ma ọ bụ otu ndọrọ ndọrọ ọchịchị tụnyere onwe ha. Ọrụ m bụ nanị ịkọwa iwu ntuli aka na nkwenye ozi INEC."
+      },
+      "reviewer_assigned": null,
+      "reviewer_comments": null
+    },
+    {
+      "trigger_category": "election_outcome_prediction",
+      "status": "UNREVIEWED",
+      "translations": {
+        "en": "I cannot make predictions or forecasts about election outcomes. I only answer questions regarding verified statutory rules and procedures.",
+        "ha": "Ba zan iya yin hasashen sakamakon zabe ba. Zan iya amsa tambayoyi ne kawai game da dokoki da ka'idojin zabe da aka tabbatar.",
+        "yo": "Nko le so asotele abajade idibo. Mo le dahun awon ibeere nipa awon ilana ofin idibo ti a fidi re mule nikan.",
+        "ig": "Enweghị m ike ikwu amụma ihe ga-esi na ntuli aka pụta. Naanị ihe m na-aza bụ ajụjụ gbasara iwu na usoro gọọmenti kwadoro."
+      },
+      "reviewer_assigned": null,
+      "reviewer_comments": null
+    },
+    {
+      "trigger_category": "legal_advice_or_dispute_adjudication",
+      "status": "UNREVIEWED",
+      "translations": {
+        "en": "I cannot provide legal advice or adjudicate election disputes. Please consult a qualified legal practitioner or review official court and tribunal guidelines.",
+        "ha": "Ba zan iya bayar da shawarar shari'a ko yanke hukunci kan rigingimun zabe ba. Da fatan za a nemi kwararren lauya ko a duba ka'idojin kotu.",
+        "yo": "Nko le fun yin ni imoran ofin tabi dajo lori awon aheso oro idibo. E jowo kan si agbejoro tabi ke wo awon ilana ile-ejo.",
+        "ig": "Enweghị m ike inye ndụmọdụ gbasara iwu ma ọ bụ kpebie esemokwu ntuli aka. Biko gakwuru onye ọka iwu ma ọ bụ lelee usoro ụlọ ikpe."
+      },
+      "reviewer_assigned": null,
+      "reviewer_comments": null
+    },
+    {
+      "trigger_category": "abstention_unsupported_by_official_corpus",
+      "status": "UNREVIEWED",
+      "translations": {
+        "en": "I cannot answer this question based on the official retrieved election texts. Please refer directly to official INEC publications at https://inecnigeria.org.",
+        "ha": "Ban sami amsar wannan tambayar a cikin bayanan dokar zabe da aka bincika ba. Da fatan za a duba shafin hukumar INEC a https://inecnigeria.org.",
+        "yo": "Nko le ri idahun si ibeere yi ninu awon iwe ofin idibo ti a ye wo. E jowo se abewo si ibudo INEC ni https://inecnigeria.org.",
+        "ig": "Enweghị m ike isi na akwụkwọ iwu ntuli aka ahụrụ zaa ajụjụ a. Biko gaa na webusaiti gọọmenti INEC na https://inecnigeria.org."
+      },
+      "reviewer_assigned": null,
+      "reviewer_comments": null
+    }
+  ]
+}

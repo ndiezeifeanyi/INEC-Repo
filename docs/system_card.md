@@ -3,9 +3,9 @@
 ## 1. System Summary
 - **System Name**: Independent Multilingual Electoral Rules & Verification Prototype
 - **License**: MIT License
-- **Target Context**: #AI4Elections Hackathon (Track 3)
+- **Target Context**: #AI4Elections Hackathon (Track 3: Inclusive and Multilingual Civic Tech)
 - **Primary Function**:
-  1. Retrieve verbatim legal clauses from the Electoral Act 2026 and INEC Guidelines 2026.
+  1. Retrieve verbatim legal clauses from the Electoral Act 2026 and official INEC electronic transmission procedure.
   2. Answer voter procedural questions in English, Hausa, Yoruba, and Igbo using deterministic legal templates.
   3. Verify website links and claims against an internal allowlist and a locally maintained database of known fraudulent links and published INEC bulletins.
 
@@ -21,23 +21,33 @@
    - **All entries in `data/glossaries/` are UNREVIEWED.**
    - While terms are drawn from common public civic terminology, no certified native-speaker linguist has officially validated them for this project.
    - Any term generated in Hausa, Yoruba, or Igbo must be treated as uncertified research draft text.
+   - All refusal strings across English, Hausa, Yoruba, and Igbo are UNREVIEWED and listed in `data/glossaries/refusals_unreviewed.json` for native audit.
 
 3. **Check Mode Does NOT Query Live Safe Browsing**:
-   - URL verification uses an **internal domain allowlist** (`inecnigeria.org`, `cvr.inecnigeria.org`, `irev.inecnigeria.org`) and an internal blacklist of known malicious domains.
+   - URL verification uses an **internal domain allowlist** (`inecnigeria.org`, `cvr.inecnigeria.org`, `irev.inecnigeria.org`) and an internal blacklist of known malicious domains (`linksnapro.com`, `pvc-inecnigeria-org.blogspot.com`).
    - It **does not connect to Google Safe Browsing API**.
    - It defaults strictly to `"Can't tell"` for any message or claim not present in the local 3-bulletin corpus.
+   - Does not evaluate whether political claims or opinions are True or False.
 
 4. **Section 29A Amendment is UNCONFIRMED**:
    - The National Assembly pre-election amendment bill (proposed Section 29A) is **UNCONFIRMED**.
-   - As of 2026-11-07, it does not appear in Official Gazette No. 40 (Act No. 1, 2026). The system explicitly states that presidential assent is unconfirmed and directs voters to the Official Gazette.
+   - As of 2026-11-07, it does not appear in Official Gazette No. 40 (Act No. 1, 2026). The notice is maintained in application configuration (`src/config.py`) and is strictly excluded from the statutory corpus (`data/processed/electoral_act_2026.jsonl`).
+   - When queried, the system explicitly states: *"Passed by both chambers (Apr/May 2026); I could not confirm presidential assent as of 2026-11-07; check the Gazette."*
 
-5. **Audio Synthesis is Synthetic Offline Tones**:
-   - `src/speech/tts_engine.py` generates synthetic PCM sine wave tones in offline mode to demonstrate low-bandwidth audio delivery (<25 KB).
-   - Real voice synthesis requires loading external Meta MMS-TTS checkpoint weights, governed by non-commercial license CC-BY-NC-4.0.
+5. **Audio is Test Tone Only**:
+   - `src/speech/tts_engine.py` generates offline synthetic PCM sine wave tones (`<25 KB`) solely to test the browser audio playback pipeline without external network dependencies.
+   - Production neural voice synthesis requires loading external Meta MMS-TTS checkpoint weights, governed by non-commercial license CC-BY-NC-4.0.
 
 6. **Retrieval Performance & Circularity Disclosure**:
-   - On the 20-question statutory set where query phrases map to indexed terms, Recall@3 is **95.0%**.
-   - On the held-out unaligned set (n=8), Recall@3 drops to **37.5%** [95% CI: 4.0% - 71.0%], demonstrating that performance degrades when voter phrasing deviates from the translation dictionary.
+   - On the 20-question statutory set where query phrases map to indexed terms, Path B achieves Recall@3 of **90.0%** and MRR of **0.639**.
+   - On the held-out set (n=8, authored by developer test author, synthetic voter queries held out from index design), Recall@3 is **25.0%** [95% Wilson Score Interval: 7.1% - 59.1%], MRR is **0.250**.
+   - Per-language breakdowns are suppressed because $n=2$ per language is below the statistical threshold of $n=20$.
+   - **Circularity Note**: When voter queries use synonyms not captured in the unreviewed translation dictionary, retrieval falls back to character/token overlap, leading to reduced recall.
 
-7. **Zero Live INEC Access**:
+7. **Document Ingestion Status**:
+   - **Electoral Act 2026 Gazette**: Fully downloaded and parsed via `pypdf` (121 pages, SHA-256: `dee5a37b62b920c9cfaf009b7dc1dcf5ccb5cbbeff807f5487eac868ce882fd6`). Excludes Table of Contents (Pages 3-8). Main body parsed into Sections 1-156 (455 chunks); First Schedule parsed into separate paragraphs `EA2026-SCH1-P1` through `P55` (55 chunks). All 510 chunk IDs are unique.
+   - **INEC Electronic Transmission Procedure**: Fully downloaded and parsed from `https://inecnigeria.org/documents/guidelines/Electronic_Transmission___Collation_Of_Result-5.pdf` (661,914 bytes, SHA-256: `95ea51c77f32229550e905ff1a0d748b0554cac178908cc91ab0ee3e17eec0c9`).
+   - **18.1 MB Regulations & Guidelines 2026 PDF**: **NOT DOWNLOADED** due to severe upstream server throttling (~15 KB/s) causing network timeouts. Stale handwritten mock guidelines were completely deleted.
+
+8. **Zero Live INEC Access**:
    - Does not touch live INEC voter registration databases, polling unit collation hardware, or IReV servers.

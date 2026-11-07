@@ -24,3 +24,4 @@ for i, s in enumerate(streams):
             print(f"Stream {i} has {len(tj_simple)} simple Tj items")
     except Exception as e:
         pass
+

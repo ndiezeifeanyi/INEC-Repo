@@ -32,3 +32,4 @@ print(f"Extracted {len(extracted_texts)} text streams from Electronic Transmissi
 for i, t in enumerate(extracted_texts[:5]):
     print(f"\n--- STREAM {i} ({len(t)} chars) ---")
     print(t[:300])
+
