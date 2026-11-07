@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nigeria 2026/2027 Election Rules & Verification Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="badge">#AI4Elections Hackathon · Track 3</div>
+      <h1>Nigerian Election Rules & Verification</h1>
+      <p class="subtitle">Independent, nonpartisan civic assistant grounded strictly in the Electoral Act 2026.</p>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-ask-btn" onclick="switchTab('ask')">Voter FAQ (Rules & Rights)</button>
+      <button class="tab-btn" id="tab-check-btn" onclick="switchTab('check')">Check Link / Message</button>
+    </div>
+
+    <!-- Voter FAQ Section -->
+    <section id="ask-section" class="panel">
+      <h2>Ask About Election Rules</h2>
+      <p class="info-text">Answers are retrieved exclusively from official gazetted statutes. We do not answer who to vote for, predict results, or judge political debates.</p>
+
+      <form id="ask-form" onsubmit="handleAsk(event)">
+        <div class="form-group">
+          <label for="lang-select">Choose Language:</label>
+          <select id="lang-select">
+            <option value="en">English</option>
+            <option value="ha">Hausa (Harshen Hausa)</option>
+            <option value="yo">Yoruba (Èdè Yorùbá)</option>
+            <option value="ig">Igbo (Asụsụ Igbo)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="query-input">Your Question:</label>
+          <input type="text" id="query-input" placeholder="e.g. How does BVAS accreditation work on election day?" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="ask-submit-btn">Get Verified Answer</button>
+        </div>
+      </form>
+
+      <div id="ask-result" class="result-box" style="display:none;">
+        <div class="view-toggle">
+          <label><input type="checkbox" id="plain-toggle" onchange="togglePlainView()"> Show Plain-Language Summary</label>
+        </div>
+
+        <div id="answer-body" class="answer-text"></div>
+        <div id="answer-plain-body" class="answer-plain-text" style="display:none;"></div>
+
+        <div class="audio-player-container">
+          <button id="play-audio-btn" class="btn btn-secondary" onclick="playAudio()">🔊 Listen to Audio</button>
+          <span class="license-tag">Audio: Meta MMS-TTS (CC-BY-NC-4.0 Non-Commercial)</span>
+        </div>
+
+        <div class="citations-container">
+          <h3>Statutory Citations</h3>
+          <div id="citations-list"></div>
+        </div>
+
+        <div id="confidence-flags-container"></div>
+      </div>
+    </section>
+
+    <!-- Link / Message Verification Section -->
+    <section id="check-section" class="panel" style="display:none;">
+      <h2>Check Official INEC Link or Announcement</h2>
+      <p class="info-text">Check if a website link or viral message matches published INEC releases. This tool checks authenticity against official records and never judges political opinions.</p>
+
+      <form id="check-form" onsubmit="handleCheck(event)">
+        <div class="form-group">
+          <label for="check-input">Paste Link or Text Message:</label>
+          <textarea id="check-input" rows="3" placeholder="e.g. https://cvr.inecnigeria.org or 'INEC has fixed 16 January 2027...'" required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="check-submit-btn">Verify Authenticity</button>
+        </div>
+      </form>
+
+      <div id="check-result" class="result-box" style="display:none;">
+        <div id="check-status-badge" class="status-badge"></div>
+        <p id="check-notes" class="check-notes"></p>
+        <p id="check-matched-source" class="matched-source"></p>
+        <p class="disclaimer-text" id="check-disclaimer"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>Independent, Nonpartisan Prototype · Open Source (MIT License) · Low-Bandwidth Mode (<30 KB)</p>
+      <p class="privacy-notice">Privacy Notice: No personal voter data or query logs are stored. URL safety checks use local cryptographic hash prefixes (Safe Browsing Update API v4 principles).</p>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

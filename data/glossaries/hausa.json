@@ -1,0 +1,91 @@
+{
+  "language_code": "ha",
+  "language_name": "Hausa",
+  "corpus_source": "Masakhane Civic & BBC Hausa Electoral Lexicon",
+  "terms": [
+    {
+      "english": "voter registration",
+      "target": "rajistar masu kada kuri'a",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "polling unit",
+      "target": "rumfar zabe",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "ballot box",
+      "target": "akwatin zabe",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "presiding officer",
+      "target": "babban jami'in zabe na rumfa",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "electoral act",
+      "target": "dokar zabe",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "accreditation",
+      "target": "tantance masu kada kuri'a",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "bimodal voter accreditation system",
+      "target": "na'urar tantance masu kada kuri'a (BVAS)",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "permanent voter card",
+      "target": "katin zabe na dindindin (PVC)",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "collation centre",
+      "target": "cibiyar tattara sakamakon zabe",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "electronic transmission",
+      "target": "aikawa da sakamako ta na'urar fasaha",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "rejected ballot",
+      "target": "kuri'ar da aka ki karba",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    },
+    {
+      "english": "over-voting",
+      "target": "yawan kuri'un da ya zarce adadin wadanda aka tantance",
+      "status": "VALIDATED",
+      "reviewed_by": "Ibrahim S. (Linguist, ABU Zaria)",
+      "date_verified": "2026-10-15"
+    }
+  ]
+}

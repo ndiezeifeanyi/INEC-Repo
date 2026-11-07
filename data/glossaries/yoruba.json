@@ -1,0 +1,91 @@
+{
+  "language_code": "yo",
+  "language_name": "Yoruba",
+  "corpus_source": "Masakhane Civic & BBC Yoruba Electoral Lexicon",
+  "terms": [
+    {
+      "english": "voter registration",
+      "target": "iforukosile awon oludibo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "polling unit",
+      "target": "ibudo ibo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "ballot box",
+      "target": "apoti ibo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "presiding officer",
+      "target": "olori osise idibo ni ibudo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "electoral act",
+      "target": "ofin idibo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "accreditation",
+      "target": "ijeri oludibo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "bimodal voter accreditation system",
+      "target": "ero ijerisi oludibo (BVAS)",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "permanent voter card",
+      "target": "kaadi idibo ti o daju (PVC)",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "collation centre",
+      "target": "ibi ikojopo abajade ibo",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "electronic transmission",
+      "target": "gbigbe abajade ranse pelu ero ayelujara",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "rejected ballot",
+      "target": "iwe ibo ti a ko gba wole",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    },
+    {
+      "english": "over-voting",
+      "target": "idibo ti o koja iye awon ti a se ijeri won",
+      "status": "VALIDATED",
+      "reviewed_by": "Adeyemi O. (Linguist, Obafemi Awolowo University)",
+      "date_verified": "2026-10-18"
+    }
+  ]
+}

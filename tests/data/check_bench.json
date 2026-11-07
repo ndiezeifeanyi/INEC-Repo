@@ -1,0 +1,74 @@
+[
+  {
+    "id": "chk_001",
+    "type": "url",
+    "input": "https://inecnigeria.org/elections/guidelines",
+    "expected_status": "Matches an official source",
+    "is_official": true,
+    "description": "Official root INEC domain and guidelines path"
+  },
+  {
+    "id": "chk_002",
+    "type": "url",
+    "input": "https://cvr.inecnigeria.org",
+    "expected_status": "Matches an official source",
+    "is_official": true,
+    "description": "Official CVR portal (CNAME to third party host must NOT be flagged as fake)"
+  },
+  {
+    "id": "chk_003",
+    "type": "url",
+    "input": "https://irev.inecnigeria.org",
+    "expected_status": "Matches an official source",
+    "is_official": true,
+    "description": "Official IReV portal"
+  },
+  {
+    "id": "chk_004",
+    "type": "url",
+    "input": "http://linksnapro.com/cvrreg",
+    "expected_status": "Does not match any official source I can check",
+    "is_official": false,
+    "is_known_fraud": true,
+    "description": "Known fraudulent voter registration phishing link"
+  },
+  {
+    "id": "chk_005",
+    "type": "url",
+    "input": "https://pvc-inecnigeria-org.blogspot.com",
+    "expected_status": "Does not match any official source I can check",
+    "is_official": false,
+    "is_known_fraud": true,
+    "description": "Known fake blogspot mimicking INEC PVC registration"
+  },
+  {
+    "id": "chk_006",
+    "type": "url",
+    "input": "https://1nec-nigeria.org/portal",
+    "expected_status": "Does not match any official source I can check",
+    "is_official": false,
+    "is_typosquat": true,
+    "description": "Typosquat substituting number 1 for letter I"
+  },
+  {
+    "id": "chk_007",
+    "type": "message",
+    "input": "INEC has scheduled the 2027 Presidential and National Assembly elections for Saturday 16th January 2027 and Governorship and State Houses of Assembly for Saturday 6th February 2027.",
+    "expected_status": "Matches an official source",
+    "description": "Verbatim excerpt of published official INEC election timetable"
+  },
+  {
+    "id": "chk_008",
+    "type": "message",
+    "input": "BREAKING: INEC Chairman announces that voting has been cancelled across all Southern states due to logistics failure.",
+    "expected_status": "Does not match any official source I can check",
+    "description": "Fabricated viral rumor not matching any published bulletin"
+  },
+  {
+    "id": "chk_009",
+    "type": "message",
+    "input": "Some obscure local meeting happened in Ward 4.",
+    "expected_status": "Can't tell",
+    "description": "Unverifiable generic claim not covered by national gazetted rules or releases"
+  }
+]
