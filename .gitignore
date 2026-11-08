@@ -7,6 +7,9 @@ data/cache/*
 !data/cache/translation_cache.json
 !data/cache/heldout_audit6_results.json
 !data/cache/heldout_audit9_results.json
+!data/cache/pidgin_strategy_benchmark.json
+!data/cache/bge_m3_colab_benchmark_results.json
+!data/cache/lid_confusion_matrix.json
 __pycache__/
 *.py[cod]
 *$py.class

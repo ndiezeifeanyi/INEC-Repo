@@ -1,0 +1,145 @@
+{
+  "num_queries": 5,
+  "option_a_direct_passthrough": {
+    "hit3": 0.8,
+    "hits": 4,
+    "details": [
+      {
+        "id": "LID_VAL_21",
+        "query": "I fit vote if I no carry my PVC go polling unit on election day?",
+        "target": "47",
+        "retrieved": [
+          "130",
+          "47",
+          "44"
+        ],
+        "hit": true,
+        "rank": 2
+      },
+      {
+        "id": "LID_VAL_22",
+        "query": "Wetin go happen if vote plenty pass people wey BVAS scan?",
+        "target": "51",
+        "retrieved": [
+          "47",
+          "47",
+          "117"
+        ],
+        "hit": false,
+        "rank": null
+      },
+      {
+        "id": "LID_VAL_23",
+        "query": "How many days notice INEC suppose give before general election start?",
+        "target": "28",
+        "retrieved": [
+          "81",
+          "28",
+          "28"
+        ],
+        "hit": true,
+        "rank": 2
+      },
+      {
+        "id": "LID_VAL_24",
+        "query": "Which age person must reach before dem fit register to vote?",
+        "target": "12",
+        "retrieved": [
+          "57",
+          "47",
+          "12"
+        ],
+        "hit": true,
+        "rank": 3
+      },
+      {
+        "id": "LID_VAL_25",
+        "query": "Shey presiding officer dey transmit result straight to IReV portal?",
+        "target": "60",
+        "retrieved": [
+          "60",
+          "PAGE-4",
+          "60"
+        ],
+        "hit": true,
+        "rank": 1
+      }
+    ]
+  },
+  "option_b_rule_mapped": {
+    "hit3": 0.8,
+    "hits": 4,
+    "details": [
+      {
+        "id": "LID_VAL_21",
+        "query": "I fit vote if I no carry my PVC go polling unit on election day?",
+        "mapped": "I fit vote if I no carry my PVC go polling unit on election day? can i without do not have permanent voter card polling unit",
+        "target": "47",
+        "retrieved": [
+          "130",
+          "47",
+          "47"
+        ],
+        "hit": true,
+        "rank": 2
+      },
+      {
+        "id": "LID_VAL_22",
+        "query": "Wetin go happen if vote plenty pass people wey BVAS scan?",
+        "mapped": "Wetin go happen if vote plenty pass people wey BVAS scan? what happens over-voting votes exceed accredited voters bvas accreditation",
+        "target": "51",
+        "retrieved": [
+          "47",
+          "PAGE-4",
+          "PAGE-3"
+        ],
+        "hit": false,
+        "rank": null
+      },
+      {
+        "id": "LID_VAL_23",
+        "query": "How many days notice INEC suppose give before general election start?",
+        "mapped": "How many days notice INEC suppose give before general election start? publish notice of election",
+        "target": "28",
+        "retrieved": [
+          "28",
+          "81",
+          "28"
+        ],
+        "hit": true,
+        "rank": 1
+      },
+      {
+        "id": "LID_VAL_24",
+        "query": "Which age person must reach before dem fit register to vote?",
+        "mapped": "Which age person must reach before dem fit register to vote? minimum age 18 years",
+        "target": "12",
+        "retrieved": [
+          "12",
+          "57",
+          "SCH1-P48"
+        ],
+        "hit": true,
+        "rank": 1
+      },
+      {
+        "id": "LID_VAL_25",
+        "query": "Shey presiding officer dey transmit result straight to IReV portal?",
+        "mapped": "Shey presiding officer dey transmit result straight to IReV portal? presiding officer electronically transmit upload irev portal election results",
+        "target": "60",
+        "retrieved": [
+          "60",
+          "PAGE-4",
+          "60"
+        ],
+        "hit": true,
+        "rank": 1
+      }
+    ]
+  },
+  "option_c_abstain": {
+    "hit3": 0.0,
+    "hits": 0,
+    "details": []
+  }
+}
