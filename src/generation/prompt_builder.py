@@ -3,6 +3,7 @@ from typing import List, Tuple, Optional
 from src.models.chunk import LegalChunk, Citation, VoterAnswer
 from src.generation.glossary_layer import CivicGlossaryEnforcer
 from src.generation.plain_language import PlainLanguageConverter
+from src.generation.validator import AnswerValidator
 from src.config import UNCONFIRMED_AMENDMENTS, SCORE_GAP_THRESHOLD, ELECTORAL_OFFENCES_SECTION_RANGE
 
 class GroundedAnswerGenerator:
@@ -28,8 +29,9 @@ class GroundedAnswerGenerator:
         (r"\b(recipe|weather|jollof|sports scores|football)\b", "out_of_scope")
     ]
 
-    def __init__(self, glossary_enforcer: Optional[CivicGlossaryEnforcer] = None):
+    def __init__(self, glossary_enforcer: Optional[CivicGlossaryEnforcer] = None, validator: Optional[AnswerValidator] = None):
         self.glossary_enforcer = glossary_enforcer or CivicGlossaryEnforcer()
+        self.validator = validator or AnswerValidator()
 
     def check_refusal(self, query: str, lang: str = "en") -> Optional[str]:
         """Checks if a query violates nonpartisan, scope, or safety constraints."""
@@ -333,11 +335,24 @@ class GroundedAnswerGenerator:
             if notice_2022 not in ans_text:
                 ans_text += f"\n\n{notice_2022}"
 
+        final_plain = PlainLanguageConverter.to_plain_english(plain_content)
+
+        # Phase 5: Non-AI Code Validator Verification
+        raw_chunks = [c[0] for c in retrieved_chunks]
+        val_report = self.validator.validate(ans_text, final_plain, raw_chunks)
+        if not val_report.is_valid:
+            confidence_flags.append("CODE_VALIDATOR_FLAGGED_VIOLATIONS")
+            for viol in val_report.flagged_violations:
+                confidence_flags.append(f"VIOLATION_{viol}")
+            # Fallback to strict verbatim quote if validation failed
+            ans_text = f"According to {top_chunk.document_title}, Section {top_chunk.section_number}:\n\n\"{top_chunk.content_english}\""
+            final_plain = top_chunk.content_plain
+
         return VoterAnswer(
             question=query,
             language=lang,
             answer_text=ans_text,
-            answer_plain=PlainLanguageConverter.to_plain_english(plain_content),
+            answer_plain=final_plain,
             citations=citations,
             retrieved_chunk_ids=[c[0].chunk_id for c in retrieved_chunks[:3]],
             confidence_flags=confidence_flags
