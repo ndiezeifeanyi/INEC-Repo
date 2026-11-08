@@ -21,7 +21,7 @@ def sample_chunk():
         document_title="Electoral Act 2026",
         document_source_url="https://nass.gov.ng",
         document_sha256="abc12345",
-        document_version="Gazette No. 15",
+        document_version="Gazette No. 40",
         retrieval_date="2026-11-08",
         part_title="Procedure at Election",
         section_number="51",

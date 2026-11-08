@@ -159,7 +159,7 @@ async def ask_election_rule(req: AskRequest):
             "document_title": "Electoral Act 2026",
             "section": sec_val,
             "subsection": subsec_val,
-            "version": "Federal Republic of Nigeria Official Gazette No. 15, Vol. 113",
+            "version": "Federal Republic of Nigeria Official Gazette No. 40, Vol. 113",
             "retrieval_date": "2026-11-08",
             "source_url": "https://nass.gov.ng/documents/download/11248",
             "legal_status": "CURRENT_LAW"

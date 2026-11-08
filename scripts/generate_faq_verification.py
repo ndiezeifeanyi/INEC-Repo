@@ -18,7 +18,7 @@ def main():
 
     md = []
     md.append("# Civic FAQ Library Statutory Verification Table\n")
-    md.append("> **Auditable Statutory Grounding**: Each pre-reviewed FAQ entry presented side-by-side with its official statutory chunk from the Federal Republic of Nigeria Official Gazette No. 15, Vol. 113 (Electoral Act 2026).\n")
+    md.append("> **Auditable Statutory Grounding**: Each pre-reviewed FAQ entry presented side-by-side with its official statutory chunk from the Federal Republic of Nigeria Official Gazette No. 40, Vol. 113 (Electoral Act 2026).\n")
     md.append("> **Review Status Policy**: All English entries are categorized as `DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION`. Indigenous language entries (Hausa, Yoruba, Igbo) are categorized as `UNREVIEWED_DEVELOPER_DRAFT` and displayed alongside the verbatim English statutory text.\n\n")
 
     md.append("| FAQ ID | Statutory Section | Chunk ID | Verbatim Gazette Chunk Text | FAQ Plain Explanation | Review Status |")
@@ -55,3 +55,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

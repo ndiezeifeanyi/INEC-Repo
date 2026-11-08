@@ -99,7 +99,7 @@ class FAQLibrary:
             ("FAQ_05_VOTER_QUALIFICATION_AGE", ["age", "register"], ["ojo ori"], ["shekaru"], ["afo"]),
             ("FAQ_06_VOTER_TRANSFER_RESIDENCE", ["transfer", "residence"], ["ibugbe", "pada"], ["canza", "wurin zama"], ["kwagara"]),
             ("FAQ_07_DELIVERY_NOMINATION_PAPERS", ["nomination", "deliver"], ["yiyan", "oludije"], ["takardun", "tsayawa takara"], ["akwukwo", "okwa"]),
-            ("FAQ_08_POLLING_UNIT_RESULT_DISPLAY", ["sign", "stamp", "result"], ["buwolu", "abajade"], ["sa hannu", "tambari", "sakamako"], ["banye aka", "mpụta"]),
+            ("FAQ_08_RESULT_FORM_SIGNING_AND_STAMPING", ["sign", "stamp", "result"], ["buwolu", "abajade"], ["sa hannu", "tambari", "sakamako"], ["banye aka", "mpụta"]),
             ("FAQ_09_ELECTRONIC_TRANSMISSION", ["transmit", "irev"], ["gbe", "irev"], ["tura", "irev"], ["ziga", "irev"]),
             ("FAQ_10_COLLATION_VERIFICATION", ["verify", "collation"], ["ayewo", "igba wole"], ["tabbatar", "tattara"], ["achikota"]),
             ("FAQ_11_VOTER_REGISTER_INSPECTION", ["display", "voter register", "inspection"], ["ayewo", "iforukosile", "meje"], ["rajistar", "kwanaki bakwai"], ["ileba anya", "ubochi asaa"]),

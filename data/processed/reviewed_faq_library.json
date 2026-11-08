@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "last_audit_date": "2026-11-08",
     "description": "Pre-reviewed FAQ Library covering 16 low-risk civic election topics. Excludes tribunals and offences.",
-    "governing_statute": "Electoral Act 2026 (Federal Republic of Nigeria Official Gazette No. 15, Vol. 113)",
+    "governing_statute": "Electoral Act 2026 (Federal Republic of Nigeria Official Gazette No. 40, Vol. 113)",
     "english_review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION",
     "hausa_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
     "yoruba_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
@@ -172,13 +172,13 @@
       }
     },
     {
-      "id": "FAQ_08_POLLING_UNIT_RESULT_DISPLAY",
-      "topic": "Signing, Stamping, and Endorsement of Polling Unit Results Form (Form EC8A)",
+      "id": "FAQ_08_RESULT_FORM_SIGNING_AND_STAMPING",
+      "topic": "Signing and Stamping of Results Form (Form EC8A)",
       "statutory_section": "Electoral Act 2026 Section 60(2)",
       "chunk_id": "EA2026-S60-SS2",
       "english": {
         "verbatim_quote": "The form shall be signed and stamped by the Presiding Officer and countersigned by the candidates or their polling agents where available at the polling unit.",
-        "short_explanation": "The result form (Form EC8A) must be signed and stamped by the Presiding Officer and countersigned by candidates or their polling agents present at the polling unit.",
+        "short_explanation": "The election results form (Form EC8A) must be signed and stamped by the Presiding Officer and countersigned by candidates or their polling agents present at the polling unit.",
         "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
