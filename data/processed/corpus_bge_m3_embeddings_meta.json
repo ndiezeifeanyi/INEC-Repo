@@ -1,0 +1,8 @@
+{
+  "model_name": "BAAI/bge-m3",
+  "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "dimension": 1024,
+  "num_chunks": 514,
+  "dtype": "float32",
+  "sha256": "8309e8b153dff02f1484da3cd43cc2d325d4d60d8d26ca9724a26d46c2a2ba39"
+}

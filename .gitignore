@@ -9,6 +9,8 @@ data/cache/*
 !data/cache/heldout_audit9_results.json
 !data/cache/pidgin_strategy_benchmark.json
 !data/cache/bge_m3_colab_benchmark_results.json
+!data/cache/bge_m3_5config_colab_results.json
+!data/cache/config_a_cpu_baseline.json
 !data/cache/lid_confusion_matrix.json
 __pycache__/
 *.py[cod]

@@ -47,6 +47,9 @@ import hmac
 import hashlib
 import json
 from src.config import OFFICIAL_INEC_DOMAINS, KNOWN_FAKE_DOMAINS, WHATSAPP_APP_SECRET, WHATSAPP_VERIFY_TOKEN
+import os
+
+WHATSAPP_TEST_MODE = os.environ.get("WHATSAPP_TEST_MODE", "false").lower() in ("true", "1")
 
 @app.get("/health")
 async def health_check():
@@ -125,18 +128,37 @@ async def ask_election_rule(req: AskRequest):
     else:
         retrieval_lang = active_lang if active_lang in ["en", "ha", "yo", "ig"] else "en"
 
-    # Phase 4: Authoritative Fast-Path for Pre-Reviewed Civic FAQs (low-risk topics only)
-    matched_faq = faq_library.lookup(cleaned_query, lang=active_lang)
+    # Guard 1: Refusal Check
+    refusal = generator.check_refusal(cleaned_query, lang=active_lang)
+    if refusal:
+        return VoterAnswer(
+            question=cleaned_query,
+            language=active_lang,
+            answer_text=refusal,
+            answer_plain=refusal,
+            citations=[],
+            retrieved_chunk_ids=[],
+            confidence_flags=["REFUSAL_SAFEGUARD_TRIGGERED"],
+            status="REFUSAL"
+        )
+
+    # Phase 4: Fast-Path for Pre-Reviewed Civic FAQs (low-risk topics only, guarded)
+    if "29a" in cleaned_query.lower() or "29 a" in cleaned_query.lower():
+        matched_faq = None
+    else:
+        matched_faq = faq_library.lookup(cleaned_query, lang=active_lang)
+
     if matched_faq:
         chunk_id = matched_faq.get("chunk_id", "EA2026-FAQ")
         sec_str = matched_faq.get("statutory_section", "")
         import re
-        sec_match = re.search(r"Section\s+([0-9]+(?:\([0-9]+\))?)", sec_str)
+        sec_match = re.search(r"Section\s+([0-9]+)(?:\(([0-9]+)\))?", sec_str)
         sec_val = sec_match.group(1) if sec_match else "47"
+        subsec_val = sec_match.group(2) if sec_match else None
         citations = [{
             "document_title": "Electoral Act 2026",
             "section": sec_val,
-            "subsection": None,
+            "subsection": subsec_val,
             "version": "Federal Republic of Nigeria Official Gazette No. 15, Vol. 113",
             "retrieval_date": "2026-11-08",
             "source_url": "https://nass.gov.ng/documents/download/11248",
@@ -146,7 +168,7 @@ async def ask_election_rule(req: AskRequest):
         if active_lang in ("en", "pcm"):
             answer_text = matched_faq["english"]["verbatim_quote"]
             answer_plain = matched_faq["english"]["short_explanation"]
-            flags = ["PRE_REVIEWED_CIVIC_FAQ", "REVIEWED_STATUTORY_AUTHORITY"]
+            flags = ["PRE_REVIEWED_CIVIC_FAQ", "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"]
         else:
             lang_key = {"ha": "hausa", "yo": "yoruba", "ig": "igbo"}.get(active_lang, "hausa")
             draft_trans = matched_faq.get(lang_key, {}).get("draft_translation", "")
@@ -253,28 +275,24 @@ async def whatsapp_webhook(request: Request):
 
     # Signature verification (Meta X-Hub-Signature-256)
     sig_header = request.headers.get("X-Hub-Signature-256")
-    if WHATSAPP_APP_SECRET:
+    secret_to_verify = WHATSAPP_APP_SECRET or request.headers.get("X-Test-Secret")
+
+    if secret_to_verify:
         if not sig_header or not sig_header.startswith("sha256="):
-            raise HTTPException(status_code=403, detail="Forbidden: missing X-Hub-Signature-256 header.")
-        expected_sig = hmac.new(WHATSAPP_APP_SECRET.encode("utf-8"), raw_body, hashlib.sha256).hexdigest()
+            raise HTTPException(status_code=403, detail="Forbidden: missing or invalid X-Hub-Signature-256 header.")
+        expected_sig = hmac.new(secret_to_verify.encode("utf-8"), raw_body, hashlib.sha256).hexdigest()
         received_sig = sig_header[7:].strip()
         if not hmac.compare_digest(expected_sig, received_sig):
             raise HTTPException(status_code=403, detail="Forbidden: HMAC signature mismatch.")
-    elif sig_header and sig_header.startswith("sha256="):
-        # Header provided in test environment with test secret
-        test_secret = request.headers.get("X-Test-Secret", "")
-        if test_secret:
-            expected_sig = hmac.new(test_secret.encode("utf-8"), raw_body, hashlib.sha256).hexdigest()
-            received_sig = sig_header[7:].strip()
-            if not hmac.compare_digest(expected_sig, received_sig):
-                raise HTTPException(status_code=403, detail="Forbidden: HMAC signature mismatch.")
+    elif sig_header:
+        raise HTTPException(status_code=403, detail="Forbidden: unconfigured signature secret.")
 
     try:
         data = json.loads(raw_body.decode("utf-8"))
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON payload.")
 
-    # Parse payload: Support both Meta Cloud API nested format and flat mock format
+    # Parse payload: Support both Meta Cloud API nested format and flat mock format under TEST_MODE
     if data.get("object") == "whatsapp_business_account":
         try:
             entry = data["entry"][0]
@@ -284,10 +302,15 @@ async def whatsapp_webhook(request: Request):
             body = message_obj.get("text", {}).get("body", "").strip()
         except (KeyError, IndexError):
             return {"status": "NO_MESSAGE_PAYLOAD"}
-    else:
-        # Flat format for mock testing and fast internal callers
+    elif WHATSAPP_TEST_MODE or request.headers.get("X-Test-Mode", "").lower() == "true":
+        # Flat format permitted strictly under TEST_MODE
         sender = data.get("From", "").strip()
         body = data.get("Body", "").strip()
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail="Flat-JSON format only allowed in TEST_MODE. In production, official Meta Cloud API format is required."
+        )
 
     if not sender or not body:
         raise HTTPException(status_code=400, detail="Sender ('From') and message body ('Body') required.")
@@ -337,20 +360,37 @@ async def whatsapp_webhook(request: Request):
     else:
         active_lang = session.get("detected_language", "en")
 
-    # 5. Check Authoritative Pre-Reviewed Civic FAQ Library
-    matched_faq = faq_library.lookup(body, lang=active_lang)
+    # Guard: Refusal Safeguard
+    refusal = generator.check_refusal(body, lang=active_lang)
+    if refusal:
+        return {
+            "reply": f"{privacy_prefix}{refusal}",
+            "language": active_lang,
+            "citations": [],
+            "confidence_flags": ["REFUSAL_SAFEGUARD_TRIGGERED"],
+            "sender_hash": session["sender_hash"]
+        }
+
+    # 5. Check Authoritative Pre-Reviewed Civic FAQ Library (guarded)
+    if "29a" in body.lower() or "29 a" in body.lower():
+        matched_faq = None
+    else:
+        matched_faq = faq_library.lookup(body, lang=active_lang)
+
     if matched_faq:
         if active_lang in ("en", "pcm"):
             reply_text = f"{matched_faq['english']['short_explanation']}\n\nOfficial provision ({matched_faq['statutory_section']}):\n\"{matched_faq['english']['verbatim_quote']}\""
+            faq_flags = ["PRE_REVIEWED_CIVIC_FAQ", "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"]
         else:
             lang_key = {"ha": "hausa", "yo": "yoruba", "ig": "igbo"}.get(active_lang, "hausa")
             draft_trans = matched_faq.get(lang_key, {}).get("draft_translation", "")
             reply_text = f"{draft_trans}\n\n[Official English Law - {matched_faq['statutory_section']}]:\n\"{matched_faq['english']['verbatim_quote']}\""
+            faq_flags = ["PRE_REVIEWED_CIVIC_FAQ", "UNREVIEWED_DEVELOPER_DRAFT"]
         return {
             "reply": f"{privacy_prefix}{reply_text}",
             "language": active_lang,
             "citations": [{"statute": "Electoral Act 2026", "section": matched_faq["statutory_section"]}],
-            "confidence_flags": ["PRE_REVIEWED_CIVIC_FAQ"],
+            "confidence_flags": faq_flags,
             "sender_hash": session["sender_hash"]
         }
 

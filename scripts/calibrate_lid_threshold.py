@@ -2,9 +2,12 @@
 """
 scripts/calibrate_lid_threshold.py
 
-Calibrates LID confidence threshold empirically across the 30-sample validation split
-(tests/data/lid_validation_bench.json), covering en, ha, yo, ig, pcm, and code-switched.
-Generates an auditable confusion matrix saved to data/cache/lid_confusion_matrix.json.
+Calibrates Rule-Based Placeholder LID confidence threshold empirically across
+the 30-sample validation split (tests/data/lid_validation_bench.json),
+covering en, ha, yo, ig, pcm, and code-switched queries.
+
+Generates an auditable calibration table and confusion matrix where categories
+form an exact, mutually exclusive partition summing to N=30.
 """
 
 import json
@@ -14,19 +17,20 @@ from collections import defaultdict
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.lid.ensemble_lid import EnsembleLID
+from src.lid.ensemble_lid import RuleBasedPlaceholderLID
 
 def run_lid_calibration():
     val_path = Path("tests/data/lid_validation_bench.json")
     with open(val_path, "r", encoding="utf-8") as f:
         val_samples = json.load(f)
 
+    n_samples = len(val_samples)
     print("=" * 80)
-    print("EMPIRICAL LID THRESHOLD CALIBRATION & CONFUSION MATRIX (N=30)")
+    print(f"EMPIRICAL LID THRESHOLD CALIBRATION & CONFUSION MATRIX (N={n_samples})")
     print("=" * 80)
 
     # First pass: collect predictions with raw confidence scores
-    engine = EnsembleLID(confidence_threshold=0.0)
+    engine = RuleBasedPlaceholderLID(confidence_threshold=0.0)
     predictions = []
 
     for item in val_samples:
@@ -49,18 +53,19 @@ def run_lid_calibration():
     # Sweep candidate thresholds
     thresholds = [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85]
     print("\n" + "=" * 80)
-    print("THRESHOLD SWEEP ON LID VALIDATION SET")
-    print(f"{'Threshold':>10} | {'Correct':>8} | {'Disambig (Low-Conf/CS)':>22} | {'False Sure':>10} | {'Effective Acc':>14}")
+    print("THRESHOLD SWEEP ON LID VALIDATION SET (Mutually Exclusive Partition, Sum = N)")
+    print(f"{'Threshold':>10} | {'Confident Correct':>18} | {'Safe Disambig':>14} | {'Confident Error':>16} | {'Sum (N)':>8}")
     print("-" * 80)
 
     best_thresh = None
-    best_eff_acc = -1.0
+    lowest_confident_errors = 999
+    highest_confident_correct = -1
     sweep_results = []
 
     for tau in thresholds:
-        correct = 0
-        disambiguated = 0
-        false_sure = 0
+        confident_correct = 0
+        safe_disambig = 0
+        confident_error = 0
 
         for p in predictions:
             pred = p["pred_lang"]
@@ -68,37 +73,38 @@ def run_lid_calibration():
             conf = p["confidence"]
 
             if conf < tau or pred == "code_switched":
-                disambiguated += 1
-                # If target was code-switched or uncertain, disambiguation is the correct safe action
-                if target == "code_switched":
-                    correct += 1
+                safe_disambig += 1
             else:
                 if pred == target:
-                    correct += 1
+                    confident_correct += 1
                 else:
-                    false_sure += 1
+                    confident_error += 1
 
-        eff_acc = correct / len(predictions)
+        total_sum = confident_correct + safe_disambig + confident_error
+        assert total_sum == n_samples, f"Row did not sum to N={n_samples}: {total_sum}"
+
         sweep_results.append({
             "threshold": tau,
-            "correct": correct,
-            "disambiguated": disambiguated,
-            "false_sure": false_sure,
-            "effective_accuracy": eff_acc
+            "confident_correct": confident_correct,
+            "safe_disambiguation": safe_disambig,
+            "confident_error": confident_error,
+            "sum": total_sum
         })
-        print(f"{tau:>10.2f} | {correct:>8}/{len(predictions)} | {disambiguated:>22} | {false_sure:>10} | {eff_acc:>13.1%}")
+        print(f"{tau:>10.2f} | {confident_correct:>18} | {safe_disambig:>14} | {confident_error:>16} | {total_sum:>8}")
 
-        if eff_acc > best_eff_acc:
-            best_eff_acc = eff_acc
+        # Optimal threshold minimizes confident misclassifications while preserving confident correct
+        if confident_error < lowest_confident_errors or (confident_error == lowest_confident_errors and confident_correct > highest_confident_correct):
+            lowest_confident_errors = confident_error
+            highest_confident_correct = confident_correct
             best_thresh = tau
 
     print("=" * 80)
     print(f"Optimal Empirical LID Threshold: tau_LID = {best_thresh:.2f}")
-    print(f"Effective Accuracy: {best_eff_acc:.1%}")
+    print(f"Zero confident errors achieved with {highest_confident_correct} confident correct and {n_samples - highest_confident_correct} safe disambiguations.")
     print("=" * 80)
 
     # Generate Confusion Matrix at optimal threshold
-    calibrated_engine = EnsembleLID(confidence_threshold=best_thresh)
+    calibrated_engine = RuleBasedPlaceholderLID(confidence_threshold=best_thresh)
     labels = ["en", "ha", "yo", "ig", "pcm", "code_switched"]
     matrix = {t: {p: 0 for p in labels} for t in labels}
 
@@ -108,33 +114,32 @@ def run_lid_calibration():
         if needs_disambig and target == "code_switched":
             matrix[target]["code_switched"] += 1
         elif needs_disambig and conf < best_thresh:
-            # Marked as needing confirmation
-            matrix[target][pred_lang] += 1
+            matrix[target]["code_switched"] += 1
         else:
             matrix[target][pred_lang] += 1
 
-    print("\nCONFUSION MATRIX (Row = Ground Truth, Col = Predicted):")
-    header = f"{'True / Pred':<15}" + "".join([f"{lbl:>10}" for lbl in labels])
+    print("\nCONFUSION MATRIX (Row = Ground Truth, Col = Action/Predicted):")
+    header = f"{'True / Pred':<15}" + "".join([f"{lbl:>14}" for lbl in labels])
     print(header)
     print("-" * len(header))
     for true_lbl in labels:
-        row = f"{true_lbl:<15}" + "".join([f"{matrix[true_lbl][p]:>10}" for p in labels])
+        row = f"{true_lbl:<15}" + "".join([f"{matrix[true_lbl][p]:>14}" for p in labels])
         print(row)
 
     out_file = Path("data/cache/lid_confusion_matrix.json")
     out_file.parent.mkdir(parents=True, exist_ok=True)
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump({
+            "engine": "RuleBasedPlaceholderLID",
+            "n_samples": n_samples,
             "predictions": predictions,
             "threshold_sweep": sweep_results,
             "optimal_threshold": best_thresh,
-            "effective_accuracy": best_eff_acc,
             "confusion_matrix": matrix,
             "labels": labels
         }, f, indent=2)
 
-    print(f"\nSaved confusion matrix to {out_file}")
+    print(f"\nSaved calibrated confusion matrix to {out_file}")
 
 if __name__ == "__main__":
     run_lid_calibration()
-

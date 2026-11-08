@@ -1,4 +1,6 @@
 {
+  "engine": "RuleBasedPlaceholderLID",
+  "n_samples": 30,
   "predictions": [
     {
       "id": "LID_VAL_01",
@@ -244,63 +246,62 @@
   "threshold_sweep": [
     {
       "threshold": 0.5,
-      "correct": 22,
-      "disambiguated": 5,
-      "false_sure": 5,
-      "effective_accuracy": 0.7333333333333333
+      "confident_correct": 20,
+      "safe_disambiguation": 5,
+      "confident_error": 5,
+      "sum": 30
     },
     {
       "threshold": 0.55,
-      "correct": 22,
-      "disambiguated": 6,
-      "false_sure": 4,
-      "effective_accuracy": 0.7333333333333333
+      "confident_correct": 20,
+      "safe_disambiguation": 6,
+      "confident_error": 4,
+      "sum": 30
     },
     {
       "threshold": 0.6,
-      "correct": 22,
-      "disambiguated": 6,
-      "false_sure": 4,
-      "effective_accuracy": 0.7333333333333333
+      "confident_correct": 20,
+      "safe_disambiguation": 6,
+      "confident_error": 4,
+      "sum": 30
     },
     {
       "threshold": 0.65,
-      "correct": 22,
-      "disambiguated": 6,
-      "false_sure": 4,
-      "effective_accuracy": 0.7333333333333333
+      "confident_correct": 20,
+      "safe_disambiguation": 6,
+      "confident_error": 4,
+      "sum": 30
     },
     {
       "threshold": 0.7,
-      "correct": 22,
-      "disambiguated": 6,
-      "false_sure": 4,
-      "effective_accuracy": 0.7333333333333333
+      "confident_correct": 20,
+      "safe_disambiguation": 6,
+      "confident_error": 4,
+      "sum": 30
     },
     {
       "threshold": 0.75,
-      "correct": 23,
-      "disambiguated": 7,
-      "false_sure": 3,
-      "effective_accuracy": 0.7666666666666667
+      "confident_correct": 20,
+      "safe_disambiguation": 7,
+      "confident_error": 3,
+      "sum": 30
     },
     {
       "threshold": 0.8,
-      "correct": 20,
-      "disambiguated": 10,
-      "false_sure": 3,
-      "effective_accuracy": 0.6666666666666666
+      "confident_correct": 17,
+      "safe_disambiguation": 10,
+      "confident_error": 3,
+      "sum": 30
     },
     {
       "threshold": 0.85,
-      "correct": 16,
-      "disambiguated": 14,
-      "false_sure": 3,
-      "effective_accuracy": 0.5333333333333333
+      "confident_correct": 13,
+      "safe_disambiguation": 14,
+      "confident_error": 3,
+      "sum": 30
     }
   ],
   "optimal_threshold": 0.75,
-  "effective_accuracy": 0.7666666666666667,
   "confusion_matrix": {
     "en": {
       "en": 5,
@@ -329,10 +330,10 @@
     "ig": {
       "en": 0,
       "ha": 0,
-      "yo": 1,
+      "yo": 0,
       "ig": 4,
       "pcm": 0,
-      "code_switched": 0
+      "code_switched": 1
     },
     "pcm": {
       "en": 1,

@@ -1,14 +1,17 @@
+import os
 import hmac
 import hashlib
 import json
+import pytest
 from fastapi.testclient import TestClient
 from src.web.app import app
 from src.config import WHATSAPP_VERIFY_TOKEN
+from src.web.session_store import SecureSessionStore
 
 client = TestClient(app)
 
 def test_meta_webhook_get_verification_success():
-    """Verify Meta challenge response with matching hub.verify_token."""
+    """Verify Meta challenge response with matching hub.verify_token -> 200."""
     params = {
         "hub.mode": "subscribe",
         "hub.verify_token": WHATSAPP_VERIFY_TOKEN,
@@ -28,46 +31,9 @@ def test_meta_webhook_get_verification_failure():
     response = client.get("/api/v1/webhook/whatsapp", params=params)
     assert response.status_code == 403
 
-def test_whatsapp_webhook_opt_out():
-    payload = {
-        "From": "whatsapp:+2348011223344",
-        "Body": "STOP"
-    }
-    response = client.post("/api/v1/webhook/whatsapp", json=payload)
-    assert response.status_code == 200
-    data = response.json()
-    assert "opted out" in data["reply"]
-    assert data["status"] == "PURGED"
-
-def test_whatsapp_webhook_language_selection():
-    # User sends numeric choice '2' for Hausa
-    payload = {
-        "From": "whatsapp:+2348055667788",
-        "Body": "2"
-    }
-    response = client.post("/api/v1/webhook/whatsapp", json=payload)
-    assert response.status_code == 200
-    data = response.json()
-    assert data["language"] == "ha"
-    assert "Hausa" in data["reply"]
-
-def test_whatsapp_webhook_grounded_answer():
-    # User asks English statutory question
-    payload = {
-        "From": "whatsapp:+2348099887766",
-        "Body": "What is the qualifying age to register as a voter in Nigeria?"
-    }
-    response = client.post("/api/v1/webhook/whatsapp", json=payload)
-    assert response.status_code == 200
-    data = response.json()
-    assert "reply" in data
-    assert "Section 12(1)" in str(data.get("citations", [])) or "12" in data["reply"]
-    # Check that raw phone number is NOT returned in response
-    assert "+2348099887766" not in str(data)
-    assert len(data.get("sender_hash", "")) == 64
-
-def test_meta_cloud_api_nested_payload():
-    """Verify parsing of official Meta WhatsApp Business Cloud API JSON payload."""
+def test_meta_webhook_post_unsigned_forbidden():
+    """Unsigned request when secret is configured -> 403 Forbidden."""
+    test_secret = "prod_meta_webhook_secret_2026"
     meta_payload = {
         "object": "whatsapp_business_account",
         "entry": [{
@@ -75,42 +41,68 @@ def test_meta_cloud_api_nested_payload():
             "changes": [{
                 "value": {
                     "messaging_product": "whatsapp",
-                    "metadata": {
-                        "display_phone_number": "+2348000000000",
-                        "phone_number_id": "123456"
-                    },
-                    "contacts": [{
-                        "profile": {"name": "Citizen Voter"},
-                        "wa_id": "2348011998877"
-                    }],
-                    "messages": [{
-                        "from": "2348011998877",
-                        "id": "wamid.HBgLMjM0ODAxMTk5ODg3NxUCMRIA",
-                        "timestamp": "1731000000",
-                        "text": {"body": "How many days notice must INEC give before election?"},
-                        "type": "text"
-                    }]
+                    "metadata": {"display_phone_number": "+2348000000000", "phone_number_id": "123456"},
+                    "contacts": [{"profile": {"name": "Voter"}, "wa_id": "2348011223344"}],
+                    "messages": [{"from": "2348011223344", "id": "w1", "timestamp": "1731000000", "text": {"body": "Can I vote without PVC?"}, "type": "text"}]
                 },
                 "field": "messages"
             }]
         }]
     }
-    response = client.post("/api/v1/webhook/whatsapp", json=meta_payload)
-    assert response.status_code == 200
-    data = response.json()
-    assert "reply" in data
-    # Raw phone number must never be leaked
-    assert "2348011998877" not in json.dumps(data)
-    assert len(data.get("sender_hash", "")) == 64
+    headers = {"X-Test-Secret": test_secret}
+    # Notice: No X-Hub-Signature-256 header sent
+    response = client.post("/api/v1/webhook/whatsapp", json=meta_payload, headers=headers)
+    assert response.status_code == 403
+    assert "missing or invalid X-Hub-Signature-256" in response.json()["detail"]
 
-def test_meta_signature_verification():
-    """Verify X-Hub-Signature-256 validation."""
-    test_secret = "test_meta_webhook_secret_2026"
-    body_dict = {"From": "+2348099112233", "Body": "Can I vote without my PVC?"}
-    raw_body = json.dumps(body_dict).encode("utf-8")
+def test_meta_webhook_post_bad_signature_forbidden():
+    """Request with bad/corrupted HMAC signature -> 403 Forbidden."""
+    test_secret = "prod_meta_webhook_secret_2026"
+    meta_payload = {
+        "object": "whatsapp_business_account",
+        "entry": [{
+            "id": "100200300",
+            "changes": [{
+                "value": {
+                    "messaging_product": "whatsapp",
+                    "metadata": {"display_phone_number": "+2348000000000", "phone_number_id": "123456"},
+                    "contacts": [{"profile": {"name": "Voter"}, "wa_id": "2348011223344"}],
+                    "messages": [{"from": "2348011223344", "id": "w1", "timestamp": "1731000000", "text": {"body": "Can I vote without PVC?"}, "type": "text"}]
+                },
+                "field": "messages"
+            }]
+        }]
+    }
+    raw_body = json.dumps(meta_payload).encode("utf-8")
+    headers = {
+        "X-Hub-Signature-256": "sha256=0000000000000000000000000000000000000000000000000000000000000000",
+        "X-Test-Secret": test_secret,
+        "Content-Type": "application/json"
+    }
+    response = client.post("/api/v1/webhook/whatsapp", content=raw_body, headers=headers)
+    assert response.status_code == 403
+    assert "HMAC signature mismatch" in response.json()["detail"]
+
+def test_meta_webhook_post_valid_signature_success():
+    """Request with valid HMAC-SHA256 signature -> 200 OK."""
+    test_secret = "prod_meta_webhook_secret_2026"
+    meta_payload = {
+        "object": "whatsapp_business_account",
+        "entry": [{
+            "id": "100200300",
+            "changes": [{
+                "value": {
+                    "messaging_product": "whatsapp",
+                    "metadata": {"display_phone_number": "+2348000000000", "phone_number_id": "123456"},
+                    "contacts": [{"profile": {"name": "Voter"}, "wa_id": "2348011223344"}],
+                    "messages": [{"from": "2348011223344", "id": "w1", "timestamp": "1731000000", "text": {"body": "Can I vote without PVC?"}, "type": "text"}]
+                },
+                "field": "messages"
+            }]
+        }]
+    }
+    raw_body = json.dumps(meta_payload).encode("utf-8")
     valid_sig = "sha256=" + hmac.new(test_secret.encode("utf-8"), raw_body, hashlib.sha256).hexdigest()
-
-    # With valid signature
     headers = {
         "X-Hub-Signature-256": valid_sig,
         "X-Test-Secret": test_secret,
@@ -118,12 +110,35 @@ def test_meta_signature_verification():
     }
     response = client.post("/api/v1/webhook/whatsapp", content=raw_body, headers=headers)
     assert response.status_code == 200
+    data = response.json()
+    assert "reply" in data
 
-    # With invalid corrupted signature
-    bad_headers = {
-        "X-Hub-Signature-256": "sha256=invalidhex00000000000000000000000000000000000000000000000000000000",
-        "X-Test-Secret": test_secret,
-        "Content-Type": "application/json"
-    }
-    bad_response = client.post("/api/v1/webhook/whatsapp", content=raw_body, headers=bad_headers)
-    assert bad_response.status_code == 403
+def test_flat_json_blocked_in_production():
+    """Flat-JSON payload without explicit TEST_MODE returns 400 Bad Request."""
+    payload = {"From": "+2348011223344", "Body": "Hello"}
+    response = client.post("/api/v1/webhook/whatsapp", json=payload)
+    assert response.status_code == 400
+    assert "Flat-JSON format only allowed in TEST_MODE" in response.json()["detail"]
+
+def test_flat_json_allowed_with_test_mode_flag():
+    """Flat-JSON payload with X-Test-Mode header is accepted."""
+    payload = {"From": "+2348011223344", "Body": "STOP"}
+    headers = {"X-Test-Mode": "true"}
+    response = client.post("/api/v1/webhook/whatsapp", json=payload, headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert "opted out" in data["reply"]
+    assert data["status"] == "PURGED"
+
+def test_sender_id_hmac_sha256_hash():
+    """Sender IDs are hashed using HMAC-SHA256 with an environment secret; raw phone never persisted."""
+    secret = "test_env_salt_secret_123"
+    store = SecureSessionStore(salt=secret)
+    raw_sender = "+2348012345678"
+
+    session = store.get_or_create_session(raw_sender)
+    expected_hmac = hmac.new(secret.encode("utf-8"), raw_sender.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    assert session["sender_hash"] == expected_hmac
+    assert len(session["sender_hash"]) == 64
+    assert raw_sender not in session

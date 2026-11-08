@@ -1,9 +1,11 @@
 """
 src/lid/ensemble_lid.py
 
-Language Identification (LID) Ensemble incorporating AfroLID + GlotLID specifications
+Rule-based placeholder Language Identification (LID)
 for African Indigenous Languages (Hausa, Yoruba, Igbo), English, and Nigerian Pidgin (pcm).
-Includes code-switching detection and empirical confidence scoring.
+Includes code-switching detection, marker-token heuristics, and empirical confidence scoring.
+Note: Neural models (AfroLID, GlotLID) are not bundled; this module operates strictly
+as a deterministic, rule-based placeholder with interactive confirmation for low-confidence inputs.
 """
 
 import re
@@ -48,11 +50,11 @@ DISAMBIGUATION_PROMPT = (
     "5. Nigerian Pidgin (Naijá)"
 )
 
-class EnsembleLID:
+class RuleBasedPlaceholderLID:
     """
-    Ensemble Language Identifier.
-    Combines AfroLID (ha, yo, ig, en) and GlotLID (pcm, en, ha, yo, ig)
-    with code-switching and uncertainty gating.
+    Rule-based placeholder Language Identifier.
+    Evaluates lexical marker density across English, Hausa, Yoruba, Igbo, and Nigerian Pidgin
+    with code-switching detection and uncertainty gating.
     """
     def __init__(self, confidence_threshold: float = 0.65):
         self.confidence_threshold = confidence_threshold
@@ -149,4 +151,7 @@ class EnsembleLID:
 
     def get_disambiguation_prompt(self) -> str:
         return DISAMBIGUATION_PROMPT
+
+# Backward compatibility alias
+EnsembleLID = RuleBasedPlaceholderLID
 

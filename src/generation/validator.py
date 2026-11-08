@@ -85,9 +85,6 @@ class AnswerValidator:
             singular_unit = unit.rstrip("s")
             # Must appear in either plural or singular in source text
             if expected_pattern not in chunk_combined_text and f"{num} {singular_unit}" not in chunk_combined_text:
-                # Also allow 360 days if in official timetable context
-                if num == "360" and "360" in chunk_combined_text:
-                    continue
                 violations.append(f"UNGROUNDED_NUMERICAL_DEADLINE: {num} {unit}")
                 reasons.append(f"Answer contains ungrounded timeline '{num} {unit}' not found in source text.")
 

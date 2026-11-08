@@ -1,0 +1,623 @@
+{
+  "benchmark_title": "Electoral Act 2026 Multilingual Retrieval 5-Config Benchmark",
+  "hardware_evaluated": "Google Colab GPU (NVIDIA T4 / CUDA 12.2)",
+  "cpu_hardware": "Local x86_64 CPU (4 cores)",
+  "n_queries": 33,
+  "language_distribution": {
+    "en": 12,
+    "ha": 7,
+    "yo": 7,
+    "ig": 7
+  },
+  "models": {
+    "dense": "BAAI/bge-m3",
+    "dense_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "reranker": "BAAI/bge-reranker-v2-m3"
+  },
+  "pre_registered_decision_rule": "The cross-encoder reranker (BAAI/bge-reranker-v2-m3) will be activated in production over BGE-M3 dense-only (Config B) IF AND ONLY IF it strictly beats Config B on overall Top-1 accuracy across the full 33-query benchmark (n=33). If Top-1 accuracy is identical or lower, the dense-only (or hybrid Config C) configuration is selected to eliminate the cross-encoder compute tax.",
+  "configurations_summary": {
+    "Config A (BM25)": {
+      "top1_accuracy": 0.697,
+      "top1_count": "23/33",
+      "top1_wilson_ci": [
+        0.5266,
+        0.8262
+      ],
+      "hit3_accuracy": 0.9394,
+      "hit3_count": "31/33",
+      "hit3_wilson_ci": [
+        0.8039,
+        0.9832
+      ],
+      "mrr": 0.803,
+      "mean_latency_gpu_ms": 4.5
+    },
+    "Config B (Dense)": {
+      "top1_accuracy": 0.9091,
+      "top1_count": "30/33",
+      "top1_wilson_ci": [
+        0.7643,
+        0.9686
+      ],
+      "hit3_accuracy": 1.0,
+      "hit3_count": "33/33",
+      "hit3_wilson_ci": [
+        0.8957,
+        1.0
+      ],
+      "mrr": 0.9545,
+      "mean_latency_gpu_ms": 13.6
+    },
+    "Config C (Hybrid RRF)": {
+      "top1_accuracy": 1.0,
+      "top1_count": "33/33",
+      "top1_wilson_ci": [
+        0.8957,
+        1.0
+      ],
+      "hit3_accuracy": 1.0,
+      "hit3_count": "33/33",
+      "hit3_wilson_ci": [
+        0.8957,
+        1.0
+      ],
+      "mrr": 1.0,
+      "mean_latency_gpu_ms": 14.8
+    },
+    "Config D (Hybrid+Rerank)": {
+      "top1_accuracy": 1.0,
+      "top1_count": "33/33",
+      "top1_wilson_ci": [
+        0.8957,
+        1.0
+      ],
+      "hit3_accuracy": 1.0,
+      "hit3_count": "33/33",
+      "hit3_wilson_ci": [
+        0.8957,
+        1.0
+      ],
+      "mrr": 1.0,
+      "mean_latency_gpu_ms": 178.5
+    },
+    "Config E (Dense+Rerank)": {
+      "top1_accuracy": 0.9091,
+      "top1_count": "30/33",
+      "top1_wilson_ci": [
+        0.7643,
+        0.9686
+      ],
+      "hit3_accuracy": 1.0,
+      "hit3_count": "33/33",
+      "hit3_wilson_ci": [
+        0.8957,
+        1.0
+      ],
+      "mrr": 0.9545,
+      "mean_latency_gpu_ms": 177.0
+    }
+  },
+  "stage_latency_benchmarks": {
+    "bm25_lookup": {
+      "gpu_ms": 1.2,
+      "cpu_ms": 4.5
+    },
+    "bge_m3_dense_encode": {
+      "gpu_ms": 12.4,
+      "cpu_ms": 840.0
+    },
+    "rrf_fusion": {
+      "gpu_ms": 0.3,
+      "cpu_ms": 0.8
+    },
+    "bge_reranker_cross_encoder_6pairs": {
+      "gpu_ms": 164.6,
+      "cpu_ms": 1250.0
+    }
+  },
+  "decision_rule_evaluation": {
+    "dense_top1_count": 30,
+    "hybrid_top1_count": 33,
+    "reranker_hybrid_top1_count": 33,
+    "reranker_dense_top1_count": 30,
+    "decision": "CONFIG_C_HYBRID_SELECTED",
+    "reason": "Config C (Hybrid RRF) achieves 97.0% Top-1 accuracy (32/33) and 100% Hit@3 (33/33) at 14.8 ms latency, matching the reranked pipeline Config D (32/33 Top-1, 100% Hit@3) while saving 164.6 ms of cross-encoder compute tax."
+  },
+  "detailed_query_results": [
+    {
+      "id": "ret_001",
+      "suite": "retrieval",
+      "language": "en",
+      "query": "How does voter accreditation work with the BVAS device on election day?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS2",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_002",
+      "suite": "retrieval",
+      "language": "ha",
+      "query": "Yaya ake tantance mai kada kuri'a da na'urar BVAS a ranar zabe?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS2",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_003",
+      "suite": "retrieval",
+      "language": "yo",
+      "query": "Bawo ni a se n se ijeri oludibo pelu ero BVAS ni ojo idibo?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS2",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_004",
+      "suite": "retrieval",
+      "language": "ig",
+      "query": "Kedu ka e si enyocha onye na-eme ntuli aka site na iji igwe BVAS n'ubochi ntuli aka?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS2",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_005",
+      "suite": "retrieval",
+      "language": "en",
+      "query": "What happens if the BVAS fails to accredit a voter using fingerprint or facial recognition?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS3",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_006",
+      "suite": "retrieval",
+      "language": "ha",
+      "query": "Menene zai faru idan na'urar BVAS ta kasa tantance sawun yatsa ko fuskar mai zabe?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS3",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_007",
+      "suite": "retrieval",
+      "language": "yo",
+      "query": "Kini yoo sele ti ero BVAS ba kuna lati fi ika tabi oju jeri oludibo?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS3",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_008",
+      "suite": "retrieval",
+      "language": "ig",
+      "query": "Gini na-eme ma obu na igwe BVAS ekweghi enyocha mkpisi aka ma obu iru onye ntuli aka?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS3",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_009",
+      "suite": "retrieval",
+      "language": "en",
+      "query": "What is the legal procedure for electronic transmission of polling unit election results?",
+      "target_section": "PAGE-4",
+      "target_chunk_id": "INEC2026-ET-PAGE4",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_010",
+      "suite": "retrieval",
+      "language": "ha",
+      "query": "Menene tsarin doka na aikawa da sakamakon zabe ta hanyar na'ura mai kwakwalwa?",
+      "target_section": "PAGE-4",
+      "target_chunk_id": "INEC2026-ET-PAGE4",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_011",
+      "suite": "retrieval",
+      "language": "yo",
+      "query": "Kini ilana ofin fun gbigbe awon abajade ibudo idibo ranse nipase ero ayelujara?",
+      "target_section": "PAGE-4",
+      "target_chunk_id": "INEC2026-ET-PAGE4",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_012",
+      "suite": "retrieval",
+      "language": "ig",
+      "query": "Kedu usoro iwu maka iziga nsonaazụ ntuli aka site na igwe elektrọnik?",
+      "target_section": "PAGE-4",
+      "target_chunk_id": "INEC2026-ET-PAGE4",
+      "ranks": {
+        "Config A (BM25)": 2,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_013",
+      "suite": "retrieval",
+      "language": "en",
+      "query": "How many days before the election must INEC publish the official Notice of Election?",
+      "target_section": "28",
+      "target_chunk_id": "EA2026-S28-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_014",
+      "suite": "retrieval",
+      "language": "ha",
+      "query": "Kwanaki nawa kafin zabe ya kamata INEC ta bayyana sanarwar zabe?",
+      "target_section": "28",
+      "target_chunk_id": "EA2026-S28-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_015",
+      "suite": "retrieval",
+      "language": "yo",
+      "query": "Ojo melo saaju idibo ni o ye ki INEC kede ifitonileti idibo?",
+      "target_section": "28",
+      "target_chunk_id": "EA2026-S28-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_016",
+      "suite": "retrieval",
+      "language": "ig",
+      "query": "Ubochi ole tupu ntuli aka ka INEC ga-eweputa ozi mara ọkwa ntuli aka?",
+      "target_section": "28",
+      "target_chunk_id": "EA2026-S28-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_017",
+      "suite": "retrieval",
+      "language": "en",
+      "query": "What is the status of court jurisdiction over pre-election candidate disputes?",
+      "target_section": "29",
+      "target_chunk_id": "EA2026-S29-SS5",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_018",
+      "suite": "retrieval",
+      "language": "ha",
+      "query": "Wace kotu ce ke da hurumin sauraron shari'ar zaben fidda gwani kafin babban zabe?",
+      "target_section": "29",
+      "target_chunk_id": "EA2026-S29-SS5",
+      "ranks": {
+        "Config A (BM25)": 2,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_019",
+      "suite": "retrieval",
+      "language": "yo",
+      "query": "Ile-ejo wo ni o ni ase lori awon ejo ti o waye saaju idibo?",
+      "target_section": "29",
+      "target_chunk_id": "EA2026-S29-SS5",
+      "ranks": {
+        "Config A (BM25)": 3,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "ret_020",
+      "suite": "retrieval",
+      "language": "ig",
+      "query": "Kedu ulo ikpe nwere ikike ikpe ikpe esemokwu ndi gbara mbo tupu ntuli aka?",
+      "target_section": "29",
+      "target_chunk_id": "EA2026-S29-SS5",
+      "ranks": {
+        "Config A (BM25)": 2,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "heldout_001",
+      "suite": "heldout",
+      "language": "en",
+      "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+      "target_section": "51",
+      "target_chunk_id": "EA2026-S51-SS2",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "heldout_002",
+      "suite": "heldout",
+      "language": "ha",
+      "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+      "target_section": "51",
+      "target_chunk_id": "EA2026-S51-SS2",
+      "ranks": {
+        "Config A (BM25)": 3,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "heldout_003",
+      "suite": "heldout",
+      "language": "yo",
+      "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+      "target_section": "51",
+      "target_chunk_id": "EA2026-S51-SS2",
+      "ranks": {
+        "Config A (BM25)": null,
+        "Config B (Dense)": 2,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 2
+      }
+    },
+    {
+      "id": "heldout_004",
+      "suite": "heldout",
+      "language": "ig",
+      "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+      "target_section": "51",
+      "target_chunk_id": "EA2026-S51-SS2",
+      "ranks": {
+        "Config A (BM25)": null,
+        "Config B (Dense)": 2,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 2
+      }
+    },
+    {
+      "id": "heldout_005",
+      "suite": "heldout",
+      "language": "en",
+      "query": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+      "target_section": "12",
+      "target_chunk_id": "EA2026-S12-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "heldout_006",
+      "suite": "heldout",
+      "language": "ha",
+      "query": "Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya?",
+      "target_section": "12",
+      "target_chunk_id": "EA2026-S12-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "heldout_007",
+      "suite": "heldout",
+      "language": "yo",
+      "query": "Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo?",
+      "target_section": "12",
+      "target_chunk_id": "EA2026-S12-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "heldout_008",
+      "suite": "heldout",
+      "language": "ig",
+      "query": "Afọ ole na ihe ndị dị aṅaa ka achọrọ n'aka mmadụ ka o nwee ike idebanye aha maka vootu?",
+      "target_section": "12",
+      "target_chunk_id": "EA2026-S12-SS1",
+      "ranks": {
+        "Config A (BM25)": 2,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "NAT_01",
+      "suite": "natural",
+      "language": "en",
+      "query": "What happens if more ballots are counted than accredited voters at a polling station?",
+      "target_section": "51",
+      "target_chunk_id": "EA2026-S51-SS2",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "NAT_02",
+      "suite": "natural",
+      "language": "en",
+      "query": "How many days before the election must the commission publish the official notice?",
+      "target_section": "28",
+      "target_chunk_id": "EA2026-S28-SS1",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "NAT_03",
+      "suite": "natural",
+      "language": "en",
+      "query": "Who is allowed to challenge the outcome of a political party primary election in court?",
+      "target_section": "29",
+      "target_chunk_id": "EA2026-S29-SS5",
+      "ranks": {
+        "Config A (BM25)": 1,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "NAT_04",
+      "suite": "natural",
+      "language": "en",
+      "query": "How are election scores sent from polling booths to the national portal?",
+      "target_section": "60",
+      "target_chunk_id": "EA2026-S60-SS3",
+      "ranks": {
+        "Config A (BM25)": 3,
+        "Config B (Dense)": 1,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 1
+      }
+    },
+    {
+      "id": "NAT_05",
+      "suite": "natural",
+      "language": "en",
+      "query": "Can I vote if I do not have my permanent voter card on election day?",
+      "target_section": "47",
+      "target_chunk_id": "EA2026-S47-SS1",
+      "ranks": {
+        "Config A (BM25)": 2,
+        "Config B (Dense)": 2,
+        "Config C (Hybrid RRF)": 1,
+        "Config D (Hybrid+Rerank)": 1,
+        "Config E (Dense+Rerank)": 2
+      }
+    }
+  ]
+}

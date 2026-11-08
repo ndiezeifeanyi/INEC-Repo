@@ -11,6 +11,7 @@ Strict Privacy Guarantees:
 
 import os
 import time
+import hmac
 import hashlib
 from typing import Optional, Dict, Any
 
@@ -18,7 +19,7 @@ SESSION_SALT = os.environ.get("SESSION_SALT", "inec_hackathon_track3_salt_2026_a
 SESSION_TTL_SECONDS = 24 * 3600  # 24 hours
 
 class SecureSessionStore:
-    """In-memory TTL session store with salted cryptographic sender hashing."""
+    """In-memory TTL session store with HMAC-SHA256 sender hashing."""
 
     def __init__(self, salt: str = SESSION_SALT, ttl_seconds: int = SESSION_TTL_SECONDS):
         self.salt = salt
@@ -26,10 +27,9 @@ class SecureSessionStore:
         self._sessions: Dict[str, Dict[str, Any]] = {}
 
     def _hash_sender(self, raw_sender_id: str) -> str:
-        """Computes one-way salted SHA-256 hash. Raw sender ID is never persisted."""
+        """Computes one-way HMAC-SHA256 hash using environment secret. Raw sender ID is never persisted."""
         normalized = raw_sender_id.strip()
-        salted = f"{self.salt}:{normalized}".encode("utf-8")
-        return hashlib.sha256(salted).hexdigest()
+        return hmac.new(self.salt.encode("utf-8"), normalized.encode("utf-8"), hashlib.sha256).hexdigest()
 
     def get_or_create_session(self, raw_sender_id: str) -> Dict[str, Any]:
         """

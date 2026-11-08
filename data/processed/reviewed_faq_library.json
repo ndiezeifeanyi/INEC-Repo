@@ -4,7 +4,7 @@
     "last_audit_date": "2026-11-08",
     "description": "Pre-reviewed FAQ Library covering 16 low-risk civic election topics. Excludes tribunals and offences.",
     "governing_statute": "Electoral Act 2026 (Federal Republic of Nigeria Official Gazette No. 15, Vol. 113)",
-    "english_review_status": "REVIEWED_STATUTORY_AUTHORITY",
+    "english_review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION",
     "hausa_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
     "yoruba_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
     "igbo_review_status": "UNREVIEWED_DEVELOPER_DRAFT"
@@ -18,7 +18,7 @@
       "english": {
         "verbatim_quote": "A person intending to vote in an election shall present himself with his voter's card to a Presiding officer for accreditation at the polling unit in the constituency in which his name is registered as a voter.",
         "short_explanation": "You must bring your official Permanent Voter Card (PVC) to the polling unit where you are registered in order to be accredited and allowed to vote.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Dole ne mai son kada kuri'a ya gabatar da katin zabensa na dindindin (PVC) a rumfar zaben da aka yi masa rajista domin a tantance shi kafin ya kada kuri'a.",
@@ -41,7 +41,7 @@
       "english": {
         "verbatim_quote": "Where a smart card reader deployed for accreditation of voters fails to function in any unit and a fresh card reader is not deployed, the election in that unit shall be postponed and shall take place within 24 hours if another card reader is provided.",
         "short_explanation": "If the BVAS device fails and a replacement cannot be provided immediately, voting at that polling unit is postponed and must take place within 24 hours once a functional device arrives.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Idan na'urar tantancewa ta lalace a rumfar zabe kuma ba a kawo wata ba, za a dage zaben na tsawon sa'o'i 24 har sai an kawo sabuwar na'ura.",
@@ -64,7 +64,7 @@
       "english": {
         "verbatim_quote": "Where the number of votes cast at an election in any polling unit exceeds the number of accredited voters in that polling unit, the Presiding officer shall cancel the result of the election in that polling unit.",
         "short_explanation": "If the total ballots counted exceed the number of voters accredited on the BVAS, the presiding officer must cancel the election result for that polling unit.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Idan adadin kuri'un da aka kada a rumfar zabe ya zarce adadin mutanen da aka tantance, jami'in zabe zai soke sakamakon zaben wannan rumfa.",
@@ -85,20 +85,20 @@
       "statutory_section": "Electoral Act 2026 Section 28(1)",
       "chunk_id": "EA2026-S28-SS1",
       "english": {
-        "verbatim_quote": "The Commission shall, not later than 360 days before the day appointed for holding of an election under this Act, publish a notice in each State of the Federation and the Federal Capital Territory...",
-        "short_explanation": "INEC must publish the official notice of a general election at least 360 days (or 300 days under unconfirmed 2026 proposed amendments) before election day.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "verbatim_quote": "The Commission shall, not later than 300 days before the day appointed for holding of an election under this Act, publish a notice in each State of the Federation and the Federal Capital Territory — (a) stating the date of the election ; and (b) appointing the place at which nomination papers are to be delivered.",
+        "short_explanation": "INEC must publish an official notice not later than 300 days before the election stating the election date and the place where nomination papers are delivered.",
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
-        "draft_translation": "Hukumar zabe za ta sanar da ranar zabe a kalla kwanaki 360 kafin ranar gudanar da babban zabe.",
+        "draft_translation": "Hukumar zabe za ta sanar da ranar zabe a kalla kwanaki 300 kafin ranar gudanar da babban zabe.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       },
       "yoruba": {
-        "draft_translation": "Ajo eleto idibo gbodo gbe ifitonile jade ni ko kere ju ojo 360 saaju ojo idibo gbogbogbo.",
+        "draft_translation": "Ajo eleto idibo gbodo gbe ifitonile jade ni ko kere ju ojo 300 saaju ojo idibo gbogbogbo.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       },
       "igbo": {
-        "draft_translation": "INEC ga-eweputa ozi maka ubochi ntuli aka na obere ubochi 360 tupu ubochi ntuli aka rute.",
+        "draft_translation": "INEC ga-eweputa ozi maka ubochi ntuli aka na obere ubochi 300 tupu ubochi ntuli aka rute.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       }
     },
@@ -110,7 +110,7 @@
       "english": {
         "verbatim_quote": "A person shall be qualified to be registered as a voter if such person is a citizen of Nigeria, has attained the age of 18 years on or before the date of registration...",
         "short_explanation": "To register as a voter in Nigeria, you must be a Nigerian citizen and at least 18 years of age.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Duk dan Najeriya da ya cika shekaru 18 a duniya ko sama da haka yana da damar yin rajistar zabe.",
@@ -133,7 +133,7 @@
       "english": {
         "verbatim_quote": "Any person who is registered as a voter, at any time before the date of the election, may apply in writing to the Electoral Officer of the Local Government Area where he is currently resident for transfer of his registration...",
         "short_explanation": "If you move your residence, you can apply in writing to the local INEC Electoral Officer to transfer your voter registration to your new polling area.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Duk wanda ya canza wurin zama zai iya neman a mayar da rajistar zabensa zuwa sabon wurin da yake zaune ta hanyar rubuta wasika ga jami'in zabe.",
@@ -156,7 +156,7 @@
       "english": {
         "verbatim_quote": "stating the appointed place at which nomination papers are to be delivered.",
         "short_explanation": "Candidate nomination papers must be delivered to the specific official venue stated in INEC's published election notice.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Dole ne a mika takardun tsayawa takara a wurin da hukumar zabe ta ayyana a cikin sanarwar zabe.",
@@ -173,24 +173,24 @@
     },
     {
       "id": "FAQ_08_POLLING_UNIT_RESULT_DISPLAY",
-      "topic": "Public Display of Polling Unit Results",
+      "topic": "Signing, Stamping, and Endorsement of Polling Unit Results Form (Form EC8A)",
       "statutory_section": "Electoral Act 2026 Section 60(2)",
-      "chunk_id": "EA2026-S60-SS3",
+      "chunk_id": "EA2026-S60-SS2",
       "english": {
-        "verbatim_quote": "The Presiding officer shall cause to be delivered to the Constituency Collation Officer and to the police officer in charge of the polling station, a copy of the result of the poll, and shall also cause a copy to be displayed at the polling unit for public inspection.",
-        "short_explanation": "Immediately after counting votes at the polling unit, the presiding officer must display a copy of the result (Form EC8A) at the polling unit for public inspection.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "verbatim_quote": "The form shall be signed and stamped by the Presiding Officer and countersigned by the candidates or their polling agents where available at the polling unit.",
+        "short_explanation": "The result form (Form EC8A) must be signed and stamped by the Presiding Officer and countersigned by candidates or their polling agents present at the polling unit.",
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
-        "draft_translation": "Bayan kammala kidayar kuri'u, jami'in rumfar zabe dole ne ya manna kwafin sakamakon zabe a rumfar domin jama'a su gani.",
+        "draft_translation": "Dole ne jami'in rumfar zabe ya sa hannu da tambari a kan takardar sakamako (Form EC8A) tare da sa hannun wakilan jam'iyyu ko 'yan takara da ke wurin.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       },
       "yoruba": {
-        "draft_translation": "Leyin kika ibo tan, osise idibo gbodo lẹ akojọ abajade ibo mo ibi idibo ki gbogbo eniyan le rii.",
+        "draft_translation": "Osise idibo gbodo buwolu iwe akojopo abajade idibo (Form EC8A) ki awon asoju egbe tabi oludije ti o wa nibe si fi owo si.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       },
       "igbo": {
-        "draft_translation": "Ozugbo a guchara vootu, onye na-elekota ya ga-amado akwukwo ihe si na vootu puta n'ebe ntuli aka ka onye obula hu ya.",
+        "draft_translation": "Onye na-elekota vootu ga-abanye aka na akara tambari n'akwukwo mputa vootu (Form EC8A), tinyere ndi nnochi anya pati ma obu ndi na-azo okwa ndi no ebe ahu.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       }
     },
@@ -202,7 +202,7 @@
       "english": {
         "verbatim_quote": "The Presiding officer shall transfer the results including total number of accredited voters and the results of the ballot in a manner as prescribed by the Commission.",
         "short_explanation": "Presiding officers scan and electronically transmit polling unit results (Form EC8A) and accreditation counts directly to the INEC Result Viewing Portal (IReV) using the BVAS.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Jami'in rumfar zabe zai tura sakamakon zabe da yawan mutanen da aka tantance kai tsaye ta hanyar na'urar BVAS zuwa shafin IReV na hukumar zabe.",
@@ -225,7 +225,7 @@
       "english": {
         "verbatim_quote": "A Collation Officer or Returning Officer at an election shall verify the results of the election by comparing the results presented to him with the results transferred electronically under section 60(3)...",
         "short_explanation": "Collation and returning officers must verify physical results by comparing them directly with the results transmitted electronically before declaring final outcomes.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Jami'in tattara sakamako dole ne ya tabbatar da gaskiyar sakamakon takarda ta hanyar kwatanta shi da sakamakon da aka tura ta yanar gizo kafin sanarwa.",
@@ -248,7 +248,7 @@
       "english": {
         "verbatim_quote": "Subject to the provisions of section 9 (6) of this Act, the Commission shall, not later than 90 days to a general election, appoint a period of seven days during which a copy of the voters' register for each Local Government, Area Council or Ward shall be displayed or published for public scrutiny at every registration area and on its official website...",
         "short_explanation": "At least 90 days before a general election, INEC must display the register of voters for seven days at registration areas and on its website for public scrutiny.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Kafin kwanaki 90 zuwa babban zabe, hukumar INEC za ta fitar da rajistar masu kada kuri'a na tsawon kwanaki bakwai domin jama'a su duba a kowace gunduma da shafin yanar gizo.",
@@ -271,7 +271,7 @@
       "english": {
         "verbatim_quote": "The Commission may appoint as a revision officer any person to hear and determine claims for and objection to any entry in or omission from the preliminary list of voters and may appoint such number of other persons as it deems necessary to assist the Revision Officer.",
         "short_explanation": "INEC appoints revision officers to hear and resolve citizen claims, corrections, and objections regarding omissions or erroneous names in the preliminary register of voters.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "INEC na nada jami'an bitar rajista domin sauraron korafe-korafe da gyaran kura-kuran sunayen da aka cire ko aka rubuta ba daidai ba a cikin rajistar masu zabe.",
@@ -294,7 +294,7 @@
       "english": {
         "verbatim_quote": "At the hour fixed for opening of the poll before the commencement of accreditation and voting, the Presiding Officer shall open the empty ballot box or present the voting device and show same to such persons as may lawfully be present at the polling unit and shall then close and seal the box in such manner as to prevent its being opened by any unauthorised person.",
         "short_explanation": "At the opening of voting, the presiding officer must publicly demonstrate to all present that the ballot box is empty, before securely sealing it in full public view.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "A lokacin bude rumfar zabe kafin a fara tantancewa, dole ne jami'in zabe ya nuna akwatin zabe a fili cewa babu komai a ciki sannan ya rufe shi kuma ya lika hatimi a gaban kowa.",
@@ -317,7 +317,7 @@
       "english": {
         "verbatim_quote": "A voter with visual impairment or other form of disability who is otherwise unable to distinguish symbol or who suffers from any other physical disability may be accompanied into the polling unit by a person chosen by him or her and that person shall, after informing the Presiding Officer of the disability, be permitted to accompany the voter into the voting compartment and assist the voter to make his or her mark in accordance with the procedure prescribed by the Commission: Provided that no political party agent, candidate or party official shall be permitted to accompany a voter into the voting compartment.",
         "short_explanation": "A voter with a visual impairment or physical disability may be assisted in marking their ballot by a trusted person of their own choice (excluding candidates or party agents) after notifying the presiding officer.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Mai bukata ta musamman ko makaho na iya zuwa da wani mutum da ya amince da shi domin ya taimaka masa kada kuri'a, amma ba wakilin jam'iyya ko dan takara ba.",
@@ -340,7 +340,7 @@
       "english": {
         "verbatim_quote": "Each candidate, in consultation with his political party may, by notice in writing addressed to the Resident Electoral Commissioner of the State, appoint a polling agent for each polling unit and collation centre in the Local Government Area or Area Council for which it has candidate and the notice, which sets out the name, address and contact details of the polling agent, shall be accompanied by two passport photographs of each polling agent and sample signature of the polling agent and be given to the electoral officer at least 14 days before the date fixed for the election: Provided that no person who is serving as Chairman or member of a Local Government Area or Area Council, Commissioner, Deputy Governor or Governor of a State, Minister of the Federal Government, or any other person holding elective or appointive political office under any tier of government and who has not resigned from his office at least three months prior to the said election shall serve as a polling agent...",
         "short_explanation": "Candidates and political parties may appoint one polling agent per polling unit at least 14 days before the election; public office holders and government officials are barred from acting as polling agents.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Kowace jam'iyya ko dan takara na iya nada wakilin rumfar zabe akalla kwanaki 14 kafin zabe; an haramtawa masu rike da mukaman gwamnati zama wakilan zabe.",
@@ -363,7 +363,7 @@
       "english": {
         "verbatim_quote": "Where a voter makes any writing or mark on a ballot paper by which he or she may be identified, such ballot paper shall be rejected provided that any print resulting from the staining of the thumb of the voter in the voting compartment shall not be or be deemed to be a mark of identification under this section.",
         "short_explanation": "Voting is by secret ballot; any ballot paper marked with writing that reveals the voter's personal identity is rejected and invalidated, though thumbprint ink is completely normal and valid.",
-        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+        "review_status": "DEVELOPER_DRAFT_PENDING_HUMAN_VERIFICATION"
       },
       "hausa": {
         "draft_translation": "Zabe na sirri ne; idan mai kada kuri'a ya rubuta wani abu da zai sa a gane ko wanene shi a takardar kuri'a, za a ki karbar wannan kuri'ar, amma shaidar yatsa ba ta bata kuri'a ba.",
@@ -380,4 +380,3 @@
     }
   ]
 }
-
