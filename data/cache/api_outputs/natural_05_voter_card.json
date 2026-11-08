@@ -1,0 +1,45 @@
+{
+  "question": "Can I vote if I do not have my permanent voter card on election day?",
+  "language": "en",
+  "answer_text": "No primary answer presented: retrieval disagreement between lexical (BM25) and dense rankers.\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n1. [machine-translated, unreviewed] Electoral Act 2026, Section 130, Subsection (1) (Chunk ID: EA2026-S130-SS1):\n\"Any person shall not do any of the following acts or things in a polling unit or within a distance of 300 metres of a polling unit on the date on which an election is held — (a) canvass for votes ; (b) solicit for the vote of any voter ; (c) persuade any voter not to vote for any particular candidate ; (d) persuade any voter not to vote at the election ; (e) shout slogans concerning the election ; (f) be in possession of any offensive weapon or wear any dress or have any facial or other decoration which in any event is calculated to intimidate voters ; (g) exhibit, wear or tender any notice, symbol, photograph or party card referring to the election ; (h) use any vehicle bearing the colour or symbol of a political party by any means whatsoever ; (i) loiter without lawful excuse after voting or after being refused to vote ; (j) snatch or destroy any election materials ; or (k) blare siren.\"\n\n2. [machine-translated, unreviewed] Electoral Act 2026, Section 47, Subsection (3) (Chunk ID: EA2026-S47-SS3):\n\"Where a Bimodal Voter Accreditation System or any other technological device deployed for accreditation of voters fails to function in any unit and a fresh card reader or technological device is not deployed, the election in that unit shall be cancelled and another election shall be scheduled within 24 hours if the Commission is satisfied that the result of the election in that polling unit will substantially affect the final result of the whole election and declaration of a winner in the constituency concerned.\"\n\n3. [machine-translated, unreviewed] Electoral Act 2026, Section 18, Subsection (2) (Chunk ID: EA2026-S18-SS2):\n\"Any person shall not issue a replacement permanent voter's card to any voter less than 90 days before polling day.\"",
+  "answer_plain": "No primary answer presented [machine-translated, unreviewed].",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "130",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "47",
+      "subsection": "3",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "18",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S130-SS1",
+    "EA2026-S47-SS3",
+    "EA2026-S18-SS2"
+  ],
+  "confidence_flags": [
+    "ABSTENTION_RETRIEVAL_DISAGREEMENT"
+  ],
+  "has_audio": false,
+  "audio_url": null
+}

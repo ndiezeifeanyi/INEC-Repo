@@ -63,7 +63,8 @@ class GroundedAnswerGenerator:
         self,
         query: str,
         retrieved_chunks: List[Tuple[LegalChunk, float]],
-        lang: str = "en"
+        lang: str = "en",
+        bm25_dense_disagree: Optional[bool] = None
     ) -> VoterAnswer:
         # Check refusals first
         refusal = self.check_refusal(query, lang)
@@ -101,6 +102,74 @@ class GroundedAnswerGenerator:
                 confidence_flags=["ABSTENTION_UNSUPPORTED_RETRIEVAL"]
             )
 
+        # Disagreement resolution
+        if bm25_dense_disagree is None:
+            bm25_dense_disagree = getattr(retrieved_chunks, "bm25_dense_disagree", False)
+
+        is_translated = (lang in ["ha", "yo", "ig"] or lang != "en")
+
+        # Extract citations for up to top-3 retrieved chunks
+        citations = []
+        confidence_flags = []
+        for chunk, _ in retrieved_chunks[:3]:
+            citations.append(Citation(
+                document_title=chunk.document_title,
+                section=chunk.section_number,
+                subsection=chunk.subsection_number,
+                version=chunk.document_version,
+                retrieval_date=chunk.retrieval_date,
+                source_url=chunk.document_source_url,
+                legal_status=chunk.legal_status
+            ))
+            if chunk.legal_status == "UNCONFIRMED" and "STATUS_UNCONFIRMED_CHECK_GAZETTE" not in confidence_flags:
+                confidence_flags.append("STATUS_UNCONFIRMED_CHECK_GAZETTE")
+
+        # Directive 1: Never present a primary answer for translated queries or BM25/Dense disagreement; show top-3 labelled [machine-translated, unreviewed]
+        if is_translated or bm25_dense_disagree:
+            if is_translated:
+                confidence_flags.append("MACHINE_TRANSLATED_UNREVIEWED")
+            if bm25_dense_disagree:
+                confidence_flags.append("ABSTENTION_RETRIEVAL_DISAGREEMENT")
+
+            top_provisions_text = []
+            for i, (chunk, _) in enumerate(retrieved_chunks[:3], start=1):
+                sec_desc = f"Section {chunk.section_number}"
+                if chunk.subsection_number:
+                    sec_desc += f", Subsection ({chunk.subsection_number})"
+                top_provisions_text.append(
+                    f"{i}. [machine-translated, unreviewed] {chunk.document_title}, {sec_desc} (Chunk ID: {chunk.chunk_id}):\n\"{chunk.content_english}\""
+                )
+
+            if is_translated and bm25_dense_disagree:
+                header = "No primary answer presented: machine-translated query and retrieval disagreement between lexical (BM25) and dense rankers."
+            elif is_translated:
+                header = "No primary answer presented: machine-translated query (unreviewed native language translation)."
+            else:
+                header = "No primary answer presented: retrieval disagreement between lexical (BM25) and dense rankers."
+
+            ans_text = f"{header}\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n" + "\n\n".join(top_provisions_text)
+
+            has_2022_doc = any("INEC2026-ET" in c.chunk_id or "2022" in c.document_version for c, _ in retrieved_chunks[:3])
+            if has_2022_doc:
+                if "DOC_REFERS_TO_ELECTORAL_ACT_2022" not in confidence_flags:
+                    confidence_flags.append("DOC_REFERS_TO_ELECTORAL_ACT_2022")
+                notice_2022 = "[Notice: This document refers to the Electoral Act 2022. While administrative procedures (BVAS, IReV) continue under INEC regulations, substantive statutory authority is governed by Electoral Act 2026 Section 60(3).]"
+                ans_text += f"\n\n{notice_2022}"
+
+            if "29a" in query.lower() or "29 a" in query.lower():
+                amend = UNCONFIRMED_AMENDMENTS["29A"]
+                ans_text += f"\n\n[Status: UNCONFIRMED. {amend['notice']}]"
+
+            return VoterAnswer(
+                question=query,
+                language=lang,
+                answer_text=ans_text,
+                answer_plain="No primary answer presented [machine-translated, unreviewed].",
+                citations=citations,
+                retrieved_chunk_ids=[c[0].chunk_id for c in retrieved_chunks[:3]],
+                confidence_flags=confidence_flags
+            )
+
         top_chunk, score = retrieved_chunks[0]
 
         # Check if query asks about Section 29A or unconfirmed legislative amendments
@@ -133,22 +202,6 @@ class GroundedAnswerGenerator:
                 retrieved_chunk_ids=[top_chunk.chunk_id],
                 confidence_flags=confidence_flags
             )
-
-        # Extract citations for up to top-3 retrieved chunks
-        citations = []
-        confidence_flags = []
-        for chunk, _ in retrieved_chunks[:3]:
-            citations.append(Citation(
-                document_title=chunk.document_title,
-                section=chunk.section_number,
-                subsection=chunk.subsection_number,
-                version=chunk.document_version,
-                retrieval_date=chunk.retrieval_date,
-                source_url=chunk.document_source_url,
-                legal_status=chunk.legal_status
-            ))
-            if chunk.legal_status == "UNCONFIRMED" and "STATUS_UNCONFIRMED_CHECK_GAZETTE" not in confidence_flags:
-                confidence_flags.append("STATUS_UNCONFIRMED_CHECK_GAZETTE")
 
         # Audit 7 Abstention Safeguard:
         # 1. Top-1 chunk is not clearly ahead of top-2 (gap <= SCORE_GAP_THRESHOLD)

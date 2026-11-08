@@ -1,0 +1,46 @@
+{
+  "question": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+  "language": "yo",
+  "answer_text": "No primary answer presented: machine-translated query and retrieval disagreement between lexical (BM25) and dense rankers.\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n1. [machine-translated, unreviewed] Electoral Act 2026, Section 110, Subsection (5) (Chunk ID: EA2026-S110-SS5):\n\"Where no candidate is duly elected in accordance with subsection (4), there shall be a second election in accordance with subsection (6) at which the only candidates shall be — (a) the candidate who scored the highest number of votes at the election held under subsection (4) ; and (b) one among the remaining candidates who has the majority of votes in the highest number of wards so however that where there are more than one candidate, the one among them with the highest total number of votes cast at the election shall be the second candidate for the election.\"\n\n2. [machine-translated, unreviewed] Electoral Act 2026, Section 12, Subsection (1) (Chunk ID: EA2026-S12-SS1):\n\"Any person shall be qualified to be registered as a voter if such a person — (a) is a citizen of Nigeria ; (b) has attained the age of 18 years ; (c) is ordinarily resident, works in, and originates from the Local Government, Area Council or Ward covered by the registration centre; (d) presents himself to the registration officers of the Commission for registration as a voter ; and (e) is not subject to any legal incapacity to vote under any law , rule or regulations in effect in Nigeria. A 14 2026 No. 1 Electoral Act, 2026 Transfer of registered voters Demand for information regarding registration\"\n\n3. [machine-translated, unreviewed] Electoral Act 2026, Section 117, Subsection (1) (Chunk ID: EA2026-S117-SS1):\n\"117. A member of an Area Council may be recalled as a member if - (a) there is presented to the Chairman of the Commission a petition in that behalf signed by not less than one-half of the persons registered to vote in that member's constituency alleging their loss of confidence in that member and which signatures are duly verified by the Independent National Electoral Commission ; and (b) the petition is approved in a referendum conducted by the Commission within 90 days of the date of the receipt of the petition by a simple majority of the votes of the persons registered to vote in that member's constituency. PART VII — E LECTORAL OFFENCES\"",
+  "answer_plain": "No primary answer presented [machine-translated, unreviewed].",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "110",
+      "subsection": "5",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "12",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "117",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S110-SS5",
+    "EA2026-S12-SS1",
+    "EA2026-S117-SS1"
+  ],
+  "confidence_flags": [
+    "MACHINE_TRANSLATED_UNREVIEWED",
+    "ABSTENTION_RETRIEVAL_DISAGREEMENT"
+  ],
+  "has_audio": false,
+  "audio_url": null
+}

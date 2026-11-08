@@ -1,0 +1,919 @@
+{
+  "committed_dictionary_only": {
+    "set_label": "Committed Held-out (dictionary only)",
+    "n_samples": 8,
+    "hits_at_1": 2,
+    "recall@1": "25.0% (2/8)",
+    "recall@1_wilson_95ci": "[7.1%, 59.1%]",
+    "hits_at_3": 2,
+    "recall@3": "25.0% (2/8)",
+    "recall@3_wilson_95ci": "[7.1%, 59.1%]",
+    "mrr": "0.250",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "top3_sections": [
+          "51",
+          "PAGE-3",
+          "62"
+        ],
+        "bm25_top1": "EA2026-S51-SS2",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance? accreditation verify authenticate",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S47-SS2",
+          "EA2026-S47-SS3",
+          "EA2026-S67-SS1"
+        ],
+        "top3_sections": [
+          "47",
+          "47",
+          "67"
+        ],
+        "bm25_top1": "EA2026-S47-SS2",
+        "dense_top1": "EA2026-S47-SS2",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S25-SS1",
+          "EA2026-S22-SS1",
+          "EA2026-S92-SS11"
+        ],
+        "top3_sections": [
+          "25",
+          "22",
+          "92"
+        ],
+        "bm25_top1": "EA2026-S25-SS1",
+        "dense_top1": "EA2026-S22-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S93-SS4",
+          "EA2026-SCH1-P54"
+        ],
+        "top3_sections": [
+          "93",
+          "SCH1-P54"
+        ],
+        "bm25_top1": "EA2026-S93-SS4",
+        "dense_top1": "EA2026-S93-SS4",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005",
+        "lang": "en",
+        "query": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "translated_to_en": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S22-SS1"
+        ],
+        "top3_sections": [
+          "12",
+          "8",
+          "22"
+        ],
+        "bm25_top1": "EA2026-S12-SS1",
+        "dense_top1": "EA2026-S12-SS1",
+        "bm25_dense_disagree": false,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_006",
+        "lang": "ha",
+        "query": "Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya?",
+        "translated_to_en": "Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S67-SS1",
+          "EA2026-SCH1-P55"
+        ],
+        "top3_sections": [
+          "67",
+          "SCH1-P55"
+        ],
+        "bm25_top1": "EA2026-S67-SS1",
+        "dense_top1": "EA2026-S67-SS1",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_007",
+        "lang": "yo",
+        "query": "Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo?",
+        "translated_to_en": "Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S18-SS3",
+          "EA2026-S92-SS11",
+          "EA2026-S22-SS1"
+        ],
+        "top3_sections": [
+          "18",
+          "92",
+          "22"
+        ],
+        "bm25_top1": "EA2026-S18-SS3",
+        "dense_top1": "EA2026-S18-SS3",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_008",
+        "lang": "ig",
+        "query": "Af\u1ecd ole na ihe nd\u1ecb d\u1ecb a\u1e45aa ka ach\u1ecdr\u1ecd n'aka mmad\u1ee5 ka o nwee ike idebanye aha maka vootu?",
+        "translated_to_en": "Af\u1ecd ole na ihe nd\u1ecb d\u1ecb a\u1e45aa ka ach\u1ecdr\u1ecd n'aka mmad\u1ee5 ka o nwee ike idebanye aha maka vootu?",
+        "target": "12",
+        "top3_retrieved": [],
+        "top3_sections": [],
+        "bm25_top1": null,
+        "dense_top1": null,
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      }
+    ]
+  },
+  "committed_cached_online": {
+    "set_label": "Committed Held-out (dictionary + cached online translation)",
+    "n_samples": 8,
+    "hits_at_1": 4,
+    "recall@1": "50.0% (4/8)",
+    "recall@1_wilson_95ci": "[21.5%, 78.5%]",
+    "hits_at_3": 6,
+    "recall@3": "75.0% (6/8)",
+    "recall@3_wilson_95ci": "[40.9%, 92.9%]",
+    "mrr": "0.604",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "top3_sections": [
+          "51",
+          "PAGE-3",
+          "62"
+        ],
+        "bm25_top1": "EA2026-S51-SS2",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "What will happen if the votes cast in the polling booth are more than the number of people who have been verified?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS4",
+          "EA2026-S110-SS5",
+          "EA2026-S51-SS2"
+        ],
+        "top3_sections": [
+          "110",
+          "110",
+          "51"
+        ],
+        "bm25_top1": "EA2026-S110-SS4",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "What will happen if the number of people who vote is more than the number of voters who are registered?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-S117-SS1"
+        ],
+        "top3_sections": [
+          "110",
+          "12",
+          "117"
+        ],
+        "bm25_top1": "EA2026-S110-SS5",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "What happens if the number of people who voted is more than those who have their credentials at the polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S110-SS5",
+          "EA2026-SCH1-P48"
+        ],
+        "top3_sections": [
+          "119",
+          "110",
+          "SCH1-P48"
+        ],
+        "bm25_top1": "EA2026-S126-SS2",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005",
+        "lang": "en",
+        "query": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "translated_to_en": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S22-SS1"
+        ],
+        "top3_sections": [
+          "12",
+          "8",
+          "22"
+        ],
+        "bm25_top1": "EA2026-S12-SS1",
+        "dense_top1": "EA2026-S12-SS1",
+        "bm25_dense_disagree": false,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_006",
+        "lang": "ha",
+        "query": "Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya?",
+        "translated_to_en": "What age and qualifications are required for a person to register to vote in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S77-SS5"
+        ],
+        "top3_sections": [
+          "12",
+          "8",
+          "77"
+        ],
+        "bm25_top1": "EA2026-S8-SS1",
+        "dense_top1": "EA2026-S12-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_007",
+        "lang": "yo",
+        "query": "Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo?",
+        "translated_to_en": "How many days and what requirements do people need to register as a voter?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-SCH1-P1",
+          "EA2026-S29-SS6"
+        ],
+        "top3_sections": [
+          "12",
+          "SCH1-P1",
+          "29"
+        ],
+        "bm25_top1": "EA2026-S81-SS4",
+        "dense_top1": "EA2026-SCH1-P1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_008",
+        "lang": "ig",
+        "query": "Af\u1ecd ole na ihe nd\u1ecb d\u1ecb a\u1e45aa ka ach\u1ecdr\u1ecd n'aka mmad\u1ee5 ka o nwee ike idebanye aha maka vootu?",
+        "translated_to_en": "How old and what are the requirements for a person to be able to register to vote?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S77-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-SCH1-P48"
+        ],
+        "top3_sections": [
+          "77",
+          "12",
+          "SCH1-P48"
+        ],
+        "bm25_top1": "EA2026-S77-SS5",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": true,
+        "rank": 2
+      }
+    ]
+  },
+  "d026f78_dictionary_only": {
+    "set_label": "d026f78 Original Held-out (dictionary only)",
+    "n_samples": 8,
+    "hits_at_1": 1,
+    "recall@1": "12.5% (1/8)",
+    "recall@1_wilson_95ci": "[2.2%, 47.1%]",
+    "hits_at_3": 1,
+    "recall@3": "12.5% (1/8)",
+    "recall@3_wilson_95ci": "[2.2%, 47.1%]",
+    "mrr": "0.125",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "top3_sections": [
+          "51",
+          "PAGE-3",
+          "62"
+        ],
+        "bm25_top1": "EA2026-S51-SS2",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance? accreditation verify authenticate",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S47-SS2",
+          "EA2026-S47-SS3",
+          "EA2026-S67-SS1"
+        ],
+        "top3_sections": [
+          "47",
+          "47",
+          "67"
+        ],
+        "bm25_top1": "EA2026-S47-SS2",
+        "dense_top1": "EA2026-S47-SS2",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S25-SS1",
+          "EA2026-S22-SS1",
+          "EA2026-S92-SS11"
+        ],
+        "top3_sections": [
+          "25",
+          "22",
+          "92"
+        ],
+        "bm25_top1": "EA2026-S25-SS1",
+        "dense_top1": "EA2026-S22-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S93-SS4",
+          "EA2026-SCH1-P54"
+        ],
+        "top3_sections": [
+          "93",
+          "SCH1-P54"
+        ],
+        "bm25_top1": "EA2026-S93-SS4",
+        "dense_top1": "EA2026-S93-SS4",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005_d026f78",
+        "lang": "en",
+        "query": "At what time does accreditation and voting commence and close at polling stations?",
+        "translated_to_en": "At what time does accreditation and voting commence and close at polling stations?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-S36-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "top3_sections": [
+          "46",
+          "36",
+          "119"
+        ],
+        "bm25_top1": "EA2026-S46-SS1",
+        "dense_top1": "EA2026-S46-SS1",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_006_d026f78",
+        "lang": "ha",
+        "query": "Wane lokaci ake fara tantancewa da kada kuri'a sannan a wane lokaci ake rufewa?",
+        "translated_to_en": "Wane lokaci ake fara tantancewa da kada kuri'a sannan a wane lokaci ake rufewa? accreditation verify authenticate",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S47-SS2",
+          "EA2026-S47-SS3",
+          "EA2026-S46-SS1"
+        ],
+        "top3_sections": [
+          "47",
+          "47",
+          "46"
+        ],
+        "bm25_top1": "EA2026-S47-SS2",
+        "dense_top1": "EA2026-S47-SS2",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_007_d026f78",
+        "lang": "yo",
+        "query": "Agogo melo ni a n bere ijeri ati idibo ti a si n pari re ni ibudo ibo?",
+        "translated_to_en": "Agogo melo ni a n bere ijeri ati idibo ti a si n pari re ni ibudo ibo?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S112-SS2",
+          "EA2026-S62-SS7",
+          "INEC2026-ET-PAGE1"
+        ],
+        "top3_sections": [
+          "112",
+          "62",
+          "PAGE-1"
+        ],
+        "bm25_top1": "EA2026-S112-SS2",
+        "dense_top1": "EA2026-S62-SS7",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_008_d026f78",
+        "lang": "ig",
+        "query": "Oge ole ka a na-ebido nzere na itu vootu nakwa oge ole ka a na-emechi ya?",
+        "translated_to_en": "Oge ole ka a na-ebido nzere na itu vootu nakwa oge ole ka a na-emechi ya?",
+        "target": "18",
+        "top3_retrieved": [],
+        "top3_sections": [],
+        "bm25_top1": null,
+        "dense_top1": null,
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      }
+    ]
+  },
+  "d026f78_cached_online": {
+    "set_label": "d026f78 Original Held-out (dictionary + cached online translation)",
+    "n_samples": 8,
+    "hits_at_1": 1,
+    "recall@1": "12.5% (1/8)",
+    "recall@1_wilson_95ci": "[2.2%, 47.1%]",
+    "hits_at_3": 2,
+    "recall@3": "25.0% (2/8)",
+    "recall@3_wilson_95ci": "[7.1%, 59.1%]",
+    "mrr": "0.167",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "top3_sections": [
+          "51",
+          "PAGE-3",
+          "62"
+        ],
+        "bm25_top1": "EA2026-S51-SS2",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "What will happen if the votes cast in the polling booth are more than the number of people who have been verified?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS4",
+          "EA2026-S110-SS5",
+          "EA2026-S51-SS2"
+        ],
+        "top3_sections": [
+          "110",
+          "110",
+          "51"
+        ],
+        "bm25_top1": "EA2026-S110-SS4",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "What will happen if the number of people who vote is more than the number of voters who are registered?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-S117-SS1"
+        ],
+        "top3_sections": [
+          "110",
+          "12",
+          "117"
+        ],
+        "bm25_top1": "EA2026-S110-SS5",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "What happens if the number of people who voted is more than those who have their credentials at the polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S110-SS5",
+          "EA2026-SCH1-P48"
+        ],
+        "top3_sections": [
+          "119",
+          "110",
+          "SCH1-P48"
+        ],
+        "bm25_top1": "EA2026-S126-SS2",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005_d026f78",
+        "lang": "en",
+        "query": "At what time does accreditation and voting commence and close at polling stations?",
+        "translated_to_en": "At what time does accreditation and voting commence and close at polling stations?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-S36-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "top3_sections": [
+          "46",
+          "36",
+          "119"
+        ],
+        "bm25_top1": "EA2026-S46-SS1",
+        "dense_top1": "EA2026-S46-SS1",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_006_d026f78",
+        "lang": "ha",
+        "query": "Wane lokaci ake fara tantancewa da kada kuri'a sannan a wane lokaci ake rufewa?",
+        "translated_to_en": "What time does screening and voting start and when does it close?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-SCH1-P46",
+          "EA2026-S119-SS2",
+          "EA2026-S23-SS1"
+        ],
+        "top3_sections": [
+          "SCH1-P46",
+          "119",
+          "23"
+        ],
+        "bm25_top1": "EA2026-SCH1-P46",
+        "dense_top1": "EA2026-SCH1-P46",
+        "bm25_dense_disagree": false,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_007_d026f78",
+        "lang": "yo",
+        "query": "Agogo melo ni a n bere ijeri ati idibo ti a si n pari re ni ibudo ibo?",
+        "translated_to_en": "What time do we start polling and voting and end it at the polling station?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S43-SS3",
+          "EA2026-S126-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "top3_sections": [
+          "43",
+          "126",
+          "119"
+        ],
+        "bm25_top1": "EA2026-S98-SS1",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_008_d026f78",
+        "lang": "ig",
+        "query": "Oge ole ka a na-ebido nzere na itu vootu nakwa oge ole ka a na-emechi ya?",
+        "translated_to_en": "What time does accreditation and voting start and what time does it close?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-SCH1-P46",
+          "EA2026-S23-SS1"
+        ],
+        "top3_sections": [
+          "46",
+          "SCH1-P46",
+          "23"
+        ],
+        "bm25_top1": "EA2026-S46-SS1",
+        "dense_top1": "EA2026-SCH1-P46",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": false,
+        "rank": null
+      }
+    ]
+  },
+  "natural_queries": {
+    "set_label": "Natural English Queries (No Section Jargon)",
+    "n_samples": 6,
+    "hits_at_1": 4,
+    "recall@1": "66.7% (4/6)",
+    "recall@1_wilson_95ci": "[30.0%, 90.3%]",
+    "hits_at_3": 6,
+    "recall@3": "100.0% (6/6)",
+    "recall@3_wilson_95ci": "[61.0%, 100.0%]",
+    "mrr": "0.806",
+    "details": [
+      {
+        "id": "natural_001_over_voting",
+        "lang": "en",
+        "query": "What happens if more ballots are counted than accredited voters at a polling station?",
+        "translated_to_en": "What happens if more ballots are counted than accredited voters at a polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "EA2026-S62-SS4",
+          "INEC2026-ET-PAGE3"
+        ],
+        "top3_sections": [
+          "51",
+          "62",
+          "PAGE-3"
+        ],
+        "bm25_top1": "EA2026-S50-SS4",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "natural_002_election_notice",
+        "lang": "en",
+        "query": "How many days before the election must the commission publish the official notice?",
+        "translated_to_en": "How many days before the election must the commission publish the official notice?",
+        "target": "28",
+        "top3_retrieved": [
+          "EA2026-S28-SS1",
+          "EA2026-S28-SS3",
+          "EA2026-S32-SS1"
+        ],
+        "top3_sections": [
+          "28",
+          "28",
+          "32"
+        ],
+        "bm25_top1": "EA2026-S28-SS1",
+        "dense_top1": "EA2026-S28-SS1",
+        "bm25_dense_disagree": false,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "natural_003_primary_challenge",
+        "lang": "en",
+        "query": "Who is allowed to challenge the outcome of a political party primary election in court?",
+        "translated_to_en": "Who is allowed to challenge the outcome of a political party primary election in court?",
+        "target": "29",
+        "top3_retrieved": [
+          "EA2026-S29-SS5",
+          "EA2026-S33-SS1",
+          "EA2026-S88-SS2"
+        ],
+        "top3_sections": [
+          "29",
+          "33",
+          "88"
+        ],
+        "bm25_top1": "EA2026-S29-SS5",
+        "dense_top1": "EA2026-S29-SS5",
+        "bm25_dense_disagree": false,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "natural_004_transmission",
+        "lang": "en",
+        "query": "How are election scores sent from polling booths to the national portal?",
+        "translated_to_en": "How are election scores sent from polling booths to the national portal?",
+        "target": "60",
+        "top3_retrieved": [
+          "EA2026-S62-SS4",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S60-SS3"
+        ],
+        "top3_sections": [
+          "62",
+          "PAGE-3",
+          "60"
+        ],
+        "bm25_top1": "EA2026-S81-SS3",
+        "dense_top1": "EA2026-S155-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "natural_005_voter_card",
+        "lang": "en",
+        "query": "Can I vote if I do not have my permanent voter card on election day?",
+        "translated_to_en": "Can I vote if I do not have my permanent voter card on election day?",
+        "target": "47",
+        "top3_retrieved": [
+          "EA2026-S130-SS1",
+          "EA2026-S47-SS3",
+          "EA2026-S18-SS2"
+        ],
+        "top3_sections": [
+          "130",
+          "47",
+          "18"
+        ],
+        "bm25_top1": "EA2026-S18-SS2",
+        "dense_top1": "EA2026-S130-SS1",
+        "bm25_dense_disagree": true,
+        "hit@1": false,
+        "hit@3": true,
+        "rank": 2
+      },
+      {
+        "id": "natural_006_real_time_upload",
+        "lang": "en",
+        "query": "Must results be uploaded in real time?",
+        "translated_to_en": "Must results be uploaded in real time?",
+        "target": "60",
+        "top3_retrieved": [
+          "EA2026-S60-SS3",
+          "EA2026-S50-SS2",
+          "EA2026-S62-SS2"
+        ],
+        "top3_sections": [
+          "60",
+          "50",
+          "62"
+        ],
+        "bm25_top1": "EA2026-S50-SS2",
+        "dense_top1": "EA2026-S50-SS2",
+        "bm25_dense_disagree": false,
+        "hit@1": true,
+        "hit@3": true,
+        "rank": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "question": "Must results be uploaded in real time?",
+  "language": "en",
+  "answer_text": "According to Electoral Act 2026, Section 60, Subsection (3):\n\n\"The Presiding Officer shall electronically transmit the results from each polling unit to IREV portal and such transmission shall be done after the prescribed Form EC8A has been signed and stamped by the Presiding officer and/or countersigned by the candidates or Polling agents where available at the Polling Unit: Provided that if the electronic transmission of the result fails as a result of communication failure and it becomes impossible to transmit the result contained in Form EC8A signed and stamped by the Presiding Officer and countersigned by the candidates or polling agents where available at the polling unit, the Form EC8A shall at all times remain the primary source of collation and declaration of the result.\"\n\nSupporting / Related Provisions (Top-3 Retrieved):\n\n2. Electoral Act 2026, Section 50, Subsection (2) (Chunk ID: EA2026-S50-SS2):\n\"Subject to section 60 of this Act, voting at an election and transmission of results under this Act shall be in accordance with the procedure determined by the Commission.\"\n\n3. Electoral Act 2026, Section 62, Subsection (2) (Chunk ID: EA2026-S62-SS2):\n\"The Commission shall compile, maintain and update, on a continuous basis, a register of election results to be known as the National Electronic Register of Election Results which shall be a distinct database or repository of polling unit by polling unit results, including collated election results, of each election conducted by the Commission in the Federation, and the Register of Election Results shall be kept in electronic format by the Commission at its national headquarters.\"",
+  "answer_plain": "The Presiding Officer must electronically transmit polling unit results to the IReV portal after Form EC8A is signed and stamped. If electronic transmission fails due to communication failure, the signed and stamped Form EC8A remains the primary source for collation and declaration of the result.",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "60",
+      "subsection": "3",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "50",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "62",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S60-SS3",
+    "EA2026-S50-SS2",
+    "EA2026-S62-SS2"
+  ],
+  "confidence_flags": [],
+  "has_audio": false,
+  "audio_url": null
+}

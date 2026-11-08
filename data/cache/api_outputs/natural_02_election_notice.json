@@ -1,0 +1,43 @@
+{
+  "question": "How many days before the election must the commission publish the official notice?",
+  "language": "en",
+  "answer_text": "According to Electoral Act 2026, Section 28, Subsection (1):\n\n\"The Commission shall, not later than 300 days before the day appointed for holding of an election under this Act, publish a notice in each State of the Federation and the Federal Capital Territory — (a) stating the date of the election ; and (b) appointing the place at which nomination papers are to be delivered.\"\n\nSupporting / Related Provisions (Top-3 Retrieved):\n\n2. Electoral Act 2026, Section 28, Subsection (3) (Chunk ID: EA2026-S28-SS3):\n\"In the case of a by-election, the Commission shall, not later than 14 days before the date appointed for the election, publish a notice stating the date of the election.\"\n\n3. Electoral Act 2026, Section 32, Subsection (1) (Chunk ID: EA2026-S32-SS1):\n\"The Commission shall, at least 60 days before the day of the election, publish by displaying or causing to be displayed at the relevant office or offices of the Commission and on the Commission's website, a statement of the full names and addresses of all candidates standing nominated. Publication of nomination A 22 2026 No. 1 Electoral Act, 2026 Death of a candidate Invalidity of multiple nominationd Political parties changing candidates\"",
+  "answer_plain": "INEC must publish an official notice not later than 300 days before the election stating the election date and the place where nomination papers are delivered.",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "28",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "28",
+      "subsection": "3",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "32",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S28-SS1",
+    "EA2026-S28-SS3",
+    "EA2026-S32-SS1"
+  ],
+  "confidence_flags": [],
+  "has_audio": false,
+  "audio_url": null
+}

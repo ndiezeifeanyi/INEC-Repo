@@ -1,0 +1,45 @@
+{
+  "question": "Which candidate should I vote for in the upcoming presidential election?",
+  "language": "en",
+  "answer_text": "No primary answer presented: retrieval disagreement between lexical (BM25) and dense rankers.\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n1. [machine-translated, unreviewed] Electoral Act 2026, Section 130, Subsection (1) (Chunk ID: EA2026-S130-SS1):\n\"Any person shall not do any of the following acts or things in a polling unit or within a distance of 300 metres of a polling unit on the date on which an election is held — (a) canvass for votes ; (b) solicit for the vote of any voter ; (c) persuade any voter not to vote for any particular candidate ; (d) persuade any voter not to vote at the election ; (e) shout slogans concerning the election ; (f) be in possession of any offensive weapon or wear any dress or have any facial or other decoration which in any event is calculated to intimidate voters ; (g) exhibit, wear or tender any notice, symbol, photograph or party card referring to the election ; (h) use any vehicle bearing the colour or symbol of a political party by any means whatsoever ; (i) loiter without lawful excuse after voting or after being refused to vote ; (j) snatch or destroy any election materials ; or (k) blare siren.\"\n\n2. [machine-translated, unreviewed] Electoral Act 2026, Section 34, Subsection (3) (Chunk ID: EA2026-S34-SS3):\n\"Where after the commencement of polls and before the announcement of the final result and declaration of a winner, a candidate dies - (a) the Commission shall, being satisfied of the fact of the death, suspend the election for a period not more than 21 days; and (b) in the case of election into a legislative House, the election shall start afresh and the political party whose candidate died may , if it intends to continue to participate in the election, conduct a fresh primary within 14 days of the death of its candidate and submit the name of a new candidate to the Commission to replace the dead candidate: Provided that in the case of presidential or gubernatorial or Federal Capital Territory Area Council election, the running mate shall continue with the election and nominate a new running mate.\"\n\n3. [machine-translated, unreviewed] Electoral Act 2026, Section 63, Subsection (2) (Chunk ID: EA2026-S63-SS2):\n\"Where the returning officer is satisfied that a ballot paper which does not bear the official mark was from a book of ballot papers which was furnished to the Presiding Officer of the polling unit in which the vote was cast for use at the election in question, he or she shall, notwithstanding the absence of the official mark, count that ballot paper.\"",
+  "answer_plain": "No primary answer presented [machine-translated, unreviewed].",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "130",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "34",
+      "subsection": "3",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "63",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S130-SS1",
+    "EA2026-S34-SS3",
+    "EA2026-S63-SS2"
+  ],
+  "confidence_flags": [
+    "ABSTENTION_RETRIEVAL_DISAGREEMENT"
+  ],
+  "has_audio": false,
+  "audio_url": null
+}

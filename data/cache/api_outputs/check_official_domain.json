@@ -1,0 +1,10 @@
+{
+  "input_item": "https://cvr.inecnigeria.org/register",
+  "type": "url",
+  "status": "Matches an official source",
+  "matched_source": "cvr.inecnigeria.org",
+  "confidence_notes": "Confirmed authentic INEC domain: Verified official INEC domain: cvr.inecnigeria.org",
+  "corpus_size": 2,
+  "corpus_last_updated": "2026-11-07",
+  "disclaimer": "This check compares inputs against gazetted statutes and official public INEC records. It is not exhaustive or infallible and does not evaluate political opinions or non-electoral claims."
+}

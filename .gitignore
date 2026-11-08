@@ -1,7 +1,12 @@
 .clean_venv/
 .venv/
 env/
-data/cache/
+data/cache/*
+!data/cache/api_outputs/
+!data/cache/api_outputs/**
+!data/cache/translation_cache.json
+!data/cache/heldout_audit6_results.json
+!data/cache/heldout_audit9_results.json
 __pycache__/
 *.py[cod]
 *$py.class

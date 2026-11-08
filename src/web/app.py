@@ -83,9 +83,10 @@ async def ask_election_rule(req: AskRequest):
 
     # Retrieve chunks (with user opt-in flag for online gtx endpoint)
     retrieved = retriever.retrieve(req.query, top_k=3, lang=lang, allow_online=req.allow_translation)
+    disagree = getattr(retrieved, "bm25_dense_disagree", getattr(retriever, "last_bm25_dense_disagree", False))
 
     # Generate grounded response with citations
-    answer = generator.generate_answer(req.query, retrieved, lang=lang)
+    answer = generator.generate_answer(req.query, retrieved, lang=lang, bm25_dense_disagree=disagree)
     return answer
 
 @app.post("/check", response_model=VerificationResult)

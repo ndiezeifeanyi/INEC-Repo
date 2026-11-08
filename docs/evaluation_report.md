@@ -48,18 +48,49 @@ Evaluated across 20 voter questions in English (`en`), Hausa (`ha`), Yoruba (`yo
 
 ## 2. Held-Out Benchmark Evaluation (Circularity & Robustness Audit)
 
-- **Test Suite**: `tests/eval_heldout.py`
-- **Dataset**: `tests/data/heldout_bench.json` ($n=8$)
+- **Test Suite**: `tests/eval_heldout.py` & `scripts/run_heldout_audit9.py`
+- **Results Provenance**: Generated deterministically by `scripts/run_heldout_audit9.py` and saved to `data/cache/heldout_audit9_results.json`.
 - **Query Provenance**: Authored by developer test author (synthetic voter queries held out from index and glossary tuning).
 
-### Offline Mode vs. Online gtx Translation Mode
+### Benchmark Comparison across Modes: "dictionary only" vs. "dictionary + cached online translation"
 
-| Benchmark Suite | Mode | $n$ | Hits@3 | Recall@3 | Wilson 95% CI | MRR | Printed Ranks & Target Notes |
-|---|---|---|---|---|---|---|---|
-| **Committed Held-Out (`heldout_bench.json`)** | Offline (Local Dictionary) | 8 | 2 | **25.0%** (2/8) | [7.1%, 59.1%] | 0.250 | Q1: Rank 1, Q5: Rank 1. Indigenous queries miss due to unreviewed local glossary lacking colloquial terms. |
-| **Committed Held-Out (`heldout_bench.json`)** | Online (`gtx` Endpoint) | 8 | 6 | **75.0%** (6/8) | [40.9%, 92.9%] | 0.604 | Q1: Rank 1, Q2: Rank 3, Q5: Rank 1, Q6: Rank 1, Q7: Rank 1, Q8: Rank 2. Q3 & Q4 miss due to MT semantic loss of "accredited". |
-| **Original Set (`commit d026f78`)** | Offline (Local Dictionary) | 8 | 2 | **25.0%** (2/8) | [7.1%, 59.1%] | 0.167 | Q1: Rank 1 (RR=1.0), Q2: Rank 3 (RR=0.333), Q3-Q4: Miss (RR=0.0), Q5-Q8: Miss (RR=0.0; target `INEC2026-REG-S18-SS1` was deleted in Audit 2). MRR = (1.0 + 0.333)/8 = 0.167. |
-| **Original Set (`commit d026f78`)** | Online (`gtx` Endpoint) | 8 | 2 | **25.0%** (2/8) | [7.1%, 59.1%] | 0.167 | Q1: Rank 1 (RR=1.0), Q2: Rank 3 (RR=0.333), Q3-Q4: Miss (RR=0.0; semantic drift), Q5-Q8: Miss (RR=0.0; targets do not exist in gazetted corpus). MRR = (1.0 + 0.333)/8 = 0.167. |
+All metrics below are computed directly from `data/cache/heldout_audit9_results.json`:
+
+| Benchmark Suite | Mode Label | $n$ | Top-1 Accuracy | Top-1 Wilson 95% CI | Hit@3 (Recall@3) | Hit@3 Wilson 95% CI | MRR | Notes |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|---|
+| **Committed Held-Out (`heldout_bench.json`)** | **dictionary only** | 8 | **25.0%** (2/8) | [7.1%, 59.1%] | **25.0%** (2/8) | [7.1%, 59.1%] | 0.250 | Offline dictionary fallback. Indigenous queries miss because unreviewed dictionary lacks colloquial phrasings. |
+| **Committed Held-Out (`heldout_bench.json`)** | **dictionary + cached online translation** | 8 | **50.0%** (4/8) | [21.5%, 78.5%] | **75.0%** (6/8) | [40.9%, 92.9%] | 0.604 | Cached `gtx` translations. Q1, Q5, Q6, Q7 hit rank 1; Q2 hits rank 3; Q3 & Q4 miss due to MT semantic loss of "accredited". |
+| **Original Set (`commit d026f78`)** | **dictionary only** | 8 | **12.5%** (1/8) | [2.2%, 47.1%] | **12.5%** (1/8) | [2.2%, 47.1%] | 0.125 | Offline dictionary fallback. Items 5-8 targeted deleted ungrounded guideline Section 18. |
+| **Original Set (`commit d026f78`)** | **dictionary + cached online translation** | 8 | **12.5%** (1/8) | [2.2%, 47.1%] | **25.0%** (2/8) | [7.1%, 59.1%] | 0.167 | Cached `gtx` translations. Target `INEC2026-REG-S18-SS1` was deleted in Audit 2; only valid Gazette targets can hit. |
+| **Natural English Queries (No Section Jargon)** | **dictionary only (pure English)** | 6 | **66.7%** (4/6) | [30.0%, 90.3%] | **100.0%** (6/6) | [61.0%, 100.0%] | 0.806 | Natural phrasing without statutory citation keywords (over-voting, notice, primaries, transmission, PVC, real-time). |
+
+### Detailed Query-by-Query Matrix (Committed Held-Out Set)
+
+#### Mode: "dictionary only" (`cache_enabled=False`, `enable_online=False`)
+| ID | Lang | Query | Target | Top-3 Retrieved | BM25 Top-1 | Dense Top-1 | Disagree? | Hit@1 | Hit@3 | Rank |
+|---|:---:|---|:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| `heldout_001` | en | What are the rules regarding over-voting when votes cast exceed accredited voters? | 51 | EA2026-S51-SS2, INEC2026-ET-PAGE3, EA2026-S62-SS4 | EA2026-S51-SS2 | EA2026-S155-SS1 | YES | HIT | HIT | 1 |
+| `heldout_002` | ha | Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance? | 51 | EA2026-S47-SS2, EA2026-S47-SS3, EA2026-S67-SS1 | EA2026-S47-SS2 | EA2026-S47-SS2 | NO | MISS | MISS | >5 |
+| `heldout_003` | yo | Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo? | 51 | EA2026-S25-SS1, EA2026-S22-SS1, EA2026-S92-SS11 | EA2026-S25-SS1 | EA2026-S22-SS1 | YES | MISS | MISS | >5 |
+| `heldout_004` | ig | Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka? | 51 | EA2026-S93-SS4, EA2026-SCH1-P54 | EA2026-S93-SS4 | EA2026-S93-SS4 | NO | MISS | MISS | >5 |
+| `heldout_005` | en | What are the age and citizenship qualifications required to register as a voter in Nigeria? | 12 | EA2026-S12-SS1, EA2026-S8-SS1, EA2026-S22-SS1 | EA2026-S12-SS1 | EA2026-S12-SS1 | NO | HIT | HIT | 1 |
+| `heldout_006` | ha | Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya? | 12 | EA2026-S67-SS1, EA2026-SCH1-P55 | EA2026-S67-SS1 | EA2026-S67-SS1 | NO | MISS | MISS | >5 |
+| `heldout_007` | yo | Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo? | 12 | EA2026-S18-SS3, EA2026-S92-SS11, EA2026-S22-SS1 | EA2026-S18-SS3 | EA2026-S18-SS3 | NO | MISS | MISS | >5 |
+| `heldout_008` | ig | Afọ ole na ihe ndị dị aṅaa ka achọrọ n'aka mmadụ ka o nwee ike idebanye aha maka vootu? | 12 | None | None | None | NO | MISS | MISS | >5 |
+
+#### Mode: "dictionary + cached online translation" (`cache_enabled=True`, `enable_online=True`)
+| ID | Lang | Query | Target | Top-3 Retrieved | BM25 Top-1 | Dense Top-1 | Disagree? | Hit@1 | Hit@3 | Rank |
+|---|:---:|---|:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| `heldout_001` | en | What are the rules regarding over-voting when votes cast exceed accredited voters? | 51 | EA2026-S51-SS2, INEC2026-ET-PAGE3, EA2026-S62-SS4 | EA2026-S51-SS2 | EA2026-S155-SS1 | YES | HIT | HIT | 1 |
+| `heldout_002` | ha | Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance? | 51 | EA2026-S110-SS4, EA2026-S110-SS5, EA2026-S51-SS2 | EA2026-S110-SS4 | EA2026-S155-SS1 | YES | MISS | HIT | 3 |
+| `heldout_003` | yo | Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo? | 51 | EA2026-S110-SS5, EA2026-S12-SS1, EA2026-S117-SS1 | EA2026-S110-SS5 | EA2026-S155-SS1 | YES | MISS | MISS | >5 |
+| `heldout_004` | ig | Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka? | 51 | EA2026-S119-SS2, EA2026-S110-SS5, EA2026-SCH1-P48 | EA2026-S126-SS2 | EA2026-S155-SS1 | YES | MISS | MISS | >5 |
+| `heldout_005` | en | What are the age and citizenship qualifications required to register as a voter in Nigeria? | 12 | EA2026-S12-SS1, EA2026-S8-SS1, EA2026-S22-SS1 | EA2026-S12-SS1 | EA2026-S12-SS1 | NO | HIT | HIT | 1 |
+| `heldout_006` | ha | Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya? | 12 | EA2026-S12-SS1, EA2026-S8-SS1, EA2026-S22-SS1 | EA2026-S12-SS1 | EA2026-S12-SS1 | NO | HIT | HIT | 1 |
+| `heldout_007` | yo | Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo? | 12 | EA2026-S12-SS1, EA2026-S8-SS1, EA2026-S22-SS1 | EA2026-S12-SS1 | EA2026-S12-SS1 | NO | HIT | HIT | 1 |
+| `heldout_008` | ig | Afọ ole na ihe ndị dị aṅaa ka achọrọ n'aka mmadụ ka o nwee ike idebanye aha maka vootu? | 12 | EA2026-S8-SS1, EA2026-S12-SS1, EA2026-S22-SS1 | EA2026-S8-SS1 | EA2026-S8-SS1 | NO | MISS | HIT | 2 |
+
+---
 
 ### Honest Circularity Disclosure & Like-for-Like Analysis
 - **Original Benchmark Like-for-Like**: In the initial held-out suite (commit `d026f78`), 4 of the 8 queries targeted `INEC2026-REG-S18-SS1`, which ceased to exist when the ungrounded guidelines corpus was removed in Audit 2. Of the remaining 4 queries with valid Gazette targets, the like-for-like retrieval hit rate was **1 of 4 (25.0%)**, Wilson 95% CI: `[4.6%, 69.9%]`.
@@ -132,3 +163,113 @@ Evaluation of low-resource Nigerian language queries translated via the unoffici
 
 ### Architectural Takeaway
 Low-resource MT engines exhibit severe semantic drift on specialized legal/electoral vocabulary. While MT substantially lifts baseline performance over static unreviewed dictionaries (75.0% vs. 25.0%), human-reviewed civic glossaries for core electoral concepts (accreditation, over-voting, collation) remain essential to prevent critical misdirections.
+
+---
+
+## 7. Audit 9 Multilingual & Disagreement Abstention Safeguard
+
+In accordance with Ninth Audit directives:
+1. **Translated Queries (`ha`, `yo`, `ig`)**:
+   - Query translation introduces potential semantic drift on legal terminology (e.g., confusing "accredited" with "registered" or "credentials").
+   - Consequently, for ANY query translated from Hausa, Yoruba, or Igbo, the system **never presents a primary answer**.
+   - Instead, the response abstains from single-section authority, displays the top-3 retrieved statutory provisions explicitly labelled `[machine-translated, unreviewed]`, and attaches the confidence flag `MACHINE_TRANSLATED_UNREVIEWED`.
+2. **Lexical (BM25) vs. Dense Ranker Disagreement**:
+   - For English queries, if the top-1 ranked document from BM25 differs from the top-1 ranked document from Dense retrieval (`dense_top1 != bm25_top1`), the system detects an internal retrieval conflict.
+   - In this state, the engine refuses to guess which signal is correct: it omits any single primary answer, surfaces the top-3 provisions labelled `[machine-translated, unreviewed]`, and attaches `ABSTENTION_RETRIEVAL_DISAGREEMENT`.
+
+---
+
+## 8. Hybrid Retrieval RRF Formulation & Score Gap Derivation (Audit Directive 5)
+
+### 8.1 Fraction of BM25 versus Dense Representation
+In `TranslationHybridRetriever.retrieve()`, ranking fusion is computed via Reciprocal Rank Fusion (`reciprocal_rank_fusion`):
+
+$$\text{RRF}(d) = \sum_{m \in \{\text{BM25}, \text{Dense}\}} \frac{w_m}{k + \text{rank}_m(d)}$$
+
+Where:
+- $k = 60$ (standard smoothing constant to prevent top-rank domination).
+- $w_{\text{BM25}} = 1.0$ and $w_{\text{Dense}} = 1.0$.
+- Each ranker contributes an equal weight factor of 1.0 to the fusion numerator.
+
+Therefore, the exact mathematical fraction of the result contributed by each component is:
+- **BM25 fraction**: **50.0% (1/2)** of potential rank fusion score.
+- **Dense step fraction**: **50.0% (1/2)** of potential rank fusion score.
+
+### 8.2 Why the Score Gap Uses Rank-Fusion Scores
+The score gap $\Delta = \text{Score}_1 - \text{Score}_2$ is calculated directly from the final fused RRF scores rather than raw retrieval scores for two essential mathematical reasons:
+1. **Incommensurate Dimensional Scales**:
+   - Raw BM25 scores are unbounded term-frequency logarithmic sums: $\text{BM25} \in [0, \infty)$, heavily influenced by document length, query token count, and inverse document frequency (often ranging from 3.0 to 25.0+).
+   - Dense scores are normalized lexical-overlap Jaccard ratios: $\text{Dense} \in [0, 1.0]$.
+   - Because raw scores inhabit non-comparable dimensions, directly comparing or subtracting them is mathematically invalid.
+2. **Harmonic Space Normalization**:
+   - RRF maps both heterogeneous distributions into a dimensionless, monotonic harmonic space bounded in:
+     $$\text{RRF}(d) \in \left(0, \frac{2}{k+1}\right] = \left(0, \frac{2}{61}\right] \approx (0, 0.032787]$$
+   - A document that achieves rank 1 across both rankers earns the maximal score of:
+     $$\text{RRF}_1 = \frac{1}{60 + 1} + \frac{1}{60 + 1} = \frac{2}{61} \approx 0.032787$$
+   - A runner-up that achieves rank 2 across both rankers earns:
+     $$\text{RRF}_2 = \frac{1}{60 + 2} + \frac{1}{60 + 2} = \frac{2}{62} \approx 0.032258$$
+   - The consensus gap between universal #1 and universal #2 is $\Delta = 0.032787 - 0.032258 = 0.000529$.
+   - Conversely, if candidate 1 ranks #1 across both rankers ($0.032787$) while candidate 2 appears only in one list at rank 5 ($0.015385$), the gap is $\Delta = 0.017402$, demonstrating clear separation.
+   - Using RRF rank-fusion scores allows a single, invariant threshold (`SCORE_GAP_THRESHOLD = 0.005`) to separate strong consensus from contested ties across queries of varying length and complexity.
+
+---
+
+## 9. Statutory Cross-Reference Promotion Rule Audit (Audit Directive 6)
+
+### 9.1 Narrow Rule Definition
+In `TranslationHybridRetriever.retrieve()`:
+```python
+if fused:
+    top_c = fused[0][0]
+    m = re.match(r"^Subject to section (\d+)", top_c.content_english.strip(), re.IGNORECASE)
+    if m:
+        target_sec = m.group(1)
+        for idx, (c, sc) in enumerate(fused[1:], start=1):
+            if c.section_number == target_sec:
+                promoted_chunk = fused.pop(idx)
+                fused.insert(0, (promoted_chunk[0], fused[0][1] + 0.001))
+                break
+```
+- **Legislative Intent**: Statutory drafting in Nigeria frequently begins procedural sections with subordination clauses (e.g., *"Subject to section 60 of this Act, the procedure at election and voting shall be..."*). When a user asks about the substantive rule, lexical matching often retrieves the subordinate procedural section (Section 50(2)) instead of the substantive governing section (Section 60(3)). This narrow rule detects explicit subordination clauses and promotes the substantive section referenced if it is already present in the candidate set.
+
+### 9.2 Comprehensive Benchmark Suite Audit
+Executed via `scripts/audit_promotion_rule.py` across **all 38 benchmark queries**:
+- Retrieval Benchmark Suite (`tests/data/retrieval_bench.json`): 28 queries.
+- Committed Held-Out Suite (`tests/data/heldout_bench.json`): 8 queries.
+- Currency Benchmark Suite (`tests/data/currency_bench.json`): 2 queries.
+- Natural / Spot-Check Queries: 6 queries.
+
+### 9.3 Measured Findings
+The cross-reference rule fired and altered ranking on **exactly ONE known query**:
+- **Affected Query**: `"Must results be uploaded in real time?"`
+  - Unmodified Top-1: `EA2026-S50-SS2` ("Subject to section 60 of this Act...")
+  - Promoted Top-1: `EA2026-S60-SS3` (Substantive polling unit transmission procedure and Form EC8A collation rule)
+  - Promotion Fired: `True`
+- **Zero Impact on All Other Queries**: On the remaining 37 benchmark queries, `promotion_fired` was `False`, and 0 rankings were altered.
+
+---
+
+## 10. Serialized API Output Cache Verification (Audit Directive 4)
+
+All API responses presented in evaluations and documentation are generated deterministically by `scripts/generate_api_outputs.py` and saved as JSON files in `data/cache/api_outputs/`. No output text or rank is manually typed.
+
+The cache contains full API payloads for:
+1. `data/cache/api_outputs/natural_01_over_voting.json`
+2. `data/cache/api_outputs/natural_02_election_notice.json`
+3. `data/cache/api_outputs/natural_03_primary_challenge.json`
+4. `data/cache/api_outputs/natural_04_transmission.json`
+5. `data/cache/api_outputs/natural_05_voter_card.json`
+6. `data/cache/api_outputs/spot_check_real_time_upload.json`
+7. `data/cache/api_outputs/section_29a_query.json`
+8. `data/cache/api_outputs/heldout_001_en.json`
+9. `data/cache/api_outputs/heldout_002_ha.json`
+10. `data/cache/api_outputs/heldout_003_yo.json`
+11. `data/cache/api_outputs/heldout_004_ig.json`
+12. `data/cache/api_outputs/heldout_005_en.json`
+13. `data/cache/api_outputs/heldout_006_ha.json`
+14. `data/cache/api_outputs/heldout_007_yo.json`
+15. `data/cache/api_outputs/heldout_008_ig.json`
+16. `data/cache/api_outputs/redteam_candidate_pref.json`
+17. `data/cache/api_outputs/redteam_prompt_injection.json`
+18. `data/cache/api_outputs/check_official_domain.json`
+19. `data/cache/api_outputs/check_fake_domain.json`

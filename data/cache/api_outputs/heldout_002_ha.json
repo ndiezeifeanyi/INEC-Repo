@@ -1,0 +1,46 @@
+{
+  "question": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+  "language": "ha",
+  "answer_text": "No primary answer presented: machine-translated query and retrieval disagreement between lexical (BM25) and dense rankers.\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n1. [machine-translated, unreviewed] Electoral Act 2026, Section 110, Subsection (4) (Chunk ID: EA2026-S110-SS4):\n\"A candidate for an election to the office of Chairman shall be deemed to have been duly elected where, there being more than two candidates for the election he or she has — (a) the highest number of votes cast at the election ; and (b) not less than one-quarter of the votes cast at the election in each of at least two-thirds of all wards in the Area Council. Election of Area Council Chairman A 50 2026 No. 1 Electoral Act, 2026\"\n\n2. [machine-translated, unreviewed] Electoral Act 2026, Section 110, Subsection (5) (Chunk ID: EA2026-S110-SS5):\n\"Where no candidate is duly elected in accordance with subsection (4), there shall be a second election in accordance with subsection (6) at which the only candidates shall be — (a) the candidate who scored the highest number of votes at the election held under subsection (4) ; and (b) one among the remaining candidates who has the majority of votes in the highest number of wards so however that where there are more than one candidate, the one among them with the highest total number of votes cast at the election shall be the second candidate for the election.\"\n\n3. [machine-translated, unreviewed] Electoral Act 2026, Section 51, Subsection (2) (Chunk ID: EA2026-S51-SS2):\n\"Where the number of votes cast at an election in any polling unit exceeds the number of accredited voters in that polling unit, the Presiding Officer shall cancel the result of the election in that polling unit.\"",
+  "answer_plain": "No primary answer presented [machine-translated, unreviewed].",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "110",
+      "subsection": "4",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "110",
+      "subsection": "5",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "51",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S110-SS4",
+    "EA2026-S110-SS5",
+    "EA2026-S51-SS2"
+  ],
+  "confidence_flags": [
+    "MACHINE_TRANSLATED_UNREVIEWED",
+    "ABSTENTION_RETRIEVAL_DISAGREEMENT"
+  ],
+  "has_audio": false,
+  "audio_url": null
+}

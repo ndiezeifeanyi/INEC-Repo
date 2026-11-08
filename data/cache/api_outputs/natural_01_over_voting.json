@@ -1,0 +1,46 @@
+{
+  "question": "What happens if more ballots are counted than accredited voters at a polling station?",
+  "language": "en",
+  "answer_text": "No primary answer presented: retrieval disagreement between lexical (BM25) and dense rankers.\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n1. [machine-translated, unreviewed] Electoral Act 2026, Section 51, Subsection (2) (Chunk ID: EA2026-S51-SS2):\n\"Where the number of votes cast at an election in any polling unit exceeds the number of accredited voters in that polling unit, the Presiding Officer shall cancel the result of the election in that polling unit.\"\n\n2. [machine-translated, unreviewed] Electoral Act 2026, Section 62, Subsection (4) (Chunk ID: EA2026-S62-SS4):\n\"A collation officer or returning officer at an election shall collate and announce the result of an election, subject to his or her verification and confirmation that the — (a) number of accredited voters stated on the collated result are correct and consistent with the number of accredited voters recorded under section 47 (2) of this Act and transmitted directly from polling units; and (b) votes stated on the collated result are correct and consistent with the votes or results recorded and transmitted directly from polling units under section 60 (4) of this Act.\"\n\n3. [machine-translated, unreviewed] INEC Electronic Transmission & Collation Procedure (2026), Section PAGE-3 (Chunk ID: INEC2026-ET-PAGE3):\n\"(5) subject to subsection (1), a collation officer or returning officer shall use the number of accredited voters recorded and transmitted directly from polling units under Section 47(2) of this Act and the votes or results recorded and transmitted directly from polling units under section 60(4) of this Act to collate and announce the result of an election if a collated result at this or lower level of collation is not correct. Sec. 64 (4) A collation officer or returning officer at an election shall collate and announce the result of an election, subject to his or her verification and confirmation that – a. Number of accredited voters stated on the collated result are correct and consistent with the number of accredited voters recorded and transmitted directly from polling units under Section 47(2). b. The votes stated on the collated result are correct and consistent with the votes or results recorded and transmitted directly from polling units under section 60(4) of this Act. 3 (6) where during collation of results, there is a dispute regarding a collated result or the result of an election from any polling unit, the collation officer or returning officer shall use the following to determine the correctness of the disputed result – a. The original of the disputed collated result for each polling unit where the election is disputed; b. The smart card reader or other technology device used for the accreditation of voters in each polling unit where the election is disputed for the purpose of obtaining accreditation data directly from the smart card reader or technology device; c. Data of accreditation recorded and transmitted directly from each polling unit where the election is disputed as prescribed under Section 47(2) of this Act; and d. The votes and result of the election recorded and transmitted directly from each polling unit where the election is disputed, as prescribed under section 60(4) of this Act. Import of the Legal provisions Clearly, the law provides for a dual mode. The first mode is the 4-step manual procedure at PUs involving: 1. Counting of ballot papers 3. Endorsement of EC8A by candidates/polling agents 2. Recording of results on specific form (EC8A) 4. Physical delivery to collation centres\"\n\n[Notice: This document refers to the Electoral Act 2022. While administrative procedures (BVAS, IReV) continue under INEC regulations, substantive statutory authority is governed by Electoral Act 2026 Section 60(3).]",
+  "answer_plain": "No primary answer presented [machine-translated, unreviewed].",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "51",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "62",
+      "subsection": "4",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "INEC Electronic Transmission & Collation Procedure (2026)",
+      "section": "PAGE-3",
+      "subsection": null,
+      "version": "INEC Administrative Guidelines (Rev 5, April 2022 - Interprets Electoral Act 2022)",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://inecnigeria.org/documents/guidelines/Electronic_Transmission___Collation_Of_Result-5.pdf",
+      "legal_status": "HISTORICAL_PROCEDURAL_GUIDELINES"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S51-SS2",
+    "EA2026-S62-SS4",
+    "INEC2026-ET-PAGE3"
+  ],
+  "confidence_flags": [
+    "ABSTENTION_RETRIEVAL_DISAGREEMENT",
+    "DOC_REFERS_TO_ELECTORAL_ACT_2022"
+  ],
+  "has_audio": false,
+  "audio_url": null
+}

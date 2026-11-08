@@ -1,0 +1,10 @@
+{
+  "input_item": "http://linksnapro.com/cvrreg",
+  "type": "url",
+  "status": "Does not match any official source I can check",
+  "matched_source": null,
+  "confidence_notes": "Deceptive site warning: High Risk: Matches known fraudulent domain list (linksnapro.com)",
+  "corpus_size": 2,
+  "corpus_last_updated": "2026-11-07",
+  "disclaimer": "This check compares inputs against gazetted statutes and official public INEC records. It is not exhaustive or infallible and does not evaluate political opinions or non-electoral claims."
+}

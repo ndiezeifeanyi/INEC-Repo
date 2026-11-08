@@ -1,0 +1,570 @@
+{
+  "committed_offline": {
+    "set_label": "Committed Held-out (Offline Mode)",
+    "n_samples": 8,
+    "hits_at_3": 6,
+    "recall@3": "75.0% (6/8)",
+    "recall@3_wilson_95ci": "[40.9%, 92.9%]",
+    "mrr": "0.604",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "What will happen if the votes cast in the polling booth are more than the number of people who have been verified?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS4",
+          "EA2026-S110-SS5",
+          "EA2026-S51-SS2"
+        ],
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "What will happen if the number of people who vote is more than the number of voters who are registered?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-S117-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "What happens if the number of people who voted is more than those who have their credentials at the polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S110-SS5",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005",
+        "lang": "en",
+        "query": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "translated_to_en": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S22-SS1"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_006",
+        "lang": "ha",
+        "query": "Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya?",
+        "translated_to_en": "What age and qualifications are required for a person to register to vote in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S77-SS5"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_007",
+        "lang": "yo",
+        "query": "Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo?",
+        "translated_to_en": "How many days and what requirements do people need to register as a voter?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-SCH1-P1",
+          "EA2026-S29-SS6"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_008",
+        "lang": "ig",
+        "query": "Af\u1ecd ole na ihe nd\u1ecb d\u1ecb a\u1e45aa ka ach\u1ecdr\u1ecd n'aka mmad\u1ee5 ka o nwee ike idebanye aha maka vootu?",
+        "translated_to_en": "How old and what are the requirements for a person to be able to register to vote?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S77-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": true,
+        "rank": 2
+      }
+    ]
+  },
+  "committed_online": {
+    "set_label": "Committed Held-out (gtx Online Mode)",
+    "n_samples": 8,
+    "hits_at_3": 6,
+    "recall@3": "75.0% (6/8)",
+    "recall@3_wilson_95ci": "[40.9%, 92.9%]",
+    "mrr": "0.604",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "What will happen if the votes cast in the polling booth are more than the number of people who have been verified?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS4",
+          "EA2026-S110-SS5",
+          "EA2026-S51-SS2"
+        ],
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "What will happen if the number of people who vote is more than the number of voters who are registered?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-S117-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "What happens if the number of people who voted is more than those who have their credentials at the polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S110-SS5",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005",
+        "lang": "en",
+        "query": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "translated_to_en": "What are the age and citizenship qualifications required to register as a voter in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S22-SS1"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_006",
+        "lang": "ha",
+        "query": "Wane shekaru da cancanta ake bukata domin mutum ya yi rajistar zabe a Najeriya?",
+        "translated_to_en": "What age and qualifications are required for a person to register to vote in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S8-SS1",
+          "EA2026-S77-SS5"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_007",
+        "lang": "yo",
+        "query": "Ojo ori melo ati awon afiyesi wo ni o ye ki eniyan ni lati le se iforukosile oludibo?",
+        "translated_to_en": "How many days and what requirements do people need to register as a voter?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-SCH1-P1",
+          "EA2026-S29-SS6"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_008",
+        "lang": "ig",
+        "query": "Af\u1ecd ole na ihe nd\u1ecb d\u1ecb a\u1e45aa ka ach\u1ecdr\u1ecd n'aka mmad\u1ee5 ka o nwee ike idebanye aha maka vootu?",
+        "translated_to_en": "How old and what are the requirements for a person to be able to register to vote?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S77-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": true,
+        "rank": 2
+      }
+    ]
+  },
+  "d026f78_offline": {
+    "set_label": "d026f78 Original Queries (Offline Mode)",
+    "n_samples": 8,
+    "hits_at_3": 2,
+    "recall@3": "25.0% (2/8)",
+    "recall@3_wilson_95ci": "[7.1%, 59.1%]",
+    "mrr": "0.167",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "What will happen if the votes cast in the polling booth are more than the number of people who have been verified?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS4",
+          "EA2026-S110-SS5",
+          "EA2026-S51-SS2"
+        ],
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "What will happen if the number of people who vote is more than the number of voters who are registered?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-S117-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "What happens if the number of people who voted is more than those who have their credentials at the polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S110-SS5",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005_d026f78",
+        "lang": "en",
+        "query": "At what time does accreditation and voting commence and close at polling stations?",
+        "translated_to_en": "At what time does accreditation and voting commence and close at polling stations?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-S36-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_006_d026f78",
+        "lang": "ha",
+        "query": "Wane lokaci ake fara tantancewa da kada kuri'a sannan a wane lokaci ake rufewa?",
+        "translated_to_en": "What time does screening and voting start and when does it close?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-SCH1-P46",
+          "EA2026-S119-SS2",
+          "EA2026-S23-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_007_d026f78",
+        "lang": "yo",
+        "query": "Agogo melo ni a n bere ijeri ati idibo ti a si n pari re ni ibudo ibo?",
+        "translated_to_en": "What time do we start polling and voting and end it at the polling station?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S43-SS3",
+          "EA2026-S126-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_008_d026f78",
+        "lang": "ig",
+        "query": "Oge ole ka a na-ebido nzere na itu vootu nakwa oge ole ka a na-emechi ya?",
+        "translated_to_en": "What time does accreditation and voting start and what time does it close?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-SCH1-P46",
+          "EA2026-S23-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      }
+    ]
+  },
+  "d026f78_online": {
+    "set_label": "d026f78 Original Queries (gtx Online Mode)",
+    "n_samples": 8,
+    "hits_at_3": 2,
+    "recall@3": "25.0% (2/8)",
+    "recall@3_wilson_95ci": "[7.1%, 59.1%]",
+    "mrr": "0.167",
+    "details": [
+      {
+        "id": "heldout_001",
+        "lang": "en",
+        "query": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "translated_to_en": "What are the rules regarding over-voting when votes cast exceed accredited voters?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S62-SS4"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "heldout_002",
+        "lang": "ha",
+        "query": "Menene zai faru idan kuri'un da aka kada a rumfar zabe suka fi yawan mutanen da aka tantance?",
+        "translated_to_en": "What will happen if the votes cast in the polling booth are more than the number of people who have been verified?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS4",
+          "EA2026-S110-SS5",
+          "EA2026-S51-SS2"
+        ],
+        "hit@3": true,
+        "rank": 3
+      },
+      {
+        "id": "heldout_003",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye awon ti won dibo ba po ju iye awon oludibo ti a se ijeri won lo?",
+        "translated_to_en": "What will happen if the number of people who vote is more than the number of voters who are registered?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S110-SS5",
+          "EA2026-S12-SS1",
+          "EA2026-S117-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_004",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na onu ogugu ndi mere vootu karia ndi e nwere nzere ha n'ebe ntuli aka?",
+        "translated_to_en": "What happens if the number of people who voted is more than those who have their credentials at the polling station?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S110-SS5",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_005_d026f78",
+        "lang": "en",
+        "query": "At what time does accreditation and voting commence and close at polling stations?",
+        "translated_to_en": "At what time does accreditation and voting commence and close at polling stations?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-S36-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_006_d026f78",
+        "lang": "ha",
+        "query": "Wane lokaci ake fara tantancewa da kada kuri'a sannan a wane lokaci ake rufewa?",
+        "translated_to_en": "What time does screening and voting start and when does it close?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-SCH1-P46",
+          "EA2026-S119-SS2",
+          "EA2026-S23-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_007_d026f78",
+        "lang": "yo",
+        "query": "Agogo melo ni a n bere ijeri ati idibo ti a si n pari re ni ibudo ibo?",
+        "translated_to_en": "What time do we start polling and voting and end it at the polling station?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S43-SS3",
+          "EA2026-S126-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "heldout_008_d026f78",
+        "lang": "ig",
+        "query": "Oge ole ka a na-ebido nzere na itu vootu nakwa oge ole ka a na-emechi ya?",
+        "translated_to_en": "What time does accreditation and voting start and what time does it close?",
+        "target": "18",
+        "top3_retrieved": [
+          "EA2026-S46-SS1",
+          "EA2026-SCH1-P46",
+          "EA2026-S23-SS1"
+        ],
+        "hit@3": false,
+        "rank": null
+      }
+    ]
+  },
+  "audit5_variant": {
+    "set_label": "Audit 5 Exploratory Variants (gtx Online Mode)",
+    "n_samples": 5,
+    "hits_at_3": 2,
+    "recall@3": "40.0% (2/5)",
+    "recall@3_wilson_95ci": "[11.8%, 76.9%]",
+    "mrr": "0.400",
+    "details": [
+      {
+        "id": "variant_001_s51",
+        "lang": "yo",
+        "query": "Kini yoo sele ti iye ibo ti a di ni ibudo ibo ba ju iye awon oludibo ti a se afihan won lo?",
+        "translated_to_en": "What will happen if the number of votes received at the polling station is greater than the number of voters who were shown?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S51-SS2",
+          "INEC2026-ET-PAGE3",
+          "EA2026-S110-SS5"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "variant_002_s51",
+        "lang": "ig",
+        "query": "Gini na-eme ma obu na vootu a turu n'otu ebe vootu kariri onu ogugu ndi mmadu enyochara akwukwo ha?",
+        "translated_to_en": "What happens if the vote was taken in a polling place more than the number of people who checked their books?",
+        "target": "51",
+        "top3_retrieved": [
+          "EA2026-S119-SS2",
+          "EA2026-S126-SS2",
+          "EA2026-SCH1-P48"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "variant_003_s12",
+        "lang": "ha",
+        "query": "Wane shekaru ne mutum zai iya yin rajistar zabe a Najeriya?",
+        "translated_to_en": "At what age can a person register to vote in Nigeria?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S12-SS1",
+          "EA2026-S57-SS1",
+          "EA2026-S119-SS2"
+        ],
+        "hit@3": true,
+        "rank": 1
+      },
+      {
+        "id": "variant_004_s12",
+        "lang": "yo",
+        "query": "Ojo ori melo ni o ye ki eniyan to ki o to le forukosile lati dibo?",
+        "translated_to_en": "How old do people have to be before they can register to vote?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S130-SS1",
+          "EA2026-SCH1-P1",
+          "EA2026-S149-SS3"
+        ],
+        "hit@3": false,
+        "rank": null
+      },
+      {
+        "id": "variant_005_s12",
+        "lang": "ig",
+        "query": "Af\u1ecd ole ka mmad\u1ee5 ga-ad\u1ecb tupu o nwee ike idebanye aha maka vootu?",
+        "translated_to_en": "How old must a person be before they can register to vote?",
+        "target": "12",
+        "top3_retrieved": [
+          "EA2026-S57-SS1",
+          "EA2026-S47-SS2",
+          "EA2026-SCH1-P1"
+        ],
+        "hit@3": false,
+        "rank": null
+      }
+    ]
+  }
+}

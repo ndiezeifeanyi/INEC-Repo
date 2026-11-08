@@ -1,0 +1,43 @@
+{
+  "question": "Who is allowed to challenge the outcome of a political party primary election in court?",
+  "language": "en",
+  "answer_text": "According to Electoral Act 2026, Section 29, Subsection (5):\n\n\"An aspirant who participated in the primaries of his political party who has reasonable grounds to believe that any information given by the political party's candidate in the affidavit or any document submitted by that candidate in relation to his constitutional requirements to contest the election is false, may file a suit at the Federal High Court in the Federal Capital Territory or in the jurisdiction the cause of action arose against that candidate seeking a 2026 No. 1 A 21Electoral Act, 2026 Withdrawal of candidate Prohibition of double nomination declaration that the information contained in the affidavit is false.\"\n\nSupporting / Related Provisions (Top-3 Retrieved):\n\n2. Electoral Act 2026, Section 33, Subsection (1) (Chunk ID: EA2026-S33-SS1):\n\"33. A political party shall not be allowed to change or substitute its candidate whose name has been submitted under Section 29 of this Act, except in the case of death or withdrawal by the candidate: Provided that in the case of such withdrawal or death of a candidate, the political party affected shall, within 14 days of the occurrence of the event, hold another primary election to produce and submit a new candidate to the Commission for the election concerned.\"\n\n3. Electoral Act 2026, Section 88, Subsection (2) (Chunk ID: EA2026-S88-SS2):\n\"Notwithstanding the provisions of this Act or rules of a political party, an aspirant who complains that any of the provisions of this Act and the guidelines of a political party have not been complied with in the selection or nomination of a candidate of a political party for election, may apply to the Federal High Court for redress.\"",
+  "answer_plain": "Only an aspirant who contested the primary election of a political party has legal standing to file a suit at the Federal High Court challenging candidate nomination affidavits.",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "29",
+      "subsection": "5",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "33",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "88",
+      "subsection": "2",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S29-SS5",
+    "EA2026-S33-SS1",
+    "EA2026-S88-SS2"
+  ],
+  "confidence_flags": [],
+  "has_audio": false,
+  "audio_url": null
+}

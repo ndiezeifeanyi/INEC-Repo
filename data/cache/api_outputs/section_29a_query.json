@@ -1,0 +1,45 @@
+{
+  "question": "Can a political party member challenge primary election results under Section 29A?",
+  "language": "en",
+  "answer_text": "No primary answer presented: retrieval disagreement between lexical (BM25) and dense rankers.\n\nTop-3 retrieved provisions [machine-translated, unreviewed]:\n\n1. [machine-translated, unreviewed] Electoral Act 2026, Section 33, Subsection (1) (Chunk ID: EA2026-S33-SS1):\n\"33. A political party shall not be allowed to change or substitute its candidate whose name has been submitted under Section 29 of this Act, except in the case of death or withdrawal by the candidate: Provided that in the case of such withdrawal or death of a candidate, the political party affected shall, within 14 days of the occurrence of the event, hold another primary election to produce and submit a new candidate to the Commission for the election concerned.\"\n\n2. [machine-translated, unreviewed] Electoral Act 2026, Section 27, Subsection (1) (Chunk ID: EA2026-S27-SS1):\n\"The Commission shall for the purpose of an election or registration of voters under this Act, appoint and designate such of ficers as may be required provided that no person who is a member of a political party or who has openly expressed support for any candidate shall be so appointed.\"\n\n3. [machine-translated, unreviewed] Electoral Act 2026, Section 43, Subsection (1) (Chunk ID: EA2026-S43-SS1):\n\"Each candidate, in consultation with his political party may, by notice in writing addressed to the Resident Electoral Commissioner of the State, appoint a polling agent for each polling unit and collation centre in the Local Government Area or Area Council for which it has candidate and the notice, which sets out the name, address and contact details of the polling agent, shall be accompanied by two passport photographs of each polling agent and sample signature of the polling agent and be given to the electoral officer at least 14 days before the date fixed for the election: Provided that no person who is serving as Chairman or member of a Local Government Area or Area Council, Commissioner, Deputy Governor or 2026 No. 1 A 25Electoral Act, 2026 Notice of poll Hour of poll Display of ballot boxes Governor of a State, Minister of the Federal Government, or any other person holding elective or appointive political office under any tier of government and who has not resigned from his office at least three months prior to the said election shall serve as a polling agent of any political party, either at the polling unit or at any centre designated for collation of results of election.\"\n\n[Status: UNCONFIRMED. Passed by both chambers (Apr/May 2026); I could not confirm presidential assent as of 2026-11-07; check the Gazette.]",
+  "answer_plain": "No primary answer presented [machine-translated, unreviewed].",
+  "citations": [
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "33",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "27",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    },
+    {
+      "document_title": "Electoral Act 2026",
+      "section": "43",
+      "subsection": "1",
+      "version": "Official Gazette No. 40, Vol. 113",
+      "retrieval_date": "2026-11-07",
+      "source_url": "https://nass.gov.ng/documents/download/11248",
+      "legal_status": "ENACTED"
+    }
+  ],
+  "retrieved_chunk_ids": [
+    "EA2026-S33-SS1",
+    "EA2026-S27-SS1",
+    "EA2026-S43-SS1"
+  ],
+  "confidence_flags": [
+    "ABSTENTION_RETRIEVAL_DISAGREEMENT"
+  ],
+  "has_audio": false,
+  "audio_url": null
+}
