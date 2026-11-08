@@ -86,3 +86,4 @@ class SecureSessionStore:
     def count_active_sessions(self) -> int:
         self.prune_expired()
         return len(self._sessions)
+

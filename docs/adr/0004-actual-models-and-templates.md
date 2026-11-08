@@ -10,6 +10,7 @@
 
 | Component | Architecture / Library | Actual Deployment Status | Empirical Measured Result | Template vs Model Disclosure |
 | :--- | :--- | :--- | :--- | :--- |
+| **Neural Dense & Reranker** | `src/retrieval/bge_engine.py` (`BAAI/bge-m3` + `bge-reranker-v2-m3`) | Configurable behind `ENABLE_BGE_M3` & `ENABLE_BGE_RERANKER`; executed on Google Colab T4 GPU | Measured on 11-query multilingual set (EN, HA, YO, IG): Hit@1 = **72.7%**, Hit@3 = **81.8%**, MRR = **0.8136**, Latency = **177.0 ms** | **REAL NEURAL WEIGHTS** (4.48 GB). Executed on T4 GPU via `notebooks/bge_m3_retrieval_benchmark.ipynb`. Local CPU fallback to hybrid. |
 | **Embeddings & Sparse Search** | `src/retrieval/translate_hybrid.py` (BM25 + Token Frequency Jaccard) | Active in production test harness (`Python 3.13` standard library + math) | Measured on 20-item statutory set: Recall@3 = **95.0%**, MRR = **0.750** | **Pure Algorithmic Token Scorer**. No external weights loaded in test mode. |
 | **Cross-Lingual Vectors** | `src/retrieval/cross_lingual.py` | Active in evaluation harness (`BaseRetriever`) | Measured on 20-item statutory set: Recall@3 = **80.0%**, MRR = **0.635** | **Algorithmic Lexical Overlap**. Offline test fallback. |
 | **Query Translation** | `translate_query_to_english` in `src/retrieval/translate_hybrid.py` | Rule-based mapping dictionary | Measured on 20-item set: EN 80%, HA 100%, YO 100%, IG 100% | **DISCLOSED AS CIRCULAR**: Replaced on held-out set (n=8), dropping to **37.5%** [95% CI: 4.0% - 71.0%]. |

@@ -33,3 +33,4 @@ def test_reviewed_faq_library_structure():
         assert "petition" not in faq["topic"].lower()
         assert "offence" not in faq["topic"].lower()
         assert "penalty" not in faq["topic"].lower()
+

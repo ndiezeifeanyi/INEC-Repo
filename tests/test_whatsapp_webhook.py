@@ -40,3 +40,4 @@ def test_whatsapp_webhook_grounded_answer():
     # Check that raw phone number is NOT returned in response
     assert "+2348099887766" not in str(data)
     assert len(data.get("sender_hash", "")) == 64
+

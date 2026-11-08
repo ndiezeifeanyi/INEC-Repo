@@ -149,3 +149,4 @@ class EnsembleLID:
 
     def get_disambiguation_prompt(self) -> str:
         return DISAMBIGUATION_PROMPT
+

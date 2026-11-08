@@ -17,3 +17,4 @@ def test_score_gap_calibration_artifacts_exist():
         data = json.load(f)
     assert data["optimal_threshold"] == 0.0010
     assert data["optimal_accuracy"] >= 0.70
+

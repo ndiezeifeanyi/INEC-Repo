@@ -45,3 +45,4 @@ def test_session_stop_purge():
     purged = store.purge_sender(raw_phone)
     assert purged is True
     assert store.count_active_sessions() == 0
+

@@ -33,3 +33,4 @@ def test_lid_code_switched_detection():
     prompt = lid.get_disambiguation_prompt()
     assert "Please confirm your language" in prompt
     assert "Nigerian Pidgin" in prompt
+

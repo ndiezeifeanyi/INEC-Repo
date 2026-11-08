@@ -24,3 +24,4 @@ def test_bge_retriever_graceful_missing_weights():
     # Retrieval must not crash
     results = retriever.retrieve("over-voting cancellation", top_k=2)
     assert len(results) >= 1
+

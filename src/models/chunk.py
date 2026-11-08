@@ -36,6 +36,10 @@ class VoterAnswer(BaseModel):
     citations: List[Citation]
     retrieved_chunk_ids: List[str]
     confidence_flags: List[str] = []
+    status: str = "ANSWER"  # "ANSWER", "NEEDS_LANGUAGE_CONFIRMATION", "ABSTAIN", "REFUSE"
+    disambiguation_prompt: Optional[str] = None
+    detected_candidate: Optional[str] = None
+    confidence_score: Optional[float] = None
     has_audio: bool = False
     audio_url: Optional[str] = None
 
