@@ -9,11 +9,16 @@ Enforces unique chunk IDs across all records (fails build on duplicate).
 
 import os
 import re
+import sys
 import json
 import hashlib
 from datetime import date
+from pathlib import Path
 from typing import List, Dict, Any, Set
 import pypdf
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(BASE_DIR))
 
 GAZETTE_PDF = "data/raw/electoral_act_2026_gazette.pdf"
 GAZETTE_URL = "https://nass.gov.ng/documents/download/11248"
@@ -52,32 +57,33 @@ def clean_text(raw: str) -> str:
     text = text.replace("\x00", "").replace("\r", " ")
     return " ".join(text.split())
 
+from src.generation.plain_language import PlainLanguageConverter
+
 def generate_plain_language(content: str, sec: str, sub: str) -> str:
-    # Concise plain-English summary for voter readability
-    if sec == "47" and sub == "2":
-        return "The Presiding Officer must use BVAS (or other official electronic device) to verify and authenticate each voter before giving them a ballot paper."
+    # Plain language summaries generated strictly and faithfully from quoted statutory chunk text
+    if sec == "51" and sub == "2":
+        return "If the number of votes cast at an election in any polling unit exceeds the number of accredited voters, the Presiding Officer must cancel the election result in that polling unit."
+    elif sec == "60" and sub == "3":
+        return "The Presiding Officer must electronically transmit polling unit results to the IReV portal after Form EC8A is signed and stamped. If electronic transmission fails due to communication failure, the signed and stamped Form EC8A remains the primary source for collation and declaration of the result."
     elif sec == "47" and sub == "1":
-        return "You must go in person to your registered polling unit with your permanent voter card (PVC) to be accredited."
+        return "A voter must present themselves with their permanent voter card (PVC) to the Presiding Officer or Polling Clerk at the polling unit where their name is registered."
+    elif sec == "47" and sub == "2":
+        return "The Presiding Officer must use the Bimodal Voter Accreditation System (BVAS) or other approved device to verify, confirm, or authenticate the voter before giving them a ballot paper."
     elif sec == "47" and sub == "3":
-        return "If the BVAS device breaks down and cannot be replaced the same day, election at that polling unit is postponed until the next day."
+        return "If the BVAS device fails to verify a voter by fingerprint or facial recognition and cannot be replaced the same day, election at that polling unit is postponed until the next day."
     elif sec == "50" and sub == "2":
-        return "Voting and result transmission must follow the official procedures established by INEC."
-    elif sec == "51" and sub == "2":
-        return "If total votes cast exceed the number of accredited voters in a polling unit (over-voting), the election in that polling unit is cancelled."
-    elif sec == "28":
-        return "INEC must publish an official notice stating election dates and nomination venues at least 360 days before general elections."
-    elif sec == "29":
-        return "Only a party candidate who contested the party primaries has legal standing to challenge primary nomination affidavits at the Federal High Court."
+        return "Voting and the transmission of results under the Electoral Act must follow the procedure determined by the Commission."
+    elif sec == "28" and (sub == "1" or not sub):
+        return "INEC must publish an official notice not later than 300 days before the election stating the election date and the place where nomination papers are delivered."
+    elif sec == "29" and (sub == "5" or not sub):
+        return "Only an aspirant who contested the primary election of a political party has legal standing to file a suit at the Federal High Court challenging candidate nomination affidavits."
+    elif sec == "12" and (sub == "1" or not sub):
+        return "A Nigerian citizen who is 18 years or older and resident, originating, or working in a constituency is entitled to register as a voter."
     elif sec == "154":
-        return "The Electoral Act 2022 is repealed. The Electoral Act 2026 is the governing law for elections across Nigeria."
-    elif sec == "12":
-        return "A Nigerian citizen aged 18 or older resident or originating from a constituency is entitled to register as a voter."
-    elif sec == "60":
-        return "The Presiding Officer counts votes openly, enters results in Form EC8A, and transmits results according to INEC guidelines."
+        return "The Electoral Act 2022 is repealed; this Electoral Act 2026 is the enacted governing law for elections across Nigeria."
     else:
-        # Default plain summary trims leading legal boilerplate
-        summary = content[:200]
-        return summary + ("..." if len(content) > 200 else "")
+        # Default plain language: Apply PlainLanguageConverter to the quoted chunk text directly
+        return PlainLanguageConverter.to_plain_english(content[:250]) + ("..." if len(content) > 250 else "")
 
 def rebuild_corpus():
     print(f"Loading {GAZETTE_PDF}...")
@@ -264,15 +270,15 @@ def rebuild_corpus():
                     "document_title": "INEC Electronic Transmission & Collation Procedure (2026)",
                     "document_source_url": TRANSMISSION_URL,
                     "document_sha256": trans_sha256,
-                    "document_version": "Official Publication (Rev 5)",
+                    "document_version": "INEC Administrative Guidelines (Rev 5, April 2022 - Interprets Electoral Act 2022)",
                     "retrieval_date": RETRIEVAL_DATE,
                     "part_title": "Electronic Transmission Procedure",
                     "section_number": f"PAGE-{p_idx+1}",
                     "subsection_number": None,
                     "page": p_idx + 1,
                     "content_english": p_text,
-                    "content_plain": f"Official INEC procedure specifying step-by-step electronic transmission from polling unit BVAS to collation servers.",
-                    "legal_status": "ENACTED"
+                    "content_plain": f"Official INEC procedure specifying step-by-step electronic transmission from polling unit BVAS to collation servers (April 2022 guidelines referring to Electoral Act 2022).",
+                    "legal_status": "HISTORICAL_PROCEDURAL_GUIDELINES"
                 })
         with open("data/processed/inec_transmission_procedure.jsonl", "w", encoding="utf-8") as f:
             for tc in trans_chunks:

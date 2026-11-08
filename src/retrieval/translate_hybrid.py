@@ -1,5 +1,6 @@
 import json
 import math
+import requests
 from typing import List, Tuple, Dict, Optional
 from pathlib import Path
 from src.models.chunk import LegalChunk
@@ -10,14 +11,49 @@ class TranslationHybridRetriever(BaseRetriever):
     """
     Path B: Translate-to-English first, then run hybrid (BM25 + Dense) retrieval
     and fuse results using Reciprocal Rank Fusion (RRF).
+    Query translation integrates an unofficial web endpoint (client=gtx) with explicit user consent,
+    file-backed local caching, and a local rule-based dictionary fallback.
     """
-    def __init__(self, data_path: Optional[Path] = None):
+
+    TRANSLATION_CONSENT_DISCLOSURE = (
+        "Do not enter personal details; the third-party service may log your text. "
+        "For non-English civic queries (Hausa, Yoruba, Igbo), query strings are transmitted to the "
+        "unofficial Google Translate public web endpoint (client=gtx) solely to translate into English legal concepts. "
+        "Sending is opt-in; when disabled, the system operates purely offline using a local civic glossary."
+    )
+
+    TRANSLATION_PROVIDER_LABEL = (
+        "Unofficial Google Translate web endpoint (client=gtx, reverse-engineered public HTTP interface, "
+        "unauthenticated, no SLA, subject to rate-limiting and low-resource semantic drift)."
+    )
+
+    def __init__(self, data_path: Optional[Path] = None, enable_online_translation: bool = False):
         self.chunks: List[LegalChunk] = []
         self._load_data(data_path)
         self.doc_freqs: Dict[str, int] = {}
         self.doc_lens: List[int] = []
         self.avg_doc_len = 0.0
+        self.enable_online_translation = enable_online_translation
+        self.cache_path = Path(__file__).resolve().parent.parent.parent / "data" / "cache" / "translation_cache.json"
+        self.translation_cache: Dict[str, str] = self._load_cache()
         self._build_bm25_index()
+
+    def _load_cache(self) -> Dict[str, str]:
+        if self.cache_path.exists():
+            try:
+                with open(self.cache_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return {}
+        return {}
+
+    def _save_cache(self):
+        try:
+            self.cache_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(self.cache_path, "w", encoding="utf-8") as f:
+                json.dump(self.translation_cache, f, indent=2, ensure_ascii=False)
+        except Exception:
+            pass
 
     def _load_data(self, data_path: Optional[Path] = None):
         if data_path is None:
@@ -53,11 +89,35 @@ class TranslationHybridRetriever(BaseRetriever):
             total_len += length
         self.avg_doc_len = (total_len / len(self.chunks)) if self.chunks else 1.0
 
-    def translate_query_to_english(self, query: str, lang: str) -> str:
+    def translate_query_to_english(self, query: str, lang: str, allow_online: Optional[bool] = None) -> str:
         """Translates low-resource queries to English legal conceptual equivalents."""
         if lang == "en":
             return query
 
+        cache_key = f"{lang}::{query.strip()}"
+        if cache_key in self.translation_cache:
+            return self.translation_cache[cache_key]
+
+        online_allowed = self.enable_online_translation if allow_online is None else allow_online
+
+        # Step 1: Online translation via unofficial gtx endpoint with disclosure (if opt-in enabled)
+        if online_allowed and lang in ["ha", "yo", "ig"]:
+            try:
+                url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl={lang}&tl=en&dt=t&q=" + requests.utils.quote(query)
+                r = requests.get(url, timeout=3.0)
+                if r.status_code == 200:
+                    data = r.json()
+                    translated_parts = [part[0] for part in data[0] if part and part[0]]
+                    online_translated = "".join(translated_parts).strip()
+                    if online_translated:
+                        self.translation_cache[cache_key] = online_translated
+                        self._save_cache()
+                        return online_translated
+            except Exception:
+                # Network timeout or air-gapped run -> safely fall back to dictionary mapper
+                pass
+
+        # Step 2: Fallback dictionary mapper (developer draft)
         translations = {
             "ha": {
                 "tantance": "accreditation verify authenticate",
@@ -151,9 +211,9 @@ class TranslationHybridRetriever(BaseRetriever):
         scores.sort(key=lambda x: x[1], reverse=True)
         return scores
 
-    def retrieve(self, query: str, top_k: int = 5, lang: str = "en") -> List[Tuple[LegalChunk, float]]:
+    def retrieve(self, query: str, top_k: int = 5, lang: str = "en", allow_online: Optional[bool] = None) -> List[Tuple[LegalChunk, float]]:
         # 1. Translate query to English
-        en_query = self.translate_query_to_english(query, lang)
+        en_query = self.translate_query_to_english(query, lang, allow_online=allow_online)
 
         # 2. Dense retrieval representation
         q_set = set(self._tokenize(en_query))

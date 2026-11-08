@@ -3,7 +3,7 @@ from typing import List, Tuple, Optional
 from src.models.chunk import LegalChunk, Citation, VoterAnswer
 from src.generation.glossary_layer import CivicGlossaryEnforcer
 from src.generation.plain_language import PlainLanguageConverter
-from src.config import UNCONFIRMED_AMENDMENTS
+from src.config import UNCONFIRMED_AMENDMENTS, SCORE_GAP_THRESHOLD, ELECTORAL_OFFENCES_SECTION_RANGE
 
 class GroundedAnswerGenerator:
     """
@@ -134,20 +134,75 @@ class GroundedAnswerGenerator:
                 confidence_flags=confidence_flags
             )
 
-        # Extract citations
-        citation = Citation(
-            document_title=top_chunk.document_title,
-            section=top_chunk.section_number,
-            subsection=top_chunk.subsection_number,
-            version=top_chunk.document_version,
-            retrieval_date=top_chunk.retrieval_date,
-            source_url=top_chunk.document_source_url,
-            legal_status=top_chunk.legal_status
-        )
-
+        # Extract citations for up to top-3 retrieved chunks
+        citations = []
         confidence_flags = []
-        if top_chunk.legal_status == "UNCONFIRMED":
-            confidence_flags.append("STATUS_UNCONFIRMED_CHECK_GAZETTE")
+        for chunk, _ in retrieved_chunks[:3]:
+            citations.append(Citation(
+                document_title=chunk.document_title,
+                section=chunk.section_number,
+                subsection=chunk.subsection_number,
+                version=chunk.document_version,
+                retrieval_date=chunk.retrieval_date,
+                source_url=chunk.document_source_url,
+                legal_status=chunk.legal_status
+            ))
+            if chunk.legal_status == "UNCONFIRMED" and "STATUS_UNCONFIRMED_CHECK_GAZETTE" not in confidence_flags:
+                confidence_flags.append("STATUS_UNCONFIRMED_CHECK_GAZETTE")
+
+        # Audit 7 Abstention Safeguard:
+        # 1. Top-1 chunk is not clearly ahead of top-2 (gap <= SCORE_GAP_THRESHOLD)
+        score_gap_insufficient = False
+        if len(retrieved_chunks) >= 2:
+            gap = retrieved_chunks[0][1] - retrieved_chunks[1][1]
+            if gap <= SCORE_GAP_THRESHOLD:
+                score_gap_insufficient = True
+
+        # 2. Top-1 is an electoral offence/penalty section for a "can I" or "how" procedural question
+        q_lower = query.lower()
+        is_can_i_or_how = bool(re.search(r"\b(can i|how\b)", q_lower))
+        is_offence_chunk = False
+        if top_chunk.part_title == "Electoral Offences":
+            is_offence_chunk = True
+        elif top_chunk.section_number and top_chunk.section_number.isdigit():
+            sec_num = int(top_chunk.section_number)
+            if ELECTORAL_OFFENCES_SECTION_RANGE[0] <= sec_num <= ELECTORAL_OFFENCES_SECTION_RANGE[1]:
+                is_offence_chunk = True
+
+        if score_gap_insufficient or (is_can_i_or_how and is_offence_chunk):
+            abstention_title = "I'm not sure which provision answers this."
+            if lang == "ha":
+                abstention_title = "Ban tabbatar da takamaiman sashen doka da ya ba da amsar wannan tambayar ba."
+            elif lang == "yo":
+                abstention_title = "Nko da mi loju abala ofin pato ti o dahun ibeere yi."
+            elif lang == "ig":
+                abstention_title = "Ejighi m n'aka ngalaba iwu kwesiri ịza ajụjụ a."
+
+            top_provisions_text = []
+            for i, (chunk, _) in enumerate(retrieved_chunks[:3], start=1):
+                sec_desc = f"Section {chunk.section_number}"
+                if chunk.subsection_number:
+                    sec_desc += f", Subsection ({chunk.subsection_number})"
+                top_provisions_text.append(f"{i}. {chunk.document_title}, {sec_desc} (Chunk ID: {chunk.chunk_id}):\n\"{chunk.content_english}\"")
+
+            ans_text = f"{abstention_title}\n\nPotentially related provisions from official records (Top-3 Retrieved, no primary answer):\n\n" + "\n\n".join(top_provisions_text)
+
+            has_2022_doc = any("INEC2026-ET" in c.chunk_id or "2022" in c.document_version for c, _ in retrieved_chunks[:3])
+            if has_2022_doc:
+                confidence_flags.append("DOC_REFERS_TO_ELECTORAL_ACT_2022")
+                notice_2022 = "[Notice: This document refers to the Electoral Act 2022. While administrative procedures (BVAS, IReV) continue under INEC regulations, substantive statutory authority is governed by Electoral Act 2026 Section 60(3).]"
+                ans_text += f"\n\n{notice_2022}"
+
+            confidence_flags.append("ABSTENTION_AMBIGUOUS_PROVISION")
+            return VoterAnswer(
+                question=query,
+                language=lang,
+                answer_text=ans_text,
+                answer_plain=abstention_title,
+                citations=citations,
+                retrieved_chunk_ids=[c[0].chunk_id for c in retrieved_chunks[:3]],
+                confidence_flags=confidence_flags
+            )
 
         # Multilingual generation with glossary enforcement
         content = top_chunk.content_english
@@ -209,12 +264,28 @@ class GroundedAnswerGenerator:
             if top_chunk.legal_status == "UNCONFIRMED":
                 ans_text += f"\n\n[Status: UNCONFIRMED. Passed by both chambers (Apr/May 2026); I could not confirm presidential assent as of {top_chunk.retrieval_date}; check the Gazette.]"
 
+            if len(retrieved_chunks) > 1:
+                ans_text += "\n\nSupporting / Related Provisions (Top-3 Retrieved):"
+                for i, (chunk, _) in enumerate(retrieved_chunks[1:3], start=2):
+                    sec_desc = f"Section {chunk.section_number}"
+                    if chunk.subsection_number:
+                        sec_desc += f", Subsection ({chunk.subsection_number})"
+                    ans_text += f"\n\n{i}. {chunk.document_title}, {sec_desc} (Chunk ID: {chunk.chunk_id}):\n\"{chunk.content_english}\""
+
+        has_2022_doc = any("INEC2026-ET" in c.chunk_id or "2022" in c.document_version for c, _ in retrieved_chunks[:3])
+        if has_2022_doc:
+            if "DOC_REFERS_TO_ELECTORAL_ACT_2022" not in confidence_flags:
+                confidence_flags.append("DOC_REFERS_TO_ELECTORAL_ACT_2022")
+            notice_2022 = "[Notice: This document refers to the Electoral Act 2022. While administrative procedures (BVAS, IReV) continue under INEC regulations, substantive statutory authority is governed by Electoral Act 2026 Section 60(3).]"
+            if notice_2022 not in ans_text:
+                ans_text += f"\n\n{notice_2022}"
+
         return VoterAnswer(
             question=query,
             language=lang,
             answer_text=ans_text,
             answer_plain=PlainLanguageConverter.to_plain_english(plain_content),
-            citations=[citation],
+            citations=citations,
             retrieved_chunk_ids=[c[0].chunk_id for c in retrieved_chunks[:3]],
             confidence_flags=confidence_flags
         )

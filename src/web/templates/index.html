@@ -29,12 +29,25 @@
       <form id="ask-form" onsubmit="handleAsk(event)">
         <div class="form-group">
           <label for="lang-select">Choose Language:</label>
-          <select id="lang-select">
+          <select id="lang-select" onchange="handleLangChange()">
             <option value="en">English</option>
             <option value="ha">Hausa (Harshen Hausa)</option>
             <option value="yo">Yoruba (Èdè Yorùbá)</option>
             <option value="ig">Igbo (Asụsụ Igbo)</option>
           </select>
+        </div>
+
+        <!-- Privacy-Preserving Opt-In Translation Consent -->
+        <div class="form-group" id="optin-translation-group" style="display:none; background: #fdfbf7; border: 1px solid #eedcba; border-radius: 6px; padding: 12px; margin-bottom: 16px;">
+          <label style="font-weight: 500; font-size: 0.9em; display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+            <input type="checkbox" id="translate-optin" style="margin-top: 3px;">
+            <span>
+              <strong>Opt-in to Translation via Public Web Service (gtx endpoint)</strong><br>
+              <small class="disclaimer-text" style="display:inline-block; margin-top: 4px; color: #555; line-height: 1.4;">
+                <strong>Privacy &amp; Data Notice:</strong> Do not enter personal details; the third-party service may log your text. If enabled, your query text is transmitted to the unofficial Google Translate web endpoint (client=gtx) solely to translate indigenous terms into English legal concepts. When left unchecked (default), the prototype operates entirely <em>offline</em> using local civic dictionaries.
+              </small>
+            </span>
+          </label>
         </div>
 
         <div class="form-group">
