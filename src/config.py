@@ -3,6 +3,7 @@ Central Configuration for Electoral Act 2026 & INEC Verification Engine.
 Stores statutory facts, unconfirmed legislative amendment notices, and official domain registries.
 """
 
+import os
 from typing import Dict, Any
 
 # Section 29A: Unconfirmed Amendment Notice (NOT IN GAZETTE)
@@ -56,11 +57,25 @@ KNOWN_FAKE_DOMAINS = [
     "pvc-inecnigeria-org.blogspot.com"
 ]
 
-# Abstention Safeguards (Audit 7 Inspected-Then-Set Thresholds - NOT pre-registered)
-# NOTE: The score-gap threshold was inspected and set during Audit 7 evaluation, not pre-registered.
-# Score-gap threshold: If (top_1_score - top_2_score) <= SCORE_GAP_THRESHOLD, top-1 is not clearly ahead.
-SCORE_GAP_THRESHOLD = 0.0001
+# Abstention Safeguards: Recalibrated empirically on frozen validation split (tests/data/score_gap_val_split.json)
+# History: In Audit 7, SCORE_GAP_THRESHOLD=0.0001 was inspected-then-set post-hoc.
+# Recalibrated across 12 validation queries (unambiguous vs ambiguous ties):
+# At tau=0.0010, validation accuracy is 75.0% and F1 is 0.8000 with 100% recall on ambiguous ties.
+SCORE_GAP_THRESHOLD = 0.0010
 # Electoral Offences section range in Electoral Act 2026 (Part VII: Sections 118 to 133, Gazette Page 54-62)
 ELECTORAL_OFFENCES_SECTION_RANGE = (118, 133)
+
+# Language Identification (LID) Configuration (AfroLID + GlotLID Ensemble)
+# Empirically calibrated on 30-sample validation split (tests/data/lid_validation_bench.json).
+# Sweep across [0.50, 0.85] showed tau=0.85 degraded accuracy to 53.3%; optimal empirical tau=0.75 yields 76.7% effective accuracy.
+LID_CONFIDENCE_THRESHOLD = 0.75
+
+# Multilingual Neural Engine Configuration (Phase 1 Deep Dive)
+# Behind flags; defaults to False (fallback to TranslationHybridRetriever)
+ENABLE_BGE_M3 = os.environ.get("ENABLE_BGE_M3", "false").lower() in ("true", "1", "yes")
+ENABLE_BGE_RERANKER = os.environ.get("ENABLE_BGE_RERANKER", "false").lower() in ("true", "1", "yes")
+BGE_M3_MODEL_NAME = os.environ.get("BGE_M3_MODEL_NAME", "BAAI/bge-m3")
+BGE_RERANKER_MODEL_NAME = os.environ.get("BGE_RERANKER_MODEL_NAME", "BAAI/bge-reranker-v2-m3")
+
 
 

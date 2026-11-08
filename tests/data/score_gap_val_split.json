@@ -1,0 +1,86 @@
+[
+  {
+    "id": "VAL_01",
+    "query": "What is the qualifying age to register as a voter in Nigeria?",
+    "expected_top_section": "12",
+    "should_abstain": false,
+    "category": "unambiguous_statutory"
+  },
+  {
+    "id": "VAL_02",
+    "query": "How many days notice must INEC give before a general election?",
+    "expected_top_section": "28",
+    "should_abstain": false,
+    "category": "unambiguous_statutory"
+  },
+  {
+    "id": "VAL_03",
+    "query": "Can a presiding officer cancel a polling unit result for over-voting?",
+    "expected_top_section": "51",
+    "should_abstain": false,
+    "category": "unambiguous_statutory"
+  },
+  {
+    "id": "VAL_04",
+    "query": "What device is used for voter accreditation at polling units?",
+    "expected_top_section": "47",
+    "should_abstain": false,
+    "category": "unambiguous_statutory"
+  },
+  {
+    "id": "VAL_05",
+    "query": "Where should nomination papers of candidates be delivered?",
+    "expected_top_section": "28",
+    "should_abstain": false,
+    "category": "unambiguous_statutory"
+  },
+  {
+    "id": "VAL_06",
+    "query": "When must polling unit results be displayed for public viewing?",
+    "expected_top_section": "60",
+    "should_abstain": false,
+    "category": "unambiguous_statutory"
+  },
+  {
+    "id": "VAL_07",
+    "query": "What are the rules and guidelines for Nigerian elections?",
+    "expected_top_section": null,
+    "should_abstain": true,
+    "category": "broad_ambiguous_tie"
+  },
+  {
+    "id": "VAL_08",
+    "query": "How is election conducted in Nigeria?",
+    "expected_top_section": null,
+    "should_abstain": true,
+    "category": "broad_ambiguous_tie"
+  },
+  {
+    "id": "VAL_09",
+    "query": "Who signs election results?",
+    "expected_top_section": null,
+    "should_abstain": true,
+    "category": "competing_officers_tie"
+  },
+  {
+    "id": "VAL_10",
+    "query": "What are election procedures and forms?",
+    "expected_top_section": null,
+    "should_abstain": true,
+    "category": "schedule_form_tie"
+  },
+  {
+    "id": "VAL_11",
+    "query": "Can an election result be cancelled?",
+    "expected_top_section": null,
+    "should_abstain": true,
+    "category": "competing_provisions_tie"
+  },
+  {
+    "id": "VAL_12",
+    "query": "What happens if there is an issue on election day?",
+    "expected_top_section": null,
+    "should_abstain": true,
+    "category": "broad_ambiguous_tie"
+  }
+]

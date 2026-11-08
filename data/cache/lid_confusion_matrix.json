@@ -1,0 +1,362 @@
+{
+  "predictions": [
+    {
+      "id": "LID_VAL_01",
+      "text": "Can I vote without my PVC on election day?",
+      "target": "en",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_02",
+      "text": "What is the procedure for election results transmission to IReV?",
+      "target": "en",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_03",
+      "text": "How many days notice must INEC publish before the election?",
+      "target": "en",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_04",
+      "text": "What are the qualifications to be registered as a Nigerian voter?",
+      "target": "en",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_05",
+      "text": "Who has the legal standing to challenge political party primary results?",
+      "target": "en",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_06",
+      "text": "Zan iya kada kuri'a ba tare da katin zabe na dindindin ba?",
+      "target": "ha",
+      "pred_lang": "ha",
+      "confidence": 0.918,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_07",
+      "text": "Menene dokar soke sakamakon rumfar zabe idan an samu yawan kuri'u?",
+      "target": "ha",
+      "pred_lang": "ha",
+      "confidence": 0.89,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_08",
+      "text": "Kwanaki nawa hukumar zabe za ta sanar kafin zaben kasa?",
+      "target": "ha",
+      "pred_lang": "ha",
+      "confidence": 0.8182,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_09",
+      "text": "Wane shekaru ne mutum zai iya yin rajistar zabe a Najeriya?",
+      "target": "ha",
+      "pred_lang": "ha",
+      "confidence": 0.8036,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_10",
+      "text": "A ina ya kamata a mika takardun tsayawa takara na jam'iyyu?",
+      "target": "ha",
+      "pred_lang": "ha",
+      "confidence": 0.75,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_11",
+      "text": "Nje mo le dibo ti nko ba ni kaadi idibo mi ni ojo idibo?",
+      "target": "yo",
+      "pred_lang": "yo",
+      "confidence": 0.8333,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_12",
+      "text": "Kini yoo sele ti iye awon ti won dibo ba po ju iye ti a tantance lo?",
+      "target": "yo",
+      "pred_lang": "yo",
+      "confidence": 0.7792,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_13",
+      "text": "Ojo melo ni ajo eleto idibo gbodo fi sita saaju idibo apapo?",
+      "target": "yo",
+      "pred_lang": "yo",
+      "confidence": 0.8621,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_14",
+      "text": "Ojo ori melo ni a gba laaye lati forukosile gege bi oludibo?",
+      "target": "yo",
+      "pred_lang": "yo",
+      "confidence": 0.8621,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_15",
+      "text": "Bawo ni a se n gbe abajade idibo sori ero IReV taara?",
+      "target": "yo",
+      "pred_lang": "yo",
+      "confidence": 0.8621,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_16",
+      "text": "Enwere m ike ime vootu ma oburu na ejighi m kaadi PVC m n'ubochi ntuli aka?",
+      "target": "ig",
+      "pred_lang": "ig",
+      "confidence": 0.8678,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_17",
+      "text": "Gini na-eme ma onu ogugu ndi vooturu karie ndi e nyere nzere?",
+      "target": "ig",
+      "pred_lang": "ig",
+      "confidence": 0.8333,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_18",
+      "text": "Ubochi ole ka INEC ga-ewepu ozi tupu eme ntuli aka zuru oke?",
+      "target": "ig",
+      "pred_lang": "ig",
+      "confidence": 0.8523,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_19",
+      "text": "Afo ole ka mmadu ga-ad\u1ecb tupu o nwee ike idebanye aha maka vootu?",
+      "target": "ig",
+      "pred_lang": "ig",
+      "confidence": 0.92,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_20",
+      "text": "Ked\u1ee5 ebe a na-enyefe akw\u1ee5kw\u1ecd nd\u1ecb na-az\u1ecd \u1ecdkwa \u1ecdch\u1ecbch\u1ecb?",
+      "target": "ig",
+      "pred_lang": "yo",
+      "confidence": 0.5,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_21",
+      "text": "I fit vote if I no carry my PVC go polling unit on election day?",
+      "target": "pcm",
+      "pred_lang": "code_switched",
+      "confidence": 0.45,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_22",
+      "text": "Wetin go happen if vote plenty pass people wey BVAS scan?",
+      "target": "pcm",
+      "pred_lang": "code_switched",
+      "confidence": 0.45,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_23",
+      "text": "How many days notice INEC suppose give before general election start?",
+      "target": "pcm",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_24",
+      "text": "Which age person must reach before dem fit register to vote?",
+      "target": "pcm",
+      "pred_lang": "code_switched",
+      "confidence": 0.45,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_25",
+      "text": "Shey presiding officer dey transmit result straight to IReV portal?",
+      "target": "pcm",
+      "pred_lang": "pcm",
+      "confidence": 0.75,
+      "is_code_switched": false
+    },
+    {
+      "id": "LID_VAL_26",
+      "text": "Abeg can I vote with temporary slip kwanu if PVC no dey?",
+      "target": "code_switched",
+      "pred_lang": "code_switched",
+      "confidence": 0.45,
+      "is_code_switched": true
+    },
+    {
+      "id": "LID_VAL_27",
+      "text": "Please ba za su yarda da voters card na waya ba?",
+      "target": "code_switched",
+      "pred_lang": "ha",
+      "confidence": 0.7407,
+      "is_code_switched": true
+    },
+    {
+      "id": "LID_VAL_28",
+      "text": "Shey BVAS machine will work if network no dey polling booth?",
+      "target": "code_switched",
+      "pred_lang": "code_switched",
+      "confidence": 0.45,
+      "is_code_switched": true
+    },
+    {
+      "id": "LID_VAL_29",
+      "text": "Biko how many days INEC go take display the voter register?",
+      "target": "code_switched",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": true
+    },
+    {
+      "id": "LID_VAL_30",
+      "text": "Eleyi is not fair, can candidate challenge the collation result?",
+      "target": "code_switched",
+      "pred_lang": "en",
+      "confidence": 0.99,
+      "is_code_switched": true
+    }
+  ],
+  "threshold_sweep": [
+    {
+      "threshold": 0.5,
+      "correct": 22,
+      "disambiguated": 5,
+      "false_sure": 5,
+      "effective_accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.55,
+      "correct": 22,
+      "disambiguated": 6,
+      "false_sure": 4,
+      "effective_accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.6,
+      "correct": 22,
+      "disambiguated": 6,
+      "false_sure": 4,
+      "effective_accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.65,
+      "correct": 22,
+      "disambiguated": 6,
+      "false_sure": 4,
+      "effective_accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.7,
+      "correct": 22,
+      "disambiguated": 6,
+      "false_sure": 4,
+      "effective_accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.75,
+      "correct": 23,
+      "disambiguated": 7,
+      "false_sure": 3,
+      "effective_accuracy": 0.7666666666666667
+    },
+    {
+      "threshold": 0.8,
+      "correct": 20,
+      "disambiguated": 10,
+      "false_sure": 3,
+      "effective_accuracy": 0.6666666666666666
+    },
+    {
+      "threshold": 0.85,
+      "correct": 16,
+      "disambiguated": 14,
+      "false_sure": 3,
+      "effective_accuracy": 0.5333333333333333
+    }
+  ],
+  "optimal_threshold": 0.75,
+  "effective_accuracy": 0.7666666666666667,
+  "confusion_matrix": {
+    "en": {
+      "en": 5,
+      "ha": 0,
+      "yo": 0,
+      "ig": 0,
+      "pcm": 0,
+      "code_switched": 0
+    },
+    "ha": {
+      "en": 0,
+      "ha": 5,
+      "yo": 0,
+      "ig": 0,
+      "pcm": 0,
+      "code_switched": 0
+    },
+    "yo": {
+      "en": 0,
+      "ha": 0,
+      "yo": 5,
+      "ig": 0,
+      "pcm": 0,
+      "code_switched": 0
+    },
+    "ig": {
+      "en": 0,
+      "ha": 0,
+      "yo": 1,
+      "ig": 4,
+      "pcm": 0,
+      "code_switched": 0
+    },
+    "pcm": {
+      "en": 1,
+      "ha": 0,
+      "yo": 0,
+      "ig": 0,
+      "pcm": 1,
+      "code_switched": 3
+    },
+    "code_switched": {
+      "en": 2,
+      "ha": 0,
+      "yo": 0,
+      "ig": 0,
+      "pcm": 0,
+      "code_switched": 3
+    }
+  },
+  "labels": [
+    "en",
+    "ha",
+    "yo",
+    "ig",
+    "pcm",
+    "code_switched"
+  ]
+}

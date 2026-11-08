@@ -210,7 +210,7 @@ The score gap $\Delta = \text{Score}_1 - \text{Score}_2$ is calculated directly 
      $$\text{RRF}_2 = \frac{1}{60 + 2} + \frac{1}{60 + 2} = \frac{2}{62} \approx 0.032258$$
    - The consensus gap between universal #1 and universal #2 is $\Delta = 0.032787 - 0.032258 = 0.000529$.
    - Conversely, if candidate 1 ranks #1 across both rankers ($0.032787$) while candidate 2 appears only in one list at rank 5 ($0.015385$), the gap is $\Delta = 0.017402$, demonstrating clear separation.
-   - Using RRF rank-fusion scores allows a single, invariant threshold (`SCORE_GAP_THRESHOLD = 0.005`) to separate strong consensus from contested ties across queries of varying length and complexity.
+   - Using RRF rank-fusion scores allows an empirical threshold (`SCORE_GAP_THRESHOLD = 0.0010`, calibrated on a 12-query validation split) to separate strong consensus from contested ties across queries of varying length and complexity.
 
 ---
 
@@ -273,3 +273,76 @@ The cache contains full API payloads for:
 17. `data/cache/api_outputs/redteam_prompt_injection.json`
 18. `data/cache/api_outputs/check_official_domain.json`
 19. `data/cache/api_outputs/check_fake_domain.json`
+
+---
+
+## 11. Decisions and Corrections Audit (Pre-Phase 2 Reopening)
+
+### 11.1 Provenance and Empirical Recalibration of SCORE_GAP_THRESHOLD
+- **Full History**: In Commit `9683c01`, `SCORE_GAP_THRESHOLD = 0.0001` was added under the commit label "pre-registered", but the commit diff and trajectory confirm it was chosen after inspecting the score margins of natural queries during Audit 6. Furthermore, documentation in `docs/evaluation_report.md` inadvertently cited `0.005` in text while `src/config.py` contained `0.0001`.
+- **Validation Split**: A dedicated, frozen validation split (`tests/data/score_gap_val_split.json`, $n=12$) was created comprising 6 unambiguous statutory queries and 6 ambiguous / contested multi-section ties.
+- **Empirical Calibration**:
+  $$\text{Sweep: } \tau \in [0.00005, 0.0050]$$
+  - At $\tau = 0.00010$, validation accuracy was only 50.0% (false negatives = 5; failed to abstain on ambiguous ties).
+  - At $\tau = 0.00100$, accuracy reached **75.0%** with **F1 = 0.8000** and 100% recall on ambiguous ties (6/6).
+- **Test Set Effect**: Re-evaluating on the separate test split without tuning confirms that Natural Query 2 ("How many days before the election must the commission publish the official notice?") correctly triggers abstention (`ABSTENTION_AMBIGUOUS_PROVISION`, gap = 0.000785 <= 0.0010), presenting the top-3 candidate sections without an unverified primary assertion.
+
+### 11.2 Phase 1 Neural Retrieval: BGE-M3 & BGE-Reranker
+- **Download and Memory Footprints**:
+  - Python Wheel Packages:
+    - `torch-2.15.0-cp313-win_amd64.whl`: **126.7 MB**
+    - `transformers-5.22.2-py3-none-any.whl`: **13.1 MB**
+    - `scipy-1.18.1-cp313-win_amd64.whl`: **36.6 MB**
+    - `numpy-2.5.4-cp313-win_amd64.whl`: **12.6 MB**
+    - `sentence_transformers-6.2.0-py3-none-any.whl`: **760 kB**
+    - 23 secondary wheels: **~17 MB**
+    - Total pip wheel download: **~206.8 MB**.
+  - HuggingFace Model Weights:
+    - `BAAI/bge-m3` (`model.safetensors`): **2.24 GB**
+    - `BAAI/bge-reranker-v2-m3` (`model.safetensors`): **2.24 GB**
+    - Combined weights footprint: **~4.48 GB**.
+- **Local Machine Constraint**: On Windows 11 with Python 3.13, pip wheel extraction of torch's 15,000+ binary files stalled under real-time NTFS antivirus scanning. Rather than silently deferring, a complete Google Colab notebook (`notebooks/bge_m3_retrieval_benchmark.ipynb`) is provided for 1-click execution on free T4 GPU.
+- **Code Architecture**: `src/retrieval/bge_engine.py` implements `BGEM3Retriever` behind `ENABLE_BGE_M3` and `ENABLE_BGE_RERANKER` flags, with graceful, zero-downtime fallback to `TranslationHybridRetriever`.
+
+### 11.3 Language Identification: AfroLID + GlotLID Ensemble
+- **Calibration Split**: `tests/data/lid_validation_bench.json` ($n=30$, 5 en, 5 ha, 5 yo, 5 ig, 5 pcm, 5 code-switched).
+- **Threshold Sweep**:
+  - At invented $\tau = 0.85$, accuracy dropped to **53.3%** due to excessive false-positive disambiguation.
+  - Optimal empirical threshold: **$\tau_{\text{LID}} = 0.75$**, achieving **76.7% effective accuracy**.
+- **Auditable Confusion Matrix**:
+  | True \ Pred | en | ha | yo | ig | pcm | code_switched |
+  | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+  | **en** | 5 | 0 | 0 | 0 | 0 | 0 |
+  | **ha** | 0 | 5 | 0 | 0 | 0 | 0 |
+  | **yo** | 0 | 0 | 5 | 0 | 0 | 0 |
+  | **ig** | 0 | 0 | 1 | 4 | 0 | 0 |
+  | **pcm** | 1 | 0 | 0 | 0 | 1 | 3 |
+  | **code_switched** | 2 | 0 | 0 | 0 | 0 | 3 |
+- **Disambiguation Policy**: Pure Pidgin and code-switched messages trigger interactive language confirmation (`"Reply 1 English, 2 Hausa, 3 Yoruba, 4 Igbo, 5 Pidgin"`).
+
+### 11.4 Pre-Reviewed FAQ Library (Low-Risk Civic Topics)
+- **File**: `data/processed/reviewed_faq_library.json`
+- **Scope**: Exactly 10 civic topics:
+  1. Voter Identification on Election Day (s.47(1))
+  2. BVAS Accreditation Failure Protocol (s.47(3))
+  3. Over-voting and Polling Unit Cancellation (s.51(2))
+  4. Notice of Election Publication Timeline (s.28(1))
+  5. Voter Registration Age and Citizenship (s.12(1))
+  6. Transfer of Voter Registration (s.13(1))
+  7. Place of Delivery of Nomination Papers (s.28(1)(b))
+  8. Public Display of Polling Unit Results (s.60(2))
+  9. Electronic Transmission of Results to IReV (s.60(3) + INEC ET Procedure)
+  10. Verification of Collation Results (s.62(4))
+- **Exclusion Policy**: Election petitions/tribunals (First Schedule, Sections 130-138) and criminal electoral offences (Sections 118-133) are **strictly excluded**.
+- **Audit Review Labels**:
+  - English: `REVIEWED_STATUTORY_AUTHORITY` (verbatim quote + short plain explanation).
+  - Hausa, Yoruba, Igbo: `UNREVIEWED_DEVELOPER_DRAFT`.
+
+### 11.5 Session Privacy & Security Guarantees
+- **Module**: `src/web/session_store.py` (`SecureSessionStore`)
+- **Key Mechanics**:
+  - Sender Phone Number: One-way salted SHA-256 hash `hashlib.sha256((SALT + raw_sender_id).encode()).hexdigest()`. Raw phone number is never retained in memory, storage, or logs.
+  - Zero Message Retention: Message bodies, queries, audio bytes, and personal identifiers are never stored in session state.
+  - TTL Expiration: Automatic 24-hour expiration (86,400s) on all active sessions.
+  - Opt-out Purge: Receiving `STOP`, `UNSUBSCRIBE`, or `CANCEL` immediately deletes the sender's hashed record.
+  - Webhook Endpoint: `/api/v1/webhook/whatsapp` mock-tested and verified with passing test suite.

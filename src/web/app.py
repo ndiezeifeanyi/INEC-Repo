@@ -113,14 +113,94 @@ async def generate_speech(text: str, lang: str = "en"):
     )
 
 @app.get("/api/v1/health")
-async def health_check():
+async def api_health_check():
     return {
         "status": "HEALTHY",
         "statutes": ["Electoral Act 2026", "INEC Guidelines 2026"],
         "section_29a_status": "UNCONFIRMED",
-        "supported_languages": ["en", "ha", "yo", "ig"],
-        "pidgin_status": "DISABLED_PENDING_VALIDATION",
+        "supported_languages": ["en", "ha", "yo", "ig", "pcm"],
+        "lid_engine": "AfroLID + GlotLID Ensemble",
+        "session_privacy": "Salted SHA-256 Hash + 24h TTL",
         "live_inec_access": False,
         "pii_logging": False
     }
+
+from src.web.session_store import SecureSessionStore
+from src.lid.ensemble_lid import EnsembleLID, DISAMBIGUATION_PROMPT
+
+session_store = SecureSessionStore()
+lid_detector = EnsembleLID()
+
+class WhatsAppWebhookPayload(BaseModel):
+    From: str
+    Body: str
+    ProfileName: Optional[str] = None
+
+@app.post("/api/v1/webhook/whatsapp")
+async def whatsapp_webhook(payload: WhatsAppWebhookPayload):
+    """
+    Mock-tested WhatsApp Webhook.
+    Guarantees:
+    - Never stores or logs raw phone number (stores only salted SHA-256 hash).
+    - Never stores raw message body or audio.
+    - Automatic 24-hour TTL expiration.
+    - Immediate complete purge on STOP/CANCEL.
+    """
+    body = payload.Body.strip()
+    sender = payload.From.strip()
+
+    # 1. Check opt-out commands
+    if body.upper() in ["STOP", "UNSUBSCRIBE", "CANCEL", "OPT OUT"]:
+        session_store.purge_sender(sender)
+        return {
+            "reply": "You have opted out. Your session and data have been completely purged from memory.",
+            "status": "PURGED",
+            "active_sessions": session_store.count_active_sessions()
+        }
+
+    # 2. Retrieve or create session (stores only salted hash)
+    session = session_store.get_or_create_session(sender)
+
+    # 3. Check language selection numeric shortcuts
+    lang_map = {"1": "en", "2": "ha", "3": "yo", "4": "ig", "5": "pcm"}
+    if body in lang_map:
+        selected_lang = lang_map[body]
+        session_store.update_language(sender, selected_lang, confirmed=True)
+        names = {"en": "English", "ha": "Hausa", "yo": "Yoruba", "ig": "Igbo", "pcm": "Nigerian Pidgin"}
+        return {
+            "reply": f"Language confirmed as {names[selected_lang]}. Please ask your election question.",
+            "language": selected_lang,
+            "session_active": True
+        }
+
+    # 4. Check if language needs confirmation via LID
+    if not session.get("language_confirmed", False):
+        detected_lang, conf, needs_disambig = lid_detector.identify(body)
+        if needs_disambig:
+            return {
+                "reply": DISAMBIGUATION_PROMPT,
+                "needs_disambiguation": True,
+                "detected_candidate": detected_lang,
+                "confidence": conf
+            }
+        else:
+            session_store.update_language(sender, detected_lang, confirmed=True)
+            active_lang = detected_lang
+    else:
+        active_lang = session.get("detected_language", "en")
+
+    # 5. Retrieve answer strictly grounded in Electoral Act 2026
+    lang_for_retriever = active_lang if active_lang in ["en", "ha", "yo", "ig"] else "en"
+    retrieved = retriever.retrieve(body, top_k=3, lang=lang_for_retriever, allow_online=False)
+    disagree = getattr(retrieved, "bm25_dense_disagree", getattr(retriever, "last_bm25_dense_disagree", False))
+    answer = generator.generate_answer(body, retrieved, lang=lang_for_retriever, bm25_dense_disagree=disagree)
+
+    return {
+        "reply": answer.answer_text,
+        "language": active_lang,
+        "citations": answer.citations,
+        "confidence_flags": answer.confidence_flags,
+        "sender_hash": session["sender_hash"]
+    }
+
 

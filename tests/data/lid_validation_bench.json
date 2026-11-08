@@ -1,0 +1,182 @@
+[
+  {
+    "id": "LID_VAL_01",
+    "text": "Can I vote without my PVC on election day?",
+    "expected_lang": "en",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_02",
+    "text": "What is the procedure for election results transmission to IReV?",
+    "expected_lang": "en",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_03",
+    "text": "How many days notice must INEC publish before the election?",
+    "expected_lang": "en",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_04",
+    "text": "What are the qualifications to be registered as a Nigerian voter?",
+    "expected_lang": "en",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_05",
+    "text": "Who has the legal standing to challenge political party primary results?",
+    "expected_lang": "en",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_06",
+    "text": "Zan iya kada kuri'a ba tare da katin zabe na dindindin ba?",
+    "expected_lang": "ha",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_07",
+    "text": "Menene dokar soke sakamakon rumfar zabe idan an samu yawan kuri'u?",
+    "expected_lang": "ha",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_08",
+    "text": "Kwanaki nawa hukumar zabe za ta sanar kafin zaben kasa?",
+    "expected_lang": "ha",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_09",
+    "text": "Wane shekaru ne mutum zai iya yin rajistar zabe a Najeriya?",
+    "expected_lang": "ha",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_10",
+    "text": "A ina ya kamata a mika takardun tsayawa takara na jam'iyyu?",
+    "expected_lang": "ha",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_11",
+    "text": "Nje mo le dibo ti nko ba ni kaadi idibo mi ni ojo idibo?",
+    "expected_lang": "yo",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_12",
+    "text": "Kini yoo sele ti iye awon ti won dibo ba po ju iye ti a tantance lo?",
+    "expected_lang": "yo",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_13",
+    "text": "Ojo melo ni ajo eleto idibo gbodo fi sita saaju idibo apapo?",
+    "expected_lang": "yo",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_14",
+    "text": "Ojo ori melo ni a gba laaye lati forukosile gege bi oludibo?",
+    "expected_lang": "yo",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_15",
+    "text": "Bawo ni a se n gbe abajade idibo sori ero IReV taara?",
+    "expected_lang": "yo",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_16",
+    "text": "Enwere m ike ime vootu ma oburu na ejighi m kaadi PVC m n'ubochi ntuli aka?",
+    "expected_lang": "ig",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_17",
+    "text": "Gini na-eme ma onu ogugu ndi vooturu karie ndi e nyere nzere?",
+    "expected_lang": "ig",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_18",
+    "text": "Ubochi ole ka INEC ga-ewepu ozi tupu eme ntuli aka zuru oke?",
+    "expected_lang": "ig",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_19",
+    "text": "Afo ole ka mmadu ga-adị tupu o nwee ike idebanye aha maka vootu?",
+    "expected_lang": "ig",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_20",
+    "text": "Kedụ ebe a na-enyefe akwụkwọ ndị na-azọ ọkwa ọchịchị?",
+    "expected_lang": "ig",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_21",
+    "text": "I fit vote if I no carry my PVC go polling unit on election day?",
+    "expected_lang": "pcm",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_22",
+    "text": "Wetin go happen if vote plenty pass people wey BVAS scan?",
+    "expected_lang": "pcm",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_23",
+    "text": "How many days notice INEC suppose give before general election start?",
+    "expected_lang": "pcm",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_24",
+    "text": "Which age person must reach before dem fit register to vote?",
+    "expected_lang": "pcm",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_25",
+    "text": "Shey presiding officer dey transmit result straight to IReV portal?",
+    "expected_lang": "pcm",
+    "is_code_switched": false
+  },
+  {
+    "id": "LID_VAL_26",
+    "text": "Abeg can I vote with temporary slip kwanu if PVC no dey?",
+    "expected_lang": "code_switched",
+    "is_code_switched": true
+  },
+  {
+    "id": "LID_VAL_27",
+    "text": "Please ba za su yarda da voters card na waya ba?",
+    "expected_lang": "code_switched",
+    "is_code_switched": true
+  },
+  {
+    "id": "LID_VAL_28",
+    "text": "Shey BVAS machine will work if network no dey polling booth?",
+    "expected_lang": "code_switched",
+    "is_code_switched": true
+  },
+  {
+    "id": "LID_VAL_29",
+    "text": "Biko how many days INEC go take display the voter register?",
+    "expected_lang": "code_switched",
+    "is_code_switched": true
+  },
+  {
+    "id": "LID_VAL_30",
+    "text": "Eleyi is not fair, can candidate challenge the collation result?",
+    "expected_lang": "code_switched",
+    "is_code_switched": true
+  }
+]

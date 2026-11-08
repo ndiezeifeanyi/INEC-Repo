@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "last_audit_date": "2026-11-08",
+    "description": "Pre-reviewed FAQ Library covering 10 low-risk civic election topics. Excludes tribunals and offences.",
+    "governing_statute": "Electoral Act 2026 (Federal Republic of Nigeria Official Gazette No. 15, Vol. 113)",
+    "english_review_status": "REVIEWED_STATUTORY_AUTHORITY",
+    "hausa_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
+    "yoruba_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
+    "igbo_review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+  },
+  "faqs": [
+    {
+      "id": "FAQ_01_PVC_REQUIREMENT",
+      "topic": "Voter Identification on Election Day",
+      "statutory_section": "Electoral Act 2026 Section 47(1)",
+      "chunk_id": "EA2026-S47-SS1",
+      "english": {
+        "verbatim_quote": "A person intending to vote in an election shall present himself with his voter's card to a Presiding officer for accreditation at the polling unit in the constituency in which his name is registered as a voter.",
+        "short_explanation": "You must bring your official Permanent Voter Card (PVC) to the polling unit where you are registered in order to be accredited and allowed to vote.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Dole ne mai son kada kuri'a ya gabatar da katin zabensa na dindindin (PVC) a rumfar zaben da aka yi masa rajista domin a tantance shi kafin ya kada kuri'a.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Gbogbo eniyan ti o fe dibo gbodo fi kaadi idibo re (PVC) han si osise idibo ni agbegbe ti oruko re wa fun ijeri ki o to le dibo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Onye obula choro ime vootu ga-eweta kaadi PVC ya n'ebe a na-eme ntuli aka ebe aha ya di maka nkwado tupu o nye vootu.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_02_BVAS_FAILURE_BACKUP",
+      "topic": "BVAS Accreditation Failure Protocol",
+      "statutory_section": "Electoral Act 2026 Section 47(3)",
+      "chunk_id": "EA2026-S47-SS3",
+      "english": {
+        "verbatim_quote": "Where a smart card reader deployed for accreditation of voters fails to function in any unit and a fresh card reader is not deployed, the election in that unit shall be postponed and shall take place within 24 hours if another card reader is provided.",
+        "short_explanation": "If the BVAS device fails and a replacement cannot be provided immediately, voting at that polling unit is postponed and must take place within 24 hours once a functional device arrives.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Idan na'urar tantancewa ta lalace a rumfar zabe kuma ba a kawo wata ba, za a dage zaben na tsawon sa'o'i 24 har sai an kawo sabuwar na'ura.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Bi ero ijeri ba baje ni ibi idibo ti a ko si le ri omiran ropo lesekese, a o sun idibo siwaju laarin wakati 24 ti ero miran ba de.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "O buru na igwe e ji akwado ndi na-eme vootu emebie na enweghi nke ozo, a ga-eyigharị ntuli aka n'ebe ahu rue awa 24 ma e nwee nke ozo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_03_OVERVOTING_CANCELLATION",
+      "topic": "Over-voting and Polling Unit Cancellation",
+      "statutory_section": "Electoral Act 2026 Section 51(2)",
+      "chunk_id": "EA2026-S51-SS2",
+      "english": {
+        "verbatim_quote": "Where the number of votes cast at an election in any polling unit exceeds the number of accredited voters in that polling unit, the Presiding officer shall cancel the result of the election in that polling unit.",
+        "short_explanation": "If the total ballots counted exceed the number of voters accredited on the BVAS, the presiding officer must cancel the election result for that polling unit.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Idan adadin kuri'un da aka kada a rumfar zabe ya zarce adadin mutanen da aka tantance, jami'in zabe zai soke sakamakon zaben wannan rumfa.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Bi iye ibo ti a da ba po ju iye awon oludibo ti a fowo si lo, osise idibo gbodo pa abajade ibo na re ni agbegbe idibo yen.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Ebe onu ogugu ndi mere vootu karia ndi enyere nzere nkwado, onye na-elekota ntuli aka ga-akagbu ihe nile si na vootu ahu puta.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_04_ELECTION_NOTICE_TIMELINE",
+      "topic": "Notice of Election Publication Timeline",
+      "statutory_section": "Electoral Act 2026 Section 28(1)",
+      "chunk_id": "EA2026-S28-SS1",
+      "english": {
+        "verbatim_quote": "The Commission shall, not later than 360 days before the day appointed for holding of an election under this Act, publish a notice in each State of the Federation and the Federal Capital Territory...",
+        "short_explanation": "INEC must publish the official notice of a general election at least 360 days (or 300 days under unconfirmed 2026 proposed amendments) before election day.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Hukumar zabe za ta sanar da ranar zabe a kalla kwanaki 360 kafin ranar gudanar da babban zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Ajo eleto idibo gbodo gbe ifitonile jade ni ko kere ju ojo 360 saaju ojo idibo gbogbogbo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "INEC ga-eweputa ozi maka ubochi ntuli aka na obere ubochi 360 tupu ubochi ntuli aka rute.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_05_VOTER_QUALIFICATION_AGE",
+      "topic": "Voter Registration Age and Citizenship",
+      "statutory_section": "Electoral Act 2026 Section 12(1)",
+      "chunk_id": "EA2026-S12-SS1",
+      "english": {
+        "verbatim_quote": "A person shall be qualified to be registered as a voter if such person is a citizen of Nigeria, has attained the age of 18 years on or before the date of registration...",
+        "short_explanation": "To register as a voter in Nigeria, you must be a Nigerian citizen and at least 18 years of age.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Duk dan Najeriya da ya cika shekaru 18 a duniya ko sama da haka yana da damar yin rajistar zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Enikeni ti o ba je omo orile-ede Naijiria ti o si ti pe omo odun 18 ni eto lati forukosile gege bi oludibo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Mmadu obula bu nwa amaala Naijiria ma gbaala afo 18 nwere ikike idebanye aha ya maka vootu.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_06_VOTER_TRANSFER_RESIDENCE",
+      "topic": "Transfer of Voter Registration",
+      "statutory_section": "Electoral Act 2026 Section 13(1)",
+      "chunk_id": "EA2026-S13-SS1",
+      "english": {
+        "verbatim_quote": "Any person who is registered as a voter, at any time before the date of the election, may apply in writing to the Electoral Officer of the Local Government Area where he is currently resident for transfer of his registration...",
+        "short_explanation": "If you move your residence, you can apply in writing to the local INEC Electoral Officer to transfer your voter registration to your new polling area.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Duk wanda ya canza wurin zama zai iya neman a mayar da rajistar zabensa zuwa sabon wurin da yake zaune ta hanyar rubuta wasika ga jami'in zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Enikeni ti o ba yi ibugbe re pada le ko iwe si osise INEC ti ijoba ibile re lati gbe iforukosile re lo si agbegbe tuntun.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Onye obula kwagara ebe ozo nwere ike ide akwukwo nye onye isi INEC na mpaghara ya ka ebufee aha ya n'ebe ohuru.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_07_DELIVERY_NOMINATION_PAPERS",
+      "topic": "Place of Delivery of Nomination Papers",
+      "statutory_section": "Electoral Act 2026 Section 28(1)(b)",
+      "chunk_id": "EA2026-S28-SS1",
+      "english": {
+        "verbatim_quote": "stating the appointed place at which nomination papers are to be delivered.",
+        "short_explanation": "Candidate nomination papers must be delivered to the specific official venue stated in INEC's published election notice.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Dole ne a mika takardun tsayawa takara a wurin da hukumar zabe ta ayyana a cikin sanarwar zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "A gbodo fi awon iwe yiyan oludije sile ni ibi ti ajo INEC ti so pato ninu ifitonile idibo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "A ga-enyefe akwukwo ndi na-azo okwa n'ebe INEC kwuru na ozi ntuli aka ha.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_08_POLLING_UNIT_RESULT_DISPLAY",
+      "topic": "Public Display of Polling Unit Results",
+      "statutory_section": "Electoral Act 2026 Section 60(2)",
+      "chunk_id": "EA2026-S60-SS3",
+      "english": {
+        "verbatim_quote": "The Presiding officer shall cause to be delivered to the Constituency Collation Officer and to the police officer in charge of the polling station, a copy of the result of the poll, and shall also cause a copy to be displayed at the polling unit for public inspection.",
+        "short_explanation": "Immediately after counting votes at the polling unit, the presiding officer must display a copy of the result (Form EC8A) at the polling unit for public inspection.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Bayan kammala kidayar kuri'u, jami'in rumfar zabe dole ne ya manna kwafin sakamakon zabe a rumfar domin jama'a su gani.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Leyin kika ibo tan, osise idibo gbodo lẹ akojọ abajade ibo mo ibi idibo ki gbogbo eniyan le rii.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Ozugbo a guchara vootu, onye na-elekota ya ga-amado akwukwo ihe si na vootu puta n'ebe ntuli aka ka onye obula hu ya.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_09_ELECTRONIC_TRANSMISSION",
+      "topic": "Electronic Transmission of Results to IReV",
+      "statutory_section": "Electoral Act 2026 Section 60(3) + INEC Electronic Transmission Procedure 2026",
+      "chunk_id": "EA2026-S60-SS3",
+      "english": {
+        "verbatim_quote": "The Presiding officer shall transfer the results including total number of accredited voters and the results of the ballot in a manner as prescribed by the Commission.",
+        "short_explanation": "Presiding officers scan and electronically transmit polling unit results (Form EC8A) and accreditation counts directly to the INEC Result Viewing Portal (IReV) using the BVAS.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Jami'in rumfar zabe zai tura sakamakon zabe da yawan mutanen da aka tantance kai tsaye ta hanyar na'urar BVAS zuwa shafin IReV na hukumar zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Osise ibudo idibo yoo fi ero BVAS gbe akojọ abajade ibo ati iye awon ti a se ijeri won sori oju opo IReV taara.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Onye na-elekota ebe ntuli aka ga-eji igwe BVAS ziga ihe si na vootu puta na onu ogugu ndi enyere nzere na IReV portal.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_10_COLLATION_VERIFICATION",
+      "topic": "Verification of Collation Results",
+      "statutory_section": "Electoral Act 2026 Section 62(4)",
+      "chunk_id": "EA2026-S62-SS4",
+      "english": {
+        "verbatim_quote": "A Collation Officer or Returning Officer at an election shall verify the results of the election by comparing the results presented to him with the results transferred electronically under section 60(3)...",
+        "short_explanation": "Collation and returning officers must verify physical results by comparing them directly with the results transmitted electronically before declaring final outcomes.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Jami'in tattara sakamako dole ne ya tabbatar da gaskiyar sakamakon takarda ta hanyar kwatanta shi da sakamakon da aka tura ta yanar gizo kafin sanarwa.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Osise igba abajade wole gbodo se ayewo nipa sise afiwe iwe abajade pelu eyi ti a fi ero gbe sori ayelujara saaju ki o to so eni ti o jawe olubori.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Onye na-achikota nsonaazụ ga-eleba anya site n'iji nsonaazụ di na akwukwo tuwere nke e zigara na intaneti tupu o kwuputa onye meriri.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    }
+  ]
+}
