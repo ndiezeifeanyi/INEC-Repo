@@ -84,6 +84,11 @@ NLLB_MODEL_NAME = os.environ.get("NLLB_MODEL_NAME", "facebook/nllb-200-distilled
 # Nigerian Pidgin strategy: 'rule_mapped' (default, highest MRR 0.700), 'pass_through', or 'abstain'
 PIDGIN_HANDLING_STRATEGY = os.environ.get("PIDGIN_HANDLING_STRATEGY", "rule_mapped")
 
+# WhatsApp Cloud API & Webhook Verification (Phase 6)
+WHATSAPP_APP_SECRET = os.environ.get("WHATSAPP_APP_SECRET", "")
+WHATSAPP_VERIFY_TOKEN = os.environ.get("WHATSAPP_VERIFY_TOKEN", "inec_civic_verify_token_2026")
+
+
 
 
 
