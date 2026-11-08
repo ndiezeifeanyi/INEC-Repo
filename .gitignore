@@ -1,9 +1,12 @@
+.clean_venv/
+.venv/
+env/
+data/cache/
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -23,5 +26,4 @@ wheels/
 .coverage
 htmlcov/
 .env
-.venv
 

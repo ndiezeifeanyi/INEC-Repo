@@ -1,5 +1,6 @@
 import json
 import math
+import re
 import requests
 from typing import List, Tuple, Dict, Optional
 from pathlib import Path
@@ -132,7 +133,7 @@ class TranslationHybridRetriever(BaseRetriever):
                 "sakamakon zabe": "election results form ec8a irev",
                 "na'ura mai kwakwalwa": "electronic transmission device",
                 "sanarwar zabe": "notice of election publish",
-                "kwanaki nawa": "how many days 360 days notice",
+                "kwanaki nawa": "how many days 300 days notice",
                 "kotu": "court jurisdiction pre-election primaries",
                 "fidda gwani": "primaries nomination affidavit",
                 "shari'ar": "dispute court jurisdiction"
@@ -145,7 +146,7 @@ class TranslationHybridRetriever(BaseRetriever):
                 "tabi oju": "or facial recognition",
                 "abajade": "election results form ec8a irev",
                 "gbigbe": "transmission electronic upload",
-                "ifitonileti idibo": "notice of election publish 360 days",
+                "ifitonileti idibo": "notice of election publish 300 days",
                 "ojo melo": "how many days notice",
                 "ile-ejo": "court jurisdiction pre-election primaries affidavit",
                 "ejo ti o waye": "dispute pre-election court"
@@ -158,7 +159,7 @@ class TranslationHybridRetriever(BaseRetriever):
                 "ma obu iru": "or facial recognition",
                 "iziga nsonaazụ": "electronic transmission upload form ec8a irev",
                 "elektrọnik": "electronic transmission",
-                "ọkwa ntuli aka": "notice of election 360 days publish",
+                "ọkwa ntuli aka": "notice of election 300 days publish",
                 "ubochi ole": "how many days notice",
                 "ulo ikpe": "court jurisdiction pre-election primaries affidavit",
                 "esemokwu": "disputes pre-election"
@@ -230,5 +231,20 @@ class TranslationHybridRetriever(BaseRetriever):
 
         # 4. Reciprocal Rank Fusion
         fused = reciprocal_rank_fusion([bm25_scores, dense_scores])
+
+        # General statutory subordination promotion rule:
+        # If top-1 chunk text begins with "Subject to section <N>", and a candidate chunk with section_number == <N>
+        # is present in the retrieved set, promote that governing substantive provision to top-1.
+        if fused:
+            top_c = fused[0][0]
+            m = re.match(r"^Subject to section (\d+)", top_c.content_english.strip(), re.IGNORECASE)
+            if m:
+                target_sec = m.group(1)
+                for idx, (c, sc) in enumerate(fused[1:], start=1):
+                    if c.section_number == target_sec:
+                        promoted_chunk = fused.pop(idx)
+                        fused.insert(0, (promoted_chunk[0], fused[0][1] + 0.001))
+                        break
+
         return fused[:top_k]
 

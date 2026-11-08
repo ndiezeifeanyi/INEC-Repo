@@ -216,7 +216,7 @@ class GroundedAnswerGenerator:
             elif top_chunk.section_number == "38":
                 raw_ans = "Bisa ga ka'idojin INEC na 2026, jami'in zabe zai dauki hoton sakamakon zabe (Form EC8A) ta na'urar BVAS sannan ya aika da shi kai tsaye zuwa shafin IReV da cibiyar tattara sakamako kafin ya bar rumfar zabe."
             elif top_chunk.section_number == "28":
-                raw_ans = "Bisa ga sashe na 28(1) na Dokar Zabe ta 2026, wajibi ne hukumar INEC ta bayyana sanarwar zabe kwanaki 360 kafin ranar zabe a kowace jiha da Babban Birnin Tarayya."
+                raw_ans = "Bisa ga sashe na 28(1) na Dokar Zabe ta 2026, wajibi ne hukumar INEC ta bayyana sanarwar zabe kwanaki 300 kafin ranar zabe a kowace jiha da Babban Birnin Tarayya."
             elif top_chunk.section_number in ["29", "29A"]:
                 raw_ans = "Game da shari'ar zaben fidda gwani, Dokar Zabe ta 2026 sashe na 29(5) ta tanadi cewa dan takarar da ya shiga zaben fidda gwani zai iya kai kara a Babbar Kotun Tarayya. (Kula: Sashe na 29A yana matsayin UNCONFIRMED: Majalisun biyu sun amince da shi a watan Afrilu/Mayu 2026; ban sami tabbacin sa hannun shugaban kasa ba; duba Gazette)."
             else:
@@ -232,7 +232,7 @@ class GroundedAnswerGenerator:
             elif top_chunk.section_number == "38":
                 raw_ans = "Gege bi ilana INEC 2026, osise idibo gbodo ya aworan abajade (Form EC8A) pelu ero BVAS ki o si gbe e lo taara si ibudo ayelujara IReV ki o to kuro ni ibudo ibo."
             elif top_chunk.section_number == "28":
-                raw_ans = "Gege bi abala 28(1) ninu Ofin Idibo 2026, o ye ki INEC kede ifitonileti idibo ni ojo 360 saaju ojo idibo ni gbogbo ipinle."
+                raw_ans = "Gege bi abala 28(1) ninu Ofin Idibo 2026, o ye ki INEC kede ifitonileti idibo ni ojo 300 saaju ojo idibo ni gbogbo ipinle."
             elif top_chunk.section_number in ["29", "29A"]:
                 raw_ans = "Lori ejo ti o waye saaju idibo, abala 29(5) Ofin Idibo 2026 gba eni ti o kopa ninu idibo abele laaye lati gbe ejo lo si Ile-ejo Giga ti Ijoba Apapo. (Akiyesi: Abala 29A si wa ni ipo UNCONFIRMED: Ile asofin mejeeji fowo si ni Osu Igbe/Ebibi 2026; nko le fi idi ifowo si aare mule; ye Gazette wo)."
             else:
@@ -248,7 +248,7 @@ class GroundedAnswerGenerator:
             elif top_chunk.section_number == "38":
                 raw_ans = "Dika usoro INEC 2026 si di, onye na-elekọta ebe ntuli aka ga-ese foto akwukwo Form EC8A site na igwe BVAS zipu ya na IReV portal tupu o si ebe ahu puo."
             elif top_chunk.section_number == "28":
-                raw_ans = "Dika ngalaba 28(1) nke Iwu Ntuli Aka 2026 si kwuo, INEC ga-eweputa okwa ntuli aka ubochi 360 tupu ubochi ntuli aka n'ala anyi."
+                raw_ans = "Dika ngalaba 28(1) nke Iwu Ntuli Aka 2026 si kwuo, INEC ga-eweputa okwa ntuli aka ubochi 300 tupu ubochi ntuli aka n'ala anyi."
             elif top_chunk.section_number in ["29", "29A"]:
                 raw_ans = "Maka ikpe esemokwu tupu ntuli aka, ngalaba 29(5) nke Iwu 2026 nyere onye zoro okwa ikike ịgba akwụkwọ n'Ụlọ Ikpe Kasị Elu nke Gọọmenti Etiti (Federal High Court). (Rịba ama: Ngalaba 29A nọ n'ụdị UNCONFIRMED: Ụlọ omeiwu abụọ kwadoro ya na Eprel/Mee 2026; enweghị m ike nkwenye nbinye aka onye isi ala; lelee Gazette)."
             else:

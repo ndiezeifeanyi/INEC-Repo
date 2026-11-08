@@ -56,10 +56,11 @@ KNOWN_FAKE_DOMAINS = [
     "pvc-inecnigeria-org.blogspot.com"
 ]
 
-# Abstention Safeguards (Audit 7 Pre-registered Thresholds)
+# Abstention Safeguards (Audit 7 Inspected-Then-Set Thresholds - NOT pre-registered)
+# NOTE: The score-gap threshold was inspected and set during Audit 7 evaluation, not pre-registered.
 # Score-gap threshold: If (top_1_score - top_2_score) <= SCORE_GAP_THRESHOLD, top-1 is not clearly ahead.
 SCORE_GAP_THRESHOLD = 0.0001
-# Electoral Offences section range in Electoral Act 2026 (Part VII: Sections 114 to 135)
-ELECTORAL_OFFENCES_SECTION_RANGE = (114, 135)
+# Electoral Offences section range in Electoral Act 2026 (Part VII: Sections 118 to 133, Gazette Page 54-62)
+ELECTORAL_OFFENCES_SECTION_RANGE = (118, 133)
 
 

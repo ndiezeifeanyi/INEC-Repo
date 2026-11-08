@@ -40,9 +40,10 @@
 
 6. **Retrieval Performance & Circularity Disclosure**:
    - On the 20-question statutory set where query phrases map to indexed terms, Path B achieves Recall@3 of **90.0%** and MRR of **0.639**.
-   - On the held-out set (n=8, authored by developer test author, synthetic voter queries held out from index design), Recall@3 is **25.0%** [95% Wilson Score Interval: 7.1% - 59.1%], MRR is **0.250**.
+   - On the original held-out set (commit `d026f78`), 4 of the 8 queries targeted `INEC2026-REG-S18-SS1`, which ceased to exist when the ungrounded guidelines corpus was removed in Audit 2. For the 4 queries with valid Gazette targets, the like-for-like retrieval hit rate was **1 of 4 (25.0%)** [95% Wilson CI: 4.6% - 69.9%].
+   - On the revised 8-query held-out set (n=8, authored by developer test author, synthetic voter queries held out from index design) without translation assistance, Recall@3 was **25.0% (2/8)** [95% Wilson Score Interval: 7.1% - 59.1%], MRR was **0.250**.
+   - With real translation step integrated (Google Cloud Translation with explicit user privacy disclosure), held-out Recall@3 reaches **75.0% (6/8)** [95% Wilson Score Interval: 40.9% - 92.9%].
    - Per-language breakdowns are suppressed because $n=2$ per language is below the statistical threshold of $n=20$.
-   - **Circularity Note**: When voter queries use synonyms not captured in the unreviewed translation dictionary, retrieval falls back to character/token overlap, leading to reduced recall.
 
 7. **Document Ingestion Status**:
    - **Electoral Act 2026 Gazette**: Fully downloaded and parsed via `pypdf` (121 pages, SHA-256: `dee5a37b62b920c9cfaf009b7dc1dcf5ccb5cbbeff807f5487eac868ce882fd6`). Excludes Table of Contents (Pages 3-8). Main body parsed into Sections 1-156 (455 chunks); First Schedule parsed into separate paragraphs `EA2026-SCH1-P1` through `P55` (55 chunks). All 510 chunk IDs are unique.

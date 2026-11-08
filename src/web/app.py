@@ -31,13 +31,45 @@ checker = OfficialSourceChecker()
 class AskRequest(BaseModel):
     query: str
     language: str = "en"  # en, ha, yo, ig
+    allow_translation: bool = False
 
 class CheckRequest(BaseModel):
     item: str
 
+from src.config import OFFICIAL_INEC_DOMAINS, KNOWN_FAKE_DOMAINS
+
+@app.get("/health")
+async def health_check():
+    """Service health and corpus readiness check."""
+    loaded_files = [
+        "data/processed/electoral_act_2026.jsonl",
+        "data/processed/inec_transmission_procedure.jsonl",
+        "data/processed/inec_bulletins.jsonl"
+    ]
+    electoral_act_chunks = sum(1 for c in retriever.chunks if "EA2026" in c.chunk_id)
+    transmission_chunks = sum(1 for c in retriever.chunks if "INEC2026-ET" in c.chunk_id)
+    bulletin_records = len(checker.bulletins)
+    total_chunks = len(retriever.chunks) + bulletin_records
+
+    return {
+        "status": "healthy",
+        "service": "INEC Multilingual Civic QA & Verifier",
+        "corpus_chunks": len(retriever.chunks),
+        "total_corpus_records": total_chunks,
+        "breakdown": {
+            "electoral_act_chunks": electoral_act_chunks,
+            "transmission_procedure_chunks": transmission_chunks,
+            "verification_bulletin_records": bulletin_records,
+            "total_indexed_retrieval_chunks": len(retriever.chunks)
+        },
+        "files_loaded": loaded_files,
+        "official_domains": len(OFFICIAL_INEC_DOMAINS),
+        "known_fakes": len(KNOWN_FAKE_DOMAINS)
+    }
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="index.html")
 
 @app.post("/api/v1/ask", response_model=VoterAnswer)
 async def ask_election_rule(req: AskRequest):
@@ -49,13 +81,14 @@ async def ask_election_rule(req: AskRequest):
     if lang not in ["en", "ha", "yo", "ig"]:
         lang = "en"
 
-    # Retrieve chunks
-    retrieved = retriever.retrieve(req.query, top_k=3, lang=lang)
+    # Retrieve chunks (with user opt-in flag for online gtx endpoint)
+    retrieved = retriever.retrieve(req.query, top_k=3, lang=lang, allow_online=req.allow_translation)
 
     # Generate grounded response with citations
     answer = generator.generate_answer(req.query, retrieved, lang=lang)
     return answer
 
+@app.post("/check", response_model=VerificationResult)
 @app.post("/api/v1/check", response_model=VerificationResult)
 async def check_link_or_message(req: CheckRequest):
     """Verifies whether a link or message matches official published INEC records."""

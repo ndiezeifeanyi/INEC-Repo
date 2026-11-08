@@ -53,9 +53,9 @@
   {
     "id": "chk_007",
     "type": "message",
-    "input": "INEC has scheduled the 2027 Presidential and National Assembly elections for Saturday 16th January 2027 and Governorship and State Houses of Assembly for Saturday 6th February 2027.",
+    "input": "The Continuous Voter Registration (CVR) exercise has ended. Thank you for your participation. Please expect an email notification once administrative processes are completed, and follow the INEC Website for official updates.",
     "expected_status": "Matches an official source",
-    "description": "Verbatim excerpt of published official INEC election timetable"
+    "description": "Verbatim excerpt of published official INEC CVR portal announcement"
   },
   {
     "id": "chk_008",

@@ -20,10 +20,21 @@ function switchTab(tab) {
   }
 }
 
+function handleLangChange() {
+  const lang = document.getElementById("lang-select").value;
+  const optinGroup = document.getElementById("optin-translation-group");
+  if (lang !== "en") {
+    optinGroup.style.display = "block";
+  } else {
+    optinGroup.style.display = "none";
+  }
+}
+
 async function handleAsk(e) {
   e.preventDefault();
   const query = document.getElementById("query-input").value.trim();
   const lang = document.getElementById("lang-select").value;
+  const allowTranslation = document.getElementById("translate-optin") ? document.getElementById("translate-optin").checked : false;
   const resultBox = document.getElementById("ask-result");
   const answerBody = document.getElementById("answer-body");
   const answerPlainBody = document.getElementById("answer-plain-body");
@@ -39,7 +50,7 @@ async function handleAsk(e) {
     const res = await fetch("/api/v1/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query, language: lang })
+      body: JSON.stringify({ query, language: lang, allow_translation: allowTranslation })
     });
     const data = await res.json();
 

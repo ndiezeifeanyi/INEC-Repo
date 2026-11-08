@@ -67,12 +67,14 @@ def test_retrieval_benchmarks():
     print("\n--- RETRIEVAL BENCHMARK EVALUATION RESULTS ---")
     print(json.dumps(summary, indent=2))
 
-    # Assert that Path B meets production standards (Recall@3 >= 85%, MRR >= 0.60)
+    # DEVELOPER-SET THRESHOLDS (calibrated during prototype iteration on initial benchmark run):
+    # Recall@3 >= 85.0%, MRR >= 0.60
+    # Note: MRR threshold was adjusted from 0.75 to 0.60 following removal of ungrounded guidelines corpus.
     path_b_r3 = float(summary["Path B (Translate-Hybrid)"]["Recall@3"].replace("%", ""))
     path_b_mrr = float(summary["Path B (Translate-Hybrid)"]["MRR"])
 
-    assert path_b_r3 >= 85.0, f"Path B Recall@3 is below target: {path_b_r3}%"
-    assert path_b_mrr >= 0.60, f"Path B MRR is below target: {path_b_mrr}"
+    assert path_b_r3 >= 85.0, f"Path B Recall@3 is below developer-set target: {path_b_r3}%"
+    assert path_b_mrr >= 0.60, f"Path B MRR is below developer-set target: {path_b_mrr}"
 
 if __name__ == "__main__":
     res = run_retrieval_evaluation()
