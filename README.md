@@ -108,7 +108,7 @@ Response:
       "document_title": "Electoral Act 2026",
       "section": "47",
       "subsection": "2",
-      "version": "Official Gazette No. 24, Vol. 113",
+      "version": "Official Gazette No. 40, Vol. 113",
       "retrieval_date": "2026-11-01",
       "source_url": "https://nass.gov.ng/documents/download/11248",
       "legal_status": "ENACTED"
