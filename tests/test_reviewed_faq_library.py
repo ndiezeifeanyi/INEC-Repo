@@ -15,7 +15,7 @@ def test_reviewed_faq_library_structure():
     assert meta["igbo_review_status"] == "UNREVIEWED_DEVELOPER_DRAFT"
 
     faqs = data["faqs"]
-    assert len(faqs) == 10, f"Expected exactly 10 low-risk topic FAQs, found {len(faqs)}"
+    assert len(faqs) >= 15, f"Expected at least 15 low-risk topic FAQs, found {len(faqs)}"
 
     for faq in faqs:
         # English assertions

@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "last_audit_date": "2026-11-08",
-    "description": "Pre-reviewed FAQ Library covering 10 low-risk civic election topics. Excludes tribunals and offences.",
+    "description": "Pre-reviewed FAQ Library covering 16 low-risk civic election topics. Excludes tribunals and offences.",
     "governing_statute": "Electoral Act 2026 (Federal Republic of Nigeria Official Gazette No. 15, Vol. 113)",
     "english_review_status": "REVIEWED_STATUTORY_AUTHORITY",
     "hausa_review_status": "UNREVIEWED_DEVELOPER_DRAFT",
@@ -237,6 +237,144 @@
       },
       "igbo": {
         "draft_translation": "Onye na-achikota nsonaazụ ga-eleba anya site n'iji nsonaazụ di na akwukwo tuwere nke e zigara na intaneti tupu o kwuputa onye meriri.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_11_VOTER_REGISTER_INSPECTION",
+      "topic": "Display and Inspection of Voter Register",
+      "statutory_section": "Electoral Act 2026 Section 19(1)",
+      "chunk_id": "EA2026-S19-SS1",
+      "english": {
+        "verbatim_quote": "Subject to the provisions of section 9 (6) of this Act, the Commission shall, not later than 90 days to a general election, appoint a period of seven days during which a copy of the voters' register for each Local Government, Area Council or Ward shall be displayed or published for public scrutiny at every registration area and on its official website...",
+        "short_explanation": "At least 90 days before a general election, INEC must display the register of voters for seven days at registration areas and on its website for public scrutiny.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Kafin kwanaki 90 zuwa babban zabe, hukumar INEC za ta fitar da rajistar masu kada kuri'a na tsawon kwanaki bakwai domin jama'a su duba a kowace gunduma da shafin yanar gizo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Ko kere ju ojo 90 saaju idibo apapo, ajo INEC gbodo fi akojo iforukosile awon oludibo sita fun ojo meje fun ayewo gbogbo eniyan ni gbogbo agbegbe ati lori ayelujara.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Tupu ubochi 90 rute ntuli aka zuru oke, INEC ga-eweputa aha ndi debanyere aha vootu rue ubochi asaa ka mmadu nile nwee ike ileba anya n'ebe nile na intaneti.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_12_CORRECTION_OF_VOTER_REGISTER",
+      "topic": "Claims and Objections on Voter Register",
+      "statutory_section": "Electoral Act 2026 Section 20(1)",
+      "chunk_id": "EA2026-S20-SS1",
+      "english": {
+        "verbatim_quote": "The Commission may appoint as a revision officer any person to hear and determine claims for and objection to any entry in or omission from the preliminary list of voters and may appoint such number of other persons as it deems necessary to assist the Revision Officer.",
+        "short_explanation": "INEC appoints revision officers to hear and resolve citizen claims, corrections, and objections regarding omissions or erroneous names in the preliminary register of voters.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "INEC na nada jami'an bitar rajista domin sauraron korafe-korafe da gyaran kura-kuran sunayen da aka cire ko aka rubuta ba daidai ba a cikin rajistar masu zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "INEC le yan osise atunse lati gbo ki o si pari awon ejo tabi atunse nipa oruko ti a yo kuro tabi ti a ko ni aito sinu iwe akojo oludibo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "INEC nwere ike ikwado ndi oru ga-ege nti ma dozie mkpesa ma obu mmezi maka aha ndi ewepuru ma obu deputara na-ezighi ezi na ndekọ aha vootu.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_13_HOURS_OF_POLL",
+      "topic": "Opening of Poll and Ballot Box Sealing",
+      "statutory_section": "Electoral Act 2026 Section 46(1)",
+      "chunk_id": "EA2026-S46-SS1",
+      "english": {
+        "verbatim_quote": "At the hour fixed for opening of the poll before the commencement of accreditation and voting, the Presiding Officer shall open the empty ballot box or present the voting device and show same to such persons as may lawfully be present at the polling unit and shall then close and seal the box in such manner as to prevent its being opened by any unauthorised person.",
+        "short_explanation": "At the opening of voting, the presiding officer must publicly demonstrate to all present that the ballot box is empty, before securely sealing it in full public view.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "A lokacin bude rumfar zabe kafin a fara tantancewa, dole ne jami'in zabe ya nuna akwatin zabe a fili cewa babu komai a ciki sannan ya rufe shi kuma ya lika hatimi a gaban kowa.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Ni akoko ti a yan lati bere idibo ki a to se ijeri, osise idibo gbodo fi apoti ibo ti ko ni nkankan ninu han gbogbo eniyan ki o to titi pa pelu edidi.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "N'oge oge ntuli aka ruru tupu amalite nkwado, onyeisi ntuli aka ga-emeghe igbe vootu gosi onye obula na o nweghi ihe di na ya tupu o mechie ma kpochi ya nke oma.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_14_ASSISTANCE_TO_DISABLED_VOTERS",
+      "topic": "Assistance for Voters with Disabilities",
+      "statutory_section": "Electoral Act 2026 Section 54(1)",
+      "chunk_id": "EA2026-S54-SS1",
+      "english": {
+        "verbatim_quote": "A voter with visual impairment or other form of disability who is otherwise unable to distinguish symbol or who suffers from any other physical disability may be accompanied into the polling unit by a person chosen by him or her and that person shall, after informing the Presiding Officer of the disability, be permitted to accompany the voter into the voting compartment and assist the voter to make his or her mark in accordance with the procedure prescribed by the Commission: Provided that no political party agent, candidate or party official shall be permitted to accompany a voter into the voting compartment.",
+        "short_explanation": "A voter with a visual impairment or physical disability may be assisted in marking their ballot by a trusted person of their own choice (excluding candidates or party agents) after notifying the presiding officer.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Mai bukata ta musamman ko makaho na iya zuwa da wani mutum da ya amince da shi domin ya taimaka masa kada kuri'a, amma ba wakilin jam'iyya ko dan takara ba.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Oludibo ti o ni ailera oju tabi ara le mu eniyan ti o fe wo ibi idibo lati ran lowo lati samisi iwe ibo re, sugbon asoju egbe oselu tabi oludije ko gbodo se bee.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Onye nwere nkwaru anya ma obu ahu nwere ike iji onye o turu anya ya bata n'ime ebe ntuli aka ka o nyere ya aka ime vootu, mana o nweghi onye nnochiteanya otu ndoro-ndoro a ga-ekwe ka o mee nke a.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_15_ACCREDITED_POLLING_AGENTS",
+      "topic": "Appointment of Party Polling Agents",
+      "statutory_section": "Electoral Act 2026 Section 43(1)",
+      "chunk_id": "EA2026-S43-SS1",
+      "english": {
+        "verbatim_quote": "Each candidate, in consultation with his political party may, by notice in writing addressed to the Resident Electoral Commissioner of the State, appoint a polling agent for each polling unit and collation centre in the Local Government Area or Area Council for which it has candidate and the notice, which sets out the name, address and contact details of the polling agent, shall be accompanied by two passport photographs of each polling agent and sample signature of the polling agent and be given to the electoral officer at least 14 days before the date fixed for the election: Provided that no person who is serving as Chairman or member of a Local Government Area or Area Council, Commissioner, Deputy Governor or Governor of a State, Minister of the Federal Government, or any other person holding elective or appointive political office under any tier of government and who has not resigned from his office at least three months prior to the said election shall serve as a polling agent...",
+        "short_explanation": "Candidates and political parties may appoint one polling agent per polling unit at least 14 days before the election; public office holders and government officials are barred from acting as polling agents.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Kowace jam'iyya ko dan takara na iya nada wakilin rumfar zabe akalla kwanaki 14 kafin zabe; an haramtawa masu rike da mukaman gwamnati zama wakilan zabe.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Oludije ati egbe oselu le yan asoju ibudo idibo ni ko kere ju ojo 14 saaju idibo; awon ti o n di ipo ijoba mu ko ni eto lati sise gege bi asoju ibudo idibo.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Onye na-azo okwa na otu ndoro-ndoro ya nwere ike ikwado onye nnochi anya n'ebe ntuli aka na obere ubochi 14 tupu ntuli aka; amachibidoro ndi na-achi ochichi izo nnochi anya.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      }
+    },
+    {
+      "id": "FAQ_16_SECRET_BALLOT_IDENTIFICATION",
+      "topic": "Rejection of Marked Ballot Papers",
+      "statutory_section": "Electoral Act 2026 Section 52(1)",
+      "chunk_id": "EA2026-S52-SS1",
+      "english": {
+        "verbatim_quote": "Where a voter makes any writing or mark on a ballot paper by which he or she may be identified, such ballot paper shall be rejected provided that any print resulting from the staining of the thumb of the voter in the voting compartment shall not be or be deemed to be a mark of identification under this section.",
+        "short_explanation": "Voting is by secret ballot; any ballot paper marked with writing that reveals the voter's personal identity is rejected and invalidated, though thumbprint ink is completely normal and valid.",
+        "review_status": "REVIEWED_STATUTORY_AUTHORITY"
+      },
+      "hausa": {
+        "draft_translation": "Zabe na sirri ne; idan mai kada kuri'a ya rubuta wani abu da zai sa a gane ko wanene shi a takardar kuri'a, za a ki karbar wannan kuri'ar, amma shaidar yatsa ba ta bata kuri'a ba.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "yoruba": {
+        "draft_translation": "Idibo je ohun asiri; bi oludibo ba ko nkankan sori iwe ibo ti a le fi da mo, a o ko iwe ibo na, sugbon ite-ika ko je idamo ti o n ba ibo je.",
+        "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
+      },
+      "igbo": {
+        "draft_translation": "Vootu bu ihe nzuzo; o buru na onye mere vootu dee ihe obula n'akwukwo vootu a ga-eji mara ya, a ga-ajụ akwukwo ahu, mana mbiputa mkpisi aka adighi emebi ya.",
         "review_status": "UNREVIEWED_DEVELOPER_DRAFT"
       }
     }

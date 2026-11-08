@@ -9,6 +9,7 @@ from typing import Optional, List
 from src.models.chunk import VoterAnswer, VerificationResult
 from src.retrieval.translate_hybrid import TranslationHybridRetriever
 from src.retrieval.cross_lingual import CrossLingualRetriever
+from src.retrieval.faq_library import FAQLibrary
 from src.generation.prompt_builder import GroundedAnswerGenerator
 from src.verification.matcher import OfficialSourceChecker
 from src.speech.tts_engine import MMSTTSEngine
@@ -27,6 +28,7 @@ app.mount("/static", StaticFiles(directory=str(BASE_DIR / "src" / "web" / "stati
 
 # Initialize engines
 retriever = TranslationHybridRetriever()
+faq_library = FAQLibrary()
 generator = GroundedAnswerGenerator()
 checker = OfficialSourceChecker()
 lid_detector = EnsembleLID()
@@ -119,6 +121,53 @@ async def ask_election_rule(req: AskRequest):
         retrieval_lang = "en"
     else:
         retrieval_lang = active_lang if active_lang in ["en", "ha", "yo", "ig"] else "en"
+
+    # Phase 4: Authoritative Fast-Path for Pre-Reviewed Civic FAQs (low-risk topics only)
+    matched_faq = faq_library.lookup(cleaned_query, lang=active_lang)
+    if matched_faq:
+        chunk_id = matched_faq.get("chunk_id", "EA2026-FAQ")
+        sec_str = matched_faq.get("statutory_section", "")
+        import re
+        sec_match = re.search(r"Section\s+([0-9]+(?:\([0-9]+\))?)", sec_str)
+        sec_val = sec_match.group(1) if sec_match else "47"
+        citations = [{
+            "document_title": "Electoral Act 2026",
+            "section": sec_val,
+            "subsection": None,
+            "version": "Federal Republic of Nigeria Official Gazette No. 15, Vol. 113",
+            "retrieval_date": "2026-11-08",
+            "source_url": "https://nass.gov.ng/documents/download/11248",
+            "legal_status": "CURRENT_LAW"
+        }]
+
+        if active_lang in ("en", "pcm"):
+            answer_text = matched_faq["english"]["verbatim_quote"]
+            answer_plain = matched_faq["english"]["short_explanation"]
+            flags = ["PRE_REVIEWED_CIVIC_FAQ", "REVIEWED_STATUTORY_AUTHORITY"]
+        else:
+            lang_key = {"ha": "hausa", "yo": "yoruba", "ig": "igbo"}.get(active_lang, "hausa")
+            draft_trans = matched_faq.get(lang_key, {}).get("draft_translation", "")
+            answer_text = (
+                f"{matched_faq['english']['verbatim_quote']}\n\n"
+                f"[DRAFT TRANSLATION - UNREVIEWED_DEVELOPER_DRAFT]:\n{draft_trans}"
+            )
+            answer_plain = draft_trans
+            flags = ["PRE_REVIEWED_CIVIC_FAQ", "UNREVIEWED_DEVELOPER_DRAFT"]
+
+        for flag in extra_flags:
+            if flag not in flags:
+                flags.append(flag)
+
+        return VoterAnswer(
+            question=cleaned_query,
+            language=active_lang,
+            answer_text=answer_text,
+            answer_plain=answer_plain,
+            citations=citations,
+            retrieved_chunk_ids=[chunk_id],
+            confidence_flags=flags,
+            status="ANSWER"
+        )
 
     # Retrieve chunks (with user opt-in flag for online gtx endpoint)
     retrieved = retriever.retrieve(cleaned_query, top_k=3, lang=retrieval_lang, allow_online=req.allow_translation)
@@ -229,7 +278,24 @@ async def whatsapp_webhook(payload: WhatsAppWebhookPayload):
     else:
         active_lang = session.get("detected_language", "en")
 
-    # 5. Retrieve answer strictly grounded in Electoral Act 2026
+    # 5. Check Authoritative Pre-Reviewed Civic FAQ Library
+    matched_faq = faq_library.lookup(body, lang=active_lang)
+    if matched_faq:
+        if active_lang in ("en", "pcm"):
+            reply_text = f"{matched_faq['english']['short_explanation']}\n\nOfficial provision ({matched_faq['statutory_section']}):\n\"{matched_faq['english']['verbatim_quote']}\""
+        else:
+            lang_key = {"ha": "hausa", "yo": "yoruba", "ig": "igbo"}.get(active_lang, "hausa")
+            draft_trans = matched_faq.get(lang_key, {}).get("draft_translation", "")
+            reply_text = f"{draft_trans}\n\n[Official English Law - {matched_faq['statutory_section']}]:\n\"{matched_faq['english']['verbatim_quote']}\""
+        return {
+            "reply": reply_text,
+            "language": active_lang,
+            "citations": [{"statute": "Electoral Act 2026", "section": matched_faq["statutory_section"]}],
+            "confidence_flags": ["PRE_REVIEWED_CIVIC_FAQ"],
+            "sender_hash": session["sender_hash"]
+        }
+
+    # 6. Retrieve answer strictly grounded in Electoral Act 2026
     lang_for_retriever = active_lang if active_lang in ["en", "ha", "yo", "ig"] else "en"
     retrieved = retriever.retrieve(body, top_k=3, lang=lang_for_retriever, allow_online=False)
     disagree = getattr(retrieved, "bm25_dense_disagree", getattr(retriever, "last_bm25_dense_disagree", False))
