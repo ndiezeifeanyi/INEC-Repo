@@ -77,5 +77,13 @@ ENABLE_BGE_RERANKER = os.environ.get("ENABLE_BGE_RERANKER", "false").lower() in 
 BGE_M3_MODEL_NAME = os.environ.get("BGE_M3_MODEL_NAME", "BAAI/bge-m3")
 BGE_RERANKER_MODEL_NAME = os.environ.get("BGE_RERANKER_MODEL_NAME", "BAAI/bge-reranker-v2-m3")
 
+# Multilingual Query Translation Configuration (Phase 3)
+# Behind flags; defaults to False (fallback to file cache and offline civic dictionary)
+ENABLE_NLLB_LOCAL = os.environ.get("ENABLE_NLLB_LOCAL", "false").lower() in ("true", "1", "yes")
+NLLB_MODEL_NAME = os.environ.get("NLLB_MODEL_NAME", "facebook/nllb-200-distilled-600M")
+# Nigerian Pidgin strategy: 'rule_mapped' (default, highest MRR 0.700), 'pass_through', or 'abstain'
+PIDGIN_HANDLING_STRATEGY = os.environ.get("PIDGIN_HANDLING_STRATEGY", "rule_mapped")
+
+
 
 

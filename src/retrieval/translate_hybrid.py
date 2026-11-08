@@ -7,6 +7,7 @@ from pathlib import Path
 from src.models.chunk import LegalChunk
 from src.retrieval.base import BaseRetriever
 from src.retrieval.rrf import reciprocal_rank_fusion
+from src.retrieval.translation_engine import TranslationEngine, TranslationResult
 
 class RetrievalList(list):
     """List subclass preserving retrieved chunk tuples while carrying retrieval diagnostic metadata."""
@@ -44,8 +45,12 @@ class TranslationHybridRetriever(BaseRetriever):
         self.avg_doc_len = 0.0
         self.enable_online_translation = enable_online_translation
         self.cache_enabled = cache_enabled
-        self.cache_path = Path(__file__).resolve().parent.parent.parent / "data" / "cache" / "translation_cache.json"
-        self.translation_cache: Dict[str, str] = self._load_cache()
+        self.translation_engine = TranslationEngine(
+            enable_online=enable_online_translation,
+            cache_enabled=cache_enabled
+        )
+        self.cache_path = self.translation_engine.cache_path
+        self.translation_cache = self.translation_engine.cache
         self._build_bm25_index()
         self.last_bm25_top1: Optional[str] = None
         self.last_dense_top1: Optional[str] = None
@@ -110,92 +115,14 @@ class TranslationHybridRetriever(BaseRetriever):
         cache_enabled: Optional[bool] = None
     ) -> str:
         """Translates low-resource queries to English legal conceptual equivalents."""
-        if lang == "en":
-            return query
+        res = self.translation_engine.translate(
+            query=query,
+            lang=lang,
+            allow_online=allow_online,
+            cache_enabled=cache_enabled
+        )
+        return res.translated_text
 
-        use_cache = self.cache_enabled if cache_enabled is None else cache_enabled
-        cache_key = f"{lang}::{query.strip()}"
-        if use_cache and cache_key in self.translation_cache:
-            return self.translation_cache[cache_key]
-
-        online_allowed = self.enable_online_translation if allow_online is None else allow_online
-
-        # Step 1: Online translation via unofficial gtx endpoint with disclosure (if opt-in enabled)
-        if online_allowed and lang in ["ha", "yo", "ig"]:
-            try:
-                url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl={lang}&tl=en&dt=t&q=" + requests.utils.quote(query)
-                r = requests.get(url, timeout=3.0)
-                if r.status_code == 200:
-                    data = r.json()
-                    translated_parts = [part[0] for part in data[0] if part and part[0]]
-                    online_translated = "".join(translated_parts).strip()
-                    if online_translated:
-                        if use_cache:
-                            self.translation_cache[cache_key] = online_translated
-                            self._save_cache()
-                        return online_translated
-            except Exception:
-                # Network timeout or air-gapped run -> safely fall back to dictionary mapper
-                pass
-
-        # Step 2: Fallback dictionary mapper (developer draft)
-        translations = {
-            "ha": {
-                "tantance": "accreditation verify authenticate",
-                "mai kada kuri'a": "voter",
-                "mai zabe": "voter",
-                "na'urar bvas": "bvas device smart card reader",
-                "ranar zabe": "election day",
-                "kasa tantance": "fails accreditation fail function",
-                "sawun yatsa": "fingerprint biometric",
-                "fuskar": "facial recognition",
-                "aikawa": "electronic transmission upload",
-                "sakamakon zabe": "election results form ec8a irev",
-                "na'ura mai kwakwalwa": "electronic transmission device",
-                "sanarwar zabe": "notice of election publish",
-                "kwanaki nawa": "how many days 300 days notice",
-                "kotu": "court jurisdiction pre-election primaries",
-                "fidda gwani": "primaries nomination affidavit",
-                "shari'ar": "dispute court jurisdiction"
-            },
-            "yo": {
-                "ijeri oludibo": "accreditation voter verification",
-                "ero bvas": "bvas device smart card reader",
-                "ojo idibo": "election day",
-                "kuna lati fi ika": "fails fingerprint biometric accreditation",
-                "tabi oju": "or facial recognition",
-                "abajade": "election results form ec8a irev",
-                "gbigbe": "transmission electronic upload",
-                "ifitonileti idibo": "notice of election publish 300 days",
-                "ojo melo": "how many days notice",
-                "ile-ejo": "court jurisdiction pre-election primaries affidavit",
-                "ejo ti o waye": "dispute pre-election court"
-            },
-            "ig": {
-                "enyocha onye na-eme ntuli aka": "accreditation voter verify",
-                "igwe bvas": "bvas device smart card reader",
-                "ubochi ntuli aka": "election day",
-                "ekweghi enyocha mkpisi aka": "fails fingerprint biometric accreditation",
-                "ma obu iru": "or facial recognition",
-                "iziga nsonaazụ": "electronic transmission upload form ec8a irev",
-                "elektrọnik": "electronic transmission",
-                "ọkwa ntuli aka": "notice of election 300 days publish",
-                "ubochi ole": "how many days notice",
-                "ulo ikpe": "court jurisdiction pre-election primaries affidavit",
-                "esemokwu": "disputes pre-election"
-            }
-        }
-
-        lang_dict = translations.get(lang, {})
-        translated_tokens = []
-        lowered = query.lower()
-        for phrase, eng_eq in lang_dict.items():
-            if phrase in lowered:
-                translated_tokens.append(eng_eq)
-
-        if translated_tokens:
-            return query + " " + " ".join(translated_tokens)
-        return query
 
     def _bm25_score(self, query: str) -> List[Tuple[LegalChunk, float]]:
         q_tokens = self._tokenize(query)
