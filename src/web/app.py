@@ -12,6 +12,8 @@ from src.retrieval.cross_lingual import CrossLingualRetriever
 from src.generation.prompt_builder import GroundedAnswerGenerator
 from src.verification.matcher import OfficialSourceChecker
 from src.speech.tts_engine import MMSTTSEngine
+from src.lid.ensemble_lid import EnsembleLID, DISAMBIGUATION_PROMPT
+from src.web.session_store import SecureSessionStore
 
 app = FastAPI(
     title="INEC Multilingual Civic QA & Verifier",
@@ -27,11 +29,14 @@ app.mount("/static", StaticFiles(directory=str(BASE_DIR / "src" / "web" / "stati
 retriever = TranslationHybridRetriever()
 generator = GroundedAnswerGenerator()
 checker = OfficialSourceChecker()
+lid_detector = EnsembleLID()
+session_store = SecureSessionStore()
 
 class AskRequest(BaseModel):
     query: str
-    language: str = "en"  # en, ha, yo, ig
+    language: str = "auto"  # auto, en, ha, yo, ig, pcm
     allow_translation: bool = False
+    confirmed_language: bool = False
 
 class CheckRequest(BaseModel):
     item: str
@@ -73,20 +78,61 @@ async def home(request: Request):
 
 @app.post("/api/v1/ask", response_model=VoterAnswer)
 async def ask_election_rule(req: AskRequest):
-    """Answers voter questions strictly grounded in Electoral Act 2026 & INEC Guidelines."""
-    if not req.query.strip():
+    """
+    Answers voter questions strictly grounded in Electoral Act 2026 & INEC Guidelines.
+    Phase 2: Performs language identification (AfroLID + GlotLID) with mandatory user confirmation
+    when confidence < 0.75, when code-switching is detected, or for Nigerian Pidgin.
+    """
+    cleaned_query = req.query.strip()
+    if not cleaned_query:
         raise HTTPException(status_code=400, detail="Query cannot be empty.")
 
-    lang = req.language.lower()
-    if lang not in ["en", "ha", "yo", "ig"]:
-        lang = "en"
+    req_lang = req.language.lower().strip()
+    extra_flags = []
+
+    # Phase 2 LID Pipeline:
+    # If language is 'auto' or unconfirmed and not an explicit known language:
+    if req_lang == "auto" or (not req.confirmed_language and req_lang not in ["en", "ha", "yo", "ig"]):
+        detected_lang, conf, needs_disambig = lid_detector.identify(cleaned_query)
+        if needs_disambig and not req.confirmed_language:
+            return VoterAnswer(
+                question=cleaned_query,
+                language=detected_lang or "auto",
+                answer_text=DISAMBIGUATION_PROMPT,
+                answer_plain="Please confirm your preferred language to receive a verified answer.",
+                citations=[],
+                retrieved_chunk_ids=[],
+                confidence_flags=["NEEDS_LANGUAGE_CONFIRMATION"],
+                status="NEEDS_LANGUAGE_CONFIRMATION",
+                disambiguation_prompt=DISAMBIGUATION_PROMPT,
+                detected_candidate=detected_lang,
+                confidence_score=conf
+            )
+        active_lang = detected_lang
+        extra_flags.append(f"LID_AUTO_DETECTED_{active_lang.upper()}")
+    else:
+        active_lang = req_lang if req_lang in ["en", "ha", "yo", "ig", "pcm"] else "en"
+
+    # Nigerian Pidgin experimental pass-through
+    if active_lang == "pcm":
+        extra_flags.append("EXPERIMENTAL_PIDGIN_PASSTHROUGH")
+        retrieval_lang = "en"
+    else:
+        retrieval_lang = active_lang if active_lang in ["en", "ha", "yo", "ig"] else "en"
 
     # Retrieve chunks (with user opt-in flag for online gtx endpoint)
-    retrieved = retriever.retrieve(req.query, top_k=3, lang=lang, allow_online=req.allow_translation)
+    retrieved = retriever.retrieve(cleaned_query, top_k=3, lang=retrieval_lang, allow_online=req.allow_translation)
     disagree = getattr(retrieved, "bm25_dense_disagree", getattr(retriever, "last_bm25_dense_disagree", False))
 
     # Generate grounded response with citations
-    answer = generator.generate_answer(req.query, retrieved, lang=lang, bm25_dense_disagree=disagree)
+    answer = generator.generate_answer(cleaned_query, retrieved, lang=retrieval_lang, bm25_dense_disagree=disagree)
+
+    # Attach Phase 2 LID flags
+    for flag in extra_flags:
+        if flag not in answer.confidence_flags:
+            answer.confidence_flags.append(flag)
+    answer.language = active_lang
+    answer.status = "ANSWER"
     return answer
 
 @app.post("/check", response_model=VerificationResult)
@@ -124,12 +170,6 @@ async def api_health_check():
         "live_inec_access": False,
         "pii_logging": False
     }
-
-from src.web.session_store import SecureSessionStore
-from src.lid.ensemble_lid import EnsembleLID, DISAMBIGUATION_PROMPT
-
-session_store = SecureSessionStore()
-lid_detector = EnsembleLID()
 
 class WhatsAppWebhookPayload(BaseModel):
     From: str
