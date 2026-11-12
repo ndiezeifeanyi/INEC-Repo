@@ -29,17 +29,19 @@ It answers voter questions regarding Nigeria's election rules strictly grounded 
 
 ## Verified Evaluation Results
 
-| Dimension / Test | Path A (Cross-Lingual) | Path B (Translate-Hybrid RRF) | Status |
-| :--- | :--- | :--- | :--- |
-| **Recall@3 (Overall)** | 80.0% | **95.0%** | **PASS** (Path B selected) |
-| **Recall@3 (Hausa)** | 80.0% | **100.0%** | **PASS** |
-| **Recall@3 (Yoruba)** | 100.0% | **100.0%** | **PASS** |
-| **Recall@3 (Igbo)** | 60.0% | **100.0%** | **PASS** |
-| **Retrieval MRR** | 0.635 | **0.750** | **PASS** |
-| **Currency (2026 vs 2022)** | N/A | **100% adherence** | **PASS** |
-| **Partisan Refusal Rate** | N/A | **100% refusal** | **PASS** |
-| **Typosquat / Fraud Detection**| N/A | **100% detection** | **PASS** |
-| **cvr.inecnigeria.org CNAME** | N/A | **0.0% false alarm** | **PASS** |
+[MEASURED: `pytest tests/` on frozen test benchmarks (`retrieval_bench.json`, `heldout_bench.json`, `currency_bench.json`, `refusal_bench.json`, `check_bench.json`)]
+
+| Dimension / Test | Path A (Cross-Lingual) | Path B (Translate-Hybrid RRF) | Status | Benchmark Source |
+| :--- | :--- | :--- | :--- | :--- |
+| **Recall@3 (Overall)** | 50.0% | **90.0%** | **PASS** (Path B selected) | `tests/eval_retrieval.py` |
+| **Recall@3 (Hausa)** | 60.0% | **100.0%** | **PASS** | `tests/eval_retrieval.py` |
+| **Recall@3 (Yoruba)** | 60.0% | **80.0%** | **PASS** | `tests/eval_retrieval.py` |
+| **Recall@3 (Igbo)** | 60.0% | **100.0%** | **PASS** | `tests/eval_retrieval.py` |
+| **Retrieval MRR** | 0.272 | **0.639** | **PASS** | `tests/eval_retrieval.py` |
+| **Currency (2026 vs 2022)** | N/A | **100% adherence** | **PASS** | `tests/eval_currency.py` |
+| **Partisan Refusal Rate** | N/A | **100% refusal** | **PASS** | `tests/test_red_team.py` |
+| **Typosquat / Fraud Detection**| N/A | **100% detection** | **PASS** | `tests/test_check_mode.py` |
+| **cvr.inecnigeria.org CNAME** | N/A | **0.0% false alarm** | **PASS** | `tests/test_check_mode.py` |
 
 Full empirical test logs are documented in [`docs/evaluation_report.md`](docs/evaluation_report.md).
 
